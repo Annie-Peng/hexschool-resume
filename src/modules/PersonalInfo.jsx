@@ -2,7 +2,8 @@ import { Fragment, useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
-import { personalInfoTestData, resumeDataSet } from '../dataSet/resumeDataSet';
+import { resumeDataSet } from '../dataSet/resumeDataSet';
+import { personalInfoTestData } from '../dataSet/testDataSet';
 
 
 const PersonalInfo = () => {
