@@ -1,0 +1,1 @@
+export const commonRequiredMsg = "*必填";
