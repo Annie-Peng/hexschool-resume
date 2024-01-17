@@ -22,8 +22,8 @@ const PersonalInfo = () => {
   console.log(personalInfo);
 
   return (
-    <section>
-      <h2>{title}</h2>
+    <section className="resumeSection">
+      <h2 className="resumeH2">{title}</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         {formDataSet.map((formData, index)=>{
           const RenderForm = controller[formData.component];
@@ -33,8 +33,10 @@ const PersonalInfo = () => {
             </Fragment>
           )
         })}
-        <button>儲存</button>
-        <button>取消</button>
+        <div className="flex justify-center gap-4 mt-4">
+          <button className="cancelledBtn btn">取消</button>
+          <button className="saveBtn btn">儲存</button>
+        </div>
       </form>
     </section>
   );
