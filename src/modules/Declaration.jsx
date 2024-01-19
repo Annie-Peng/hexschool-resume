@@ -10,7 +10,7 @@ const Declaration = () => {
 
   const { title, formDataSet } = resumeDataSet.declaration;
   const { declaration } = useContext(FormContext);
-  const { register, handleSubmit, formState: {errors} } = useForm({
+  const { register, handleSubmit, formState: {errors}, getValues, setValue } = useForm({
     defaultValues: declarationTestDataSet
   });
 
@@ -36,7 +36,7 @@ const Declaration = () => {
           const RenderForm = controller[formData.component];
           return (
             <Fragment key={index}>
-              {RenderForm && <RenderForm formData={formData} register={register} error={errors[formData.name]}/>}
+              {RenderForm && <RenderForm formData={formData} register={register} error={errors[formData.name]} getValues={getValues} setValue={setValue}/>}
             </Fragment>
           )
         })}
