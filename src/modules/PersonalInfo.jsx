@@ -13,7 +13,7 @@ const PersonalInfo = () => {
   const { title, formDataSet } = resumeDataSet.personalInfo;
   const [ renderItem, setRenderItem ] = useState(formDataSet);
   const { personalInfo, updateForm } = useContext(FormContext);
-  const { register, handleSubmit, formState: {errors}, unregister } = useForm({
+  const { register, handleSubmit, formState: {errors}, unregister, getValues } = useForm({
     defaultValues: personalInfoTestData
   });
 
@@ -31,11 +31,11 @@ const PersonalInfo = () => {
         {formDataSet.map((formData, index)=>{
           const RenderForm = controller[formData.component]; // 選擇表單元件
           if(formData.group) { // group表單
-            return <FormGroupInput initGroupDataSet={formDataSet[index]} groupDataSet={formData?.group} register={register} errors={errors[formData.group[0].group]} key={index} renderItem={renderItem} setRenderItem={setRenderItem} formIndex={index} unregister={unregister}/>
+            return <FormGroupInput initGroupDataSet={formDataSet[index]} groupDataSet={formData} register={register} errors={errors[formData.group[0].group]} key={index} renderItem={renderItem} setRenderItem={setRenderItem} formIndex={index} unregister={unregister}/>
           }
           return (
             <Fragment key={index}>
-              {RenderForm && <RenderForm formData={formData} register={register} error={errors[formData.name]}/>}
+              {RenderForm && <RenderForm formData={formData} register={register} error={errors[formData.name]} getValues={getValues}/>}
             </Fragment>
           )
         })}
