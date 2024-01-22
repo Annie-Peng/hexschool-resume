@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
 import { resumeDataSet } from '../dataSet/resumeDataSet';
+import { resumeStyleSet } from '../dataSet/resumeStyleSet';
 import { declarationTestDataSet } from "../dataSet/testDataSet";
 
 
@@ -34,9 +35,10 @@ const Declaration = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap items-center justify-between">
         {formDataSet.map((formData, index)=>{
           const RenderForm = controller[formData.component];
+          const formClass = resumeStyleSet.declaration[index];
           return (
             <Fragment key={index}>
-              {RenderForm && <RenderForm formData={formData} register={register} error={errors[formData.name]} getValues={getValues} setValue={setValue}/>}
+              {RenderForm && <RenderForm formData={formData} register={register} error={errors[formData.name]} getValues={getValues} setValue={setValue} formClass={formClass} />}
             </Fragment>
           )
         })}

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
 import { resumeDataSet } from '../dataSet/resumeDataSet';
+import { resumeStyleSet } from '../dataSet/resumeStyleSet';
 import FormGroupInput from "../common/components/FormGroupInput";
 import { portFolioTestDataSet } from "../dataSet/testDataSet";
 import { useState } from "react";
@@ -30,13 +31,14 @@ const Portfolio = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {formDataSet.map((formData, index)=>{
           const RenderForm = controller[formData.component]; // 選擇表單元件
+          const formClass = resumeStyleSet.portfolio[index];
           if(formData.group) { // group表單
-            return <FormGroupInput initGroupDataSet={formDataSet[index]} groupDataSet={formData} register={register} errors={errors[formData.group[0].group]} key={index} renderItem={renderItem} setRenderItem={setRenderItem} formIndex={index} unregister={unregister} />
+            return <FormGroupInput initGroupDataSet={formDataSet[index]} groupDataSet={formData} register={register} errors={errors[formData.group[0].group]} key={index} renderItem={renderItem} setRenderItem={setRenderItem} formIndex={index} unregister={unregister} formClass={formClass}/>
             
           }
           return (
             <Fragment key={index}>
-              {RenderForm && <RenderForm formData={formData} register={register} error={errors[formData.name]} />}
+              {RenderForm && <RenderForm formData={formData} register={register} error={errors[formData.name]} formClass={formClass}/>}
             </Fragment>
           )
         })}
