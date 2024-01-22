@@ -1,14 +1,18 @@
-const FormTextarea = ({formData, register, error}) => {
+import { requiredClass } from "../../dataSet/validationMsg";
 
-  const { textareaClass, labelClass, hClass, errClass, type, hMsg, name, placeholder, validation } = formData;
+const FormTextarea = ({formData, register, error, formClass}) => {
+
+  const { type, hMsg, name, placeholder, validation, required } = formData;
+
+  const { textareaClass, errClass } = formClass;
 
   return (
-    <div>
-      <label className={labelClass} htmlFor={name}>
-        <h3 className={hClass}>{hMsg}</h3>
+    <div className="flex items-center gap-2 p-2">
+      <label className="w-1/4 text-right" htmlFor={name}>
+        <h3 className={`resumeH3 ${requiredClass(required)}`}>{hMsg}</h3>
       </label>
-      <textarea className={textareaClass} id={name} name={name} type={type} placeholder={placeholder} {...register(name, validation)}/>
-      {error && <p className={errClass}>{error.message}</p>}
+      <textarea className={`${error && "focus:outline-red-500"} ${textareaClass}`} id={name} type={type} placeholder={placeholder} {...register(name, validation)}/>
+      {error && <p className={`${errClass} text-sm text-red-500`}>{error.message}</p>}
     </div>
     );
 }

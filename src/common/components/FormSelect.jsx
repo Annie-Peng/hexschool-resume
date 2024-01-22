@@ -1,23 +1,28 @@
-const FormSelect = ({formData, register, error}) => {
+import { requiredClass } from "../../dataSet/validationMsg";
 
-  const { selectClass, labelClass, hClass, errClass, hMsg, name, disabledOption, options, validation } = formData;
+const FormSelect = ({formData, register, error, formClass}) => {
+
+  const { hMsg, name, disabledOption, options, validation, required } = formData;
+  const { selectClass, errClass, } = formClass;
 
   return (
-    <div>
-      <label className={labelClass} htmlFor={name}>
-        <h3 className={hClass}>{hMsg}</h3>
+    <div className="flex items-center gap-2 p-2">
+      <label className="w-1/3 text-right" htmlFor={name}>
+        <h3 className={`resumeH3 ${requiredClass(required)}`}>{hMsg}</h3>
       </label>
-      <select className={selectClass} {...register(name, validation)}>
-      <option value="" disabled>
-        {disabledOption}
-      </option>
-      {options.map((option, index) => (
-        <option key={index} value={option.value}>
-          {option.option}
-        </option>
-      ))}
-      </select>
-      {error && <p className={errClass}>{error.message}</p>}
+      <div className="w-full">
+        <select className={selectClass} {...register(name, validation)}>
+          <option value="" disabled>
+            {disabledOption}
+          </option>
+          {options.map((option, index) => (
+            <option key={index} value={option.value}>
+              {option.option}
+            </option>
+          ))}
+        </select>
+      </div>
+      {error && <p className={`resumeErr ${errClass}`}>{error.message}</p>}
     </div>
     );
 }
