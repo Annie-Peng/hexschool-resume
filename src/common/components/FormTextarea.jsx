@@ -1,8 +1,10 @@
 import { requiredClass } from "../../dataSet/validationMsg";
 
-const FormTextarea = ({formData, register, error}) => {
+const FormTextarea = ({formData, register, error, formClass}) => {
 
-  const { textareaClass, errClass, type, hMsg, name, placeholder, validation, required } = formData;
+  const { type, hMsg, name, placeholder, validation, required } = formData;
+
+  const { textareaClass, errClass } = formClass;
 
   return (
     <div className="flex items-center gap-2 p-2">

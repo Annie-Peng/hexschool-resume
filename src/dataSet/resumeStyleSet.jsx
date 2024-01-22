@@ -1,4 +1,4 @@
-const resumeStyleSet = {
+export const resumeStyleSet = {
   personalInfo: [
     {
       name: "profile",
@@ -252,5 +252,3 @@ const resumeStyleSet = {
     },
   ]
 };
-
-export default resumeStyleSet;

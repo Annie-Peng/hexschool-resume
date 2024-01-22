@@ -3,9 +3,12 @@ import Popup from "reactjs-popup";
 import SignaturePad from "react-signature-canvas";
 import { requiredClass } from "../../dataSet/validationMsg";
 
-const FormSign = ({formData, getValues, setValue}) => {
+const FormSign = ({formData, getValues, setValue, formClass}) => {
 
-  const { hMsg, name, placeholder, outerClass, hClass, required, labelClass, imgData } = formData;
+  const { hMsg, name, placeholder, required } = formData;
+  const { imgData, outerClass,
+    hClass,
+    labelClass } = formClass;
 
   const img = getValues(name);
   const [imageURL, setImageURL] = useState(img);

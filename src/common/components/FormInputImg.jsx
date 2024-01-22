@@ -2,9 +2,11 @@ import { useRef } from "react";
 import useUploadImg from "../hook/useUploadImg";
 import { requiredClass } from "../../dataSet/validationMsg";
 
-const FormInputImg = ({formData, register, error, getValues}) => {
+const FormInputImg = ({formData, register, error, getValues, formClass}) => {
 
-  const { inputClass, errClass, type, accept, hMsg, name, placeholder, validation, outerClass, hClass, required, disabled, labelClass, imgData } = formData;
+  const { type, accept, hMsg, name, placeholder, validation, required, disabled, labelClass, imgData } = formData;
+
+  const { inputClass, errClass, outerClass, hClass} = formClass;
 
   const img = getValues(name);
   const [fileSrc, handleUploadImg] = useUploadImg(img);

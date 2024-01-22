@@ -1,8 +1,9 @@
 import { requiredClass } from "../../dataSet/validationMsg";
 
-const FormSelect = ({formData, register, error}) => {
+const FormSelect = ({formData, register, error, formClass}) => {
 
-  const { selectClass, errClass, hMsg, name, disabledOption, options, validation, required } = formData;
+  const { hMsg, name, disabledOption, options, validation, required } = formData;
+  const { selectClass, errClass, } = formClass;
 
   return (
     <div className="flex items-center gap-2 p-2">
