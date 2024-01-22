@@ -5,14 +5,15 @@ import { FormContext } from "../common/features/FormContext";
 import { resumeDataSet } from '../dataSet/resumeDataSet';
 import { resumeStyleSet } from '../dataSet/resumeStyleSet';
 import { declarationTestDataSet } from "../dataSet/testDataSet";
+import useCusForm from "../common/hook/useCusForm";
 
 
 const Declaration = () => {
 
-  const { title, formDataSet } = resumeDataSet.declaration;
   const { declaration } = useContext(FormContext);
-  const { register, handleSubmit, formState: {errors}, getValues, setValue } = useForm({
-    defaultValues: declarationTestDataSet
+  const { formFunctions, formFunctions: { formState: {errors}, handleSubmit }, formDataSet, title } = useCusForm({
+    defaultValues: declarationTestDataSet,
+    formTitle: "declaration"
   });
 
   const onSubmit = (values) => {
@@ -38,7 +39,7 @@ const Declaration = () => {
           const formClass = resumeStyleSet.declaration[index];
           return (
             <Fragment key={index}>
-              {RenderForm && <RenderForm formData={formData} register={register} error={errors[formData.name]} getValues={getValues} setValue={setValue} formClass={formClass} />}
+              {RenderForm && <RenderForm formData={formData} error={errors[formData.name]} formClass={formClass} {...formFunctions} />}
             </Fragment>
           )
         })}
