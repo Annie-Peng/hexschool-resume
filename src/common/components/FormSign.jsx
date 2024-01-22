@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Popup from "reactjs-popup";
 import SignaturePad from "react-signature-canvas";
+import { requiredClass } from "../../dataSet/validationMsg";
 
 const FormSign = ({formData, getValues, setValue}) => {
 
@@ -9,8 +10,6 @@ const FormSign = ({formData, getValues, setValue}) => {
   const img = getValues(name);
   const [imageURL, setImageURL] = useState(img);
   const sigCanvas = useRef({});
-
-  const requiredClass = required !== false && "requiredMark"
 
   const clear = () => sigCanvas.current.clear();
   const save = (close) => {
@@ -21,13 +20,13 @@ const FormSign = ({formData, getValues, setValue}) => {
   };
 
   return (
-    <div>
+    <>
       <Popup
           modal
           trigger={
             <div className={`flex items-center gap-2 ${outerClass}`}>
               <label className={`w-1/4 text-right ${labelClass}`} htmlFor={name}>
-                <h3 className={`resumeH3 ${hClass} ${requiredClass}`}>{hMsg}</h3>
+                <h3 className={`resumeH3 ${hClass} ${requiredClass(required)}`}>{hMsg}</h3>
               </label>
               {imageURL ? (
                   <img
@@ -60,7 +59,7 @@ const FormSign = ({formData, getValues, setValue}) => {
               </>
           )}
       </Popup>
-    </div>
+    </>
   )
 }
 
