@@ -1,8 +1,6 @@
 import { Fragment, useContext } from "react";
-import { useForm } from 'react-hook-form';
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
-import { resumeDataSet } from '../dataSet/resumeDataSet';
 import { resumeStyleSet } from '../dataSet/resumeStyleSet';
 import { declarationTestDataSet } from "../dataSet/testDataSet";
 import useCusForm from "../common/hook/useCusForm";
@@ -11,7 +9,7 @@ import useCusForm from "../common/hook/useCusForm";
 const Declaration = () => {
 
   const { declaration } = useContext(FormContext);
-  const { formFunctions, formFunctions: { formState: {errors}, handleSubmit }, formDataSet, title } = useCusForm({
+  const { handleSubmit, formFunctions, formFunctions: { formState: {errors} }, formDataSet, title } = useCusForm({
     defaultValues: declarationTestDataSet,
     formTitle: "declaration"
   });
@@ -50,3 +48,28 @@ const Declaration = () => {
 };
 
 export default Declaration;
+
+export const DeclarationResume = ({ data }) => {
+
+  return (
+    <section>
+      <h2 className="font-bold">聲明事項</h2>
+      <ul>
+        <li>
+          1、本人同意多角人才基於就業服務之目的依法蒐集、處理、利用個人資料於任用相關作業之進行。
+        </li>
+        <li>
+          2、本人確認所提供之個人資料及相關經歷均屬實，如有不實情形，願意承擔相應責任。 
+        </li>
+      </ul>
+      <p>{data.approved ? "Y" : "N"} 同意上述聲明及確認個人資料屬實。</p>
+      <div className="flex justify-between">
+        <div>
+          <span>簽名</span>
+          <img src={data.signature} alt="signature"/>
+        </div>
+        <p>日期 {data.signatureUpdatedTime}</p>
+      </div>
+    </section>
+  )
+}
