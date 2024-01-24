@@ -1,6 +1,6 @@
 import { requiredClass } from "../../dataSet/validationMsg";
 
-const FormSelect = ({formData, register, error, formClass}) => {
+const FormSelect = ({formData, register, error, formClass, edit, getValues}) => {
 
   const { hMsg, name, disabledOption, options, validation, required } = formData;
   const { selectClass, errClass, } = formClass;
@@ -11,7 +11,8 @@ const FormSelect = ({formData, register, error, formClass}) => {
         <h3 className={`resumeH3 ${requiredClass(required)}`}>{hMsg}</h3>
       </label>
       <div className="w-full">
-        <select className={selectClass} {...register(name, validation)}>
+        { edit ? (
+          <select className={selectClass} {...register(name, validation)}>
           <option value="" disabled>
             {disabledOption}
           </option>
@@ -21,6 +22,9 @@ const FormSelect = ({formData, register, error, formClass}) => {
             </option>
           ))}
         </select>
+        ) : (
+          getValues(name)
+        ) }
       </div>
       {error && <p className={`resumeErr ${errClass}`}>{error.message}</p>}
     </div>

@@ -4,16 +4,16 @@ export const personalInfoTestData =  {
   phone: "0912345678",
   email: "1@gmail.com",
   occupation: "occupation",
-  workingLength: "6",
-  expectedSalary: "expectedSalary",
-  aboutMe: "aboutMe",
+  workingLength: "6年",
+  expectedSalary: "40000/800000",
+  aboutMe: "Tailwind lets you conditionally apply utility classes in different states using variant modifiers. For example, use hover:bg-contain to only apply the bg-contain utility on hover.Tailwind ",
   currentCity: "臺北市",
   futureCities: "基隆市",
   graduateSchool: {
     id1: {
       name: "name",
       major: "major",
-      leftTime: "leftTime"
+      leftTime: "2024-11"
     },
   }
 }
@@ -62,6 +62,21 @@ export const portFolioTestDataSet =  {
 					description: "這是作品描述",
 					functions: "這是功能描述"
         },
+        id2: {
+          url: "https://www.google.com.tw",
+					description: "這是作品描述",
+					functions: "這是功能描述"
+        },
+      }
+    },
+    id2: {
+      name: "Github",
+      items: {
+        id2: {
+          url: "https://www.google.com.tw",
+					description: "這是作品描述",
+					functions: "這是功能描述"
+        },
       }
     },
   }
@@ -69,7 +84,7 @@ export const portFolioTestDataSet =  {
 
 export const declarationTestDataSet =  {
   signature: "https://images.unsplash.com/photo-1682685797208-c741d58c2eff?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  signatureBuiltTime: "2024/1/18", // 年/月/日 (new Date()) 時區
-  signatureUpdatedTime: "2024/1/18",
+  signatureBuiltTime: "2024-01-18", // 年/月/日 (new Date()) 時區
+  signatureUpdatedTime: "2024-01-18",
   approved: true
 }

@@ -51,7 +51,8 @@ export const resumeStyleSet = {
       name: "aboutMe",
       errClass: "",
       inputClass: "",
-      hClass: ""
+      hClass: "",
+      labelClass: "flex-shrink-0"
     },
     {
       name: "currentCity",
@@ -179,13 +180,15 @@ export const resumeStyleSet = {
           name: "jobExperience.id1.description",
           errClass: "",
           inputClass: "",
-          hClass: ""
+          hClass: "",
+          labelClass: "flex-shrink-0"
         },
         {
           name: "jobExperience.id1.achievement",
           errClass: "",
           inputClass: "",
-          hClass: ""
+          hClass: "",
+          labelClass: "flex-shrink-0"
         },
       ]
     }

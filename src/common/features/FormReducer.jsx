@@ -18,10 +18,10 @@ export const initialState = {
   jobExperience: {},
   portfolio: {},
   declaration: {
+    approved: false,
     signature: "",
-    signingYear: "",
-    signingMonth: "",
-    signingDay: ""
+		signatureBuiltTime: "",
+    signatureUpdatedTime: "",
   }
 }
 
