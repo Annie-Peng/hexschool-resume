@@ -40,3 +40,36 @@ const JobExperience = () => {
 };
 
 export default JobExperience;
+
+export const JobExperienceResume = ({ data }) => {
+
+  if(!data.jobExperience) return;
+  const { jobExperience } = data;
+
+  return (
+    <section>
+      <h2 className="font-bold">工作經驗</h2>
+      <ul>
+        {Object.values(jobExperience).map((title, tIndex)=>{
+          const { startYear, startMonth, endYear, endMonth, isLeft } = title.workingLength;
+          return (
+            <li key={`title ${tIndex}`}>
+              <div className="flex justify-between">
+                <h3>{title.company}・{title.occupation}</h3>
+                <p>{startYear}年{startMonth}月 - {isLeft ? `${endYear}年${endMonth}月` : "至今" }</p>
+              </div>
+              <div>
+                <h4>工作內容</h4>
+                <p>{title.description}</p>
+              </div>
+              <div>
+                <h4>工作成果</h4>
+                <p>{title.achievement}</p>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}

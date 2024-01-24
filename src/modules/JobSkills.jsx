@@ -39,3 +39,34 @@ const JobSkills = () => {
 };
 
 export default JobSkills;
+
+export const JobSkillsResume = ({ data }) => {
+
+  if(!data.jobSkills) return;
+  const { jobSkills } = data;
+
+  return (
+    <section>
+      <h2 className="font-bold">工作技能</h2>
+      <ul>
+        {Object.values(jobSkills).map((title, tIndex)=>{
+          console.log(title);
+          return (
+            <li key={`title ${tIndex}`}>
+              <h3>{title.name}</h3>
+              <ul>
+                {Object.values(title.items).map((item, iIndex)=>{
+                  return (
+                    <li key={`item ${iIndex}`}>
+                      <p className="before:content-['#'] before:mr-2">{item.name}</p>
+                    </li>
+                  )
+                })}
+              </ul>
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}

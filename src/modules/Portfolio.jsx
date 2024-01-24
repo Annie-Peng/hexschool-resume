@@ -40,3 +40,35 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
+export const PortfolioResume = ({ data }) => {
+
+  if(!data.portfolio) return;
+  const { portfolio } = data;
+
+  return (
+    <section>
+      <h2 className="font-bold">專業成果 / 作品</h2>
+      <ul>
+        {Object.values(portfolio).map((title, tIndex)=>{
+          return (
+            <li key={`title ${tIndex}`}>
+              <h3>{title.name}</h3>
+              <ul>
+                {Object.values(title.items).map((item, iIndex)=>{
+                  return (
+                    <li key={`item ${iIndex}`}>
+                      <p>網址 | {item.url}</p>
+                      <p>作品敘述 | {item.description}</p>
+                      <p>功能內容 | {item.functions}</p>
+                    </li>
+                  )
+                })}
+              </ul>
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}
