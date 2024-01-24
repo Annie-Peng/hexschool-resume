@@ -2,6 +2,13 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      md: "768px",
+      lg: "1280px",
+    },
+    container: {
+      center: true,
+    },
     extend: {
       colors: {
         primary: {
@@ -29,6 +36,12 @@ export default {
           800: "#193F6F",
           900: "#001F4D",
         },
+      },
+      backgroundImage: {
+        edit: "url(../../public/icons/edit.png)",
+        thinBorderHexschool:
+          "url(../../public/images/thin-border-hexschool.png)",
+        filledHexschool: "url(../../public/images/filled-hexschool.png)",
       },
     },
   },

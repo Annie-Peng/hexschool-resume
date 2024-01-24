@@ -1,3 +1,4 @@
+import SnapShot from "./common/components/SnapShot";
 import { FormProvider } from "./common/features/FormContext";
 import Declaration from "./modules/Declaration";
 import JobExperience from "./modules/JobExperience";
@@ -9,6 +10,7 @@ const Resume = () => {
 
   return (
     <FormProvider>
+      <SnapShot />
       <PersonalInfo />
       <JobExperience />
       <JobSkills />

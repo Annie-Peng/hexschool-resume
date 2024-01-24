@@ -25,6 +25,10 @@ export const FormProvider = ({children}) => {
   }
 
   return (
-    <FormContext.Provider value={value}>{children}</FormContext.Provider>
+    <FormContext.Provider value={value}>
+      <main className="container flex flex-col md:w-2/3 lg:w-1/2 gap-20 py-10">
+        {children}
+      </main>
+    </FormContext.Provider>
   )
 }

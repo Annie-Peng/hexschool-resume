@@ -94,14 +94,14 @@ export const resumeDataSet = {
         name: "aboutMe",
         component: "input",
         type: "text",
+        required: false,
         validation: {
-          required: commonRequiredMsg,
           maxLength: {
             value: 300,
             message: "不得超過300字"
           }
         },
-        placeholder: "重點陳述，盡量不要超過 300字",
+        placeholder: "重點陳述，盡量不要超過 300 字",
       },
       {
         hMsg: "目前現居地",
@@ -163,9 +163,9 @@ export const resumeDataSet = {
             hMsg: "畢(肆)業時間",
             id: "id1",
             key: "leftTime",
-            type: "text",
+            type: "month",
             name: "graduateSchool.id1.leftTime",
-            component: "selectDate",
+            component: "input",
             validation: {
               required: commonRequiredMsg
             },
@@ -277,7 +277,7 @@ export const resumeDataSet = {
                 component: "input",
                 type: "number",
                 validation: {
-                  required: true
+                  required: commonRequiredMsg
                 },
                 placeholder: "起始年份(西元)",
                 errClass: "hidden",
@@ -296,7 +296,7 @@ export const resumeDataSet = {
                 component: "input",
                 type: "number",
                 validation: {
-                  required: true
+                  required: commonRequiredMsg
                 },
                 placeholder: "起始月份",
                 pMsg: "月"
@@ -309,9 +309,8 @@ export const resumeDataSet = {
                 name: "jobExperience.id1.workingLength.endYear",
                 component: "input",
                 type: "number",
-                validation: {
-                  required: true
-                },
+                required: false,
+
                 placeholder: "結束年份(西元)",
                 pMsg: "年",
               },
@@ -323,9 +322,8 @@ export const resumeDataSet = {
                 name: "jobExperience.id1.workingLength.endMonth",
                 component: "input",
                 type: "number",
-                validation: {
-                  required: true
-                },
+                required: false,
+
                 placeholder: "結束月份",
                 pMsg: "月"
               },
@@ -337,10 +335,8 @@ export const resumeDataSet = {
                 name: "jobExperience.id1.workingLength.isLeft",
                 component: "input",
                 type: "checkbox",
-                validation: {
-                  required: commonRequiredMsg
-                },
-                pMsg: ""
+                required: false,
+                pMsg: "",
               },
             ]
           },
