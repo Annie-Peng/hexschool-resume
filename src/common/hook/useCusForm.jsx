@@ -8,28 +8,32 @@ const useCusForm = ({defaultValues, formTitle}) => {
   const { title, formDataSet } = resumeDataSet[formTitle];
   const [ renderItem, setRenderItem ] = useState(formDataSet);
   const { updateForm } = useContext(FormContext);
-  const { register, handleSubmit, formState: {errors}, unregister, getValues, setValue } = useForm({defaultValues});
+  const [ edit, setEdit  ] = useState(false);
+
+  const { handleSubmit, reset, ...formFunctions } = useForm({defaultValues});
 
   const onSubmit = (values) => {
     updateForm({name: formTitle, values})
+    setEdit(false)
     console.log(values);
-  }
-
-  const formFunctions = {
-    register, handleSubmit, formState: {errors}, unregister, getValues, setValue
   }
 
   const Form = ({ children }) => (
     <form onSubmit={handleSubmit(onSubmit)}>
       {children}
-      <div className="flex justify-center gap-4 mt-4">
-        <button className="cancelledBtn btn">取消</button>
-        <button className="saveBtn btn">儲存</button>
+      {edit && (
+        <div className="flex justify-center gap-4 mt-4">
+        <button className="cancelledBtn btn" type="button" onClick={()=>{
+          setEdit(false);
+          reset(defaultValues);
+        }}>取消</button>
+        <button className="saveBtn btn" type="submit">儲存</button>
       </div>
+      )}
     </form>
   );
 
-  return {formFunctions, Form, renderItem, setRenderItem, formDataSet, title}
+  return {handleSubmit, formFunctions, Form, renderItem, setRenderItem, formDataSet, title, edit, setEdit}
 }
 
 export default useCusForm;
