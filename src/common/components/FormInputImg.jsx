@@ -4,9 +4,9 @@ import { requiredClass } from "../../dataSet/validationMsg";
 
 const FormInputImg = ({formData, register, error, getValues, formClass}) => {
 
-  const { type, accept, hMsg, name, placeholder, validation, required, disabled, labelClass, imgData } = formData;
+  const { type, accept, hMsg, name, placeholder, validation, required, disabled } = formData;
 
-  const { inputClass, errClass, outerClass, hClass} = formClass;
+  const { inputClass, errClass, outerClass, hClass, labelClass, imgData} = formClass;
 
   const img = getValues(name);
   const [fileSrc, handleUploadImg] = useUploadImg(img);
