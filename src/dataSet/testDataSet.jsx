@@ -4,9 +4,9 @@ export const personalInfoTestData =  {
   phone: "0912345678",
   email: "1@gmail.com",
   occupation: "occupation",
-  workingLength: "6",
-  expectedSalary: "expectedSalary",
-  aboutMe: "aboutMe",
+  workingLength: "6年",
+  expectedSalary: "40000/800000",
+  aboutMe: "Tailwind lets you conditionally apply utility classes in different states using variant modifiers. For example, use hover:bg-contain to only apply the bg-contain utility on hover.Tailwind ",
   currentCity: "臺北市",
   futureCities: "基隆市",
   graduateSchool: {
@@ -58,6 +58,21 @@ export const portFolioTestDataSet =  {
       name: "Github",
       items: {
         id1: {
+          url: "https://www.google.com.tw",
+					description: "這是作品描述",
+					functions: "這是功能描述"
+        },
+        id2: {
+          url: "https://www.google.com.tw",
+					description: "這是作品描述",
+					functions: "這是功能描述"
+        },
+      }
+    },
+    id2: {
+      name: "Github",
+      items: {
+        id2: {
           url: "https://www.google.com.tw",
 					description: "這是作品描述",
 					functions: "這是功能描述"
