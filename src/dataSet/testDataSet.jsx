@@ -13,7 +13,7 @@ export const personalInfoTestData =  {
     id1: {
       name: "name",
       major: "major",
-      leftTime: "leftTime"
+      leftTime: "2024-11"
     },
   }
 }
@@ -84,7 +84,7 @@ export const portFolioTestDataSet =  {
 
 export const declarationTestDataSet =  {
   signature: "https://images.unsplash.com/photo-1682685797208-c741d58c2eff?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  signatureBuiltTime: "2024/1/18", // 年/月/日 (new Date()) 時區
-  signatureUpdatedTime: "2024/1/18",
+  signatureBuiltTime: "2024-01-18", // 年/月/日 (new Date()) 時區
+  signatureUpdatedTime: "2024-01-18",
   approved: true
 }
