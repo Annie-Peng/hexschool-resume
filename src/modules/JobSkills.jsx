@@ -50,14 +50,14 @@ export const JobSkillsResume = ({ data }) => {
 
   return (
     <section>
-      <h2 className="font-bold">工作技能</h2>
-      <ul>
+      <h2 className="font-bold text-2xl">工作技能</h2>
+      <ul className="mt-4">
         {Object.values(jobSkills).map((title, tIndex)=>{
           console.log(title);
           return (
             <li key={`title ${tIndex}`}>
-              <h3>{title.name}</h3>
-              <ul>
+              <h3 className="tag">{title.name}</h3>
+              <ul className="flex flex-col gap-2 mt-4">
                 {Object.values(title.items).map((item, iIndex)=>{
                   return (
                     <li key={`item ${iIndex}`}>

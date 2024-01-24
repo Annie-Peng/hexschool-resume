@@ -28,7 +28,7 @@ const SnapShot = () => {
       .then((canvas) => {
           const contentWidth = canvas.width;
           const contentHeight = canvas.height;
-  
+
           const imgWidth = A4_WIDTH;
           const imgHeight = A4_WIDTH/contentWidth * contentHeight;
           const pageData = canvas.toDataURL('image/jpeg', 1.0);
@@ -41,7 +41,16 @@ const SnapShot = () => {
         })
     }
 
-    return <button type="button" onClick={saveImage}>下載履歷(PDF)</button>
+    return (
+      <>
+        <div className="fixed w-full z-10 top-0 py-2 bg-white border-b border-blue-500">
+          <div className="container md:w-2/3 lg:w-1/2">
+            <button type="button" onClick={saveImage} className="btn saveBtn !w-fit block ml-auto">下載履歷(PDF)</button>
+          </div>
+        </div>
+        {/* {renderForm} */}
+      </>
+    )
 }
 
 export default SnapShot;
@@ -54,7 +63,7 @@ function RenderForm(data) {
       <header>
         <img src={banner} alt="banner" />
       </header>
-      <div className="px-[50px] py-[20px]">
+      <div className="px-[50px] py-[20px] flex flex-col gap-4">
         <PersonalInfoResume data={data.personalInfo} />
         <JobSkillsResume data={data.jobSkills} />
         <JobExperienceResume data={data.jobExperience} />
