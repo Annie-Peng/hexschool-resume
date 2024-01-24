@@ -1,20 +1,33 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
 import { resumeStyleSet } from '../dataSet/resumeStyleSet';
 import { declarationTestDataSet } from "../dataSet/testDataSet";
 import useCusForm from "../common/hook/useCusForm";
+import { turnDateFormat } from "../common/components/helper/turnDateFormat";
 
 
 const Declaration = () => {
 
-  const { declaration } = useContext(FormContext);
-  const { formFunctions, formFunctions: { formState: {errors} }, formDataSet, title } = useCusForm({
+  const { declaration, updateForm } = useContext(FormContext);
+  const { formFunctions, formFunctions: { formState: {errors}, watch }, formDataSet, title } = useCusForm({
     defaultValues: declarationTestDataSet,
     formTitle: "declaration"
   });
 
-  // console.log(errors);
+const watchSignature = watch("signature");
+const watchApproved = watch("approved");
+
+useEffect(()=>{
+  const formattedUpdatedDate = turnDateFormat(new Date());
+  const values = {
+    signature: watchSignature,
+    approved: watchApproved,
+    signatureBuiltTime: declaration.signatureBuiltTime === "" ? formattedUpdatedDate : declaration.signatureBuiltTime,
+    signatureUpdatedTime: formattedUpdatedDate,
+  };
+  updateForm({name: "declaration", values });
+},[watchSignature, watchApproved])
 
   return (
     <section className="resumeSection">
@@ -37,7 +50,7 @@ const Declaration = () => {
             </Fragment>
           )
         })}
-        <p className="w-[120px]">日期 {declaration.signatureUpdatedTime}</p>
+        <p className="w-[150px]">日期 {declaration.signatureUpdatedTime}</p>
       </form>
     </section>
   );
