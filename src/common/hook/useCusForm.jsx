@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormContext } from '../features/FormContext';
 import { resumeDataSet } from '../../dataSet/resumeDataSet';
+import { useEffect } from 'react';
 
 const useCusForm = ({defaultValues, formTitle}) => {
 
@@ -15,8 +16,11 @@ const useCusForm = ({defaultValues, formTitle}) => {
   const onSubmit = (values) => {
     updateForm({name: formTitle, values})
     setEdit(false)
-    console.log(values);
   }
+
+  useEffect(() => {
+      handleSubmit(onSubmit)();
+  }, []);
 
   const Form = ({ children }) => (
     <form onSubmit={handleSubmit(onSubmit)}>
