@@ -81,15 +81,14 @@ export const PersonalInfoResume = ({ data }) => {
 
   return (
     <section>
-      <div className="flex gap-8 mt-10">
-        <div className="w-[400px] h-[350px]">
+      <div className="flex gap-8 mt-4">
+        <div className="w-[400px] h-[300px]">
           <img src={data.profile} alt="profile" className="w-full h-full object-cover rounded-md"/>
         </div>
         <div className="w-full flex flex-wrap">
           <h1 className="w-1/2 font-bold">{data.applicantName}</h1>
           <p className="w-1/2 font-bold">#{data.occupation}</p>
-          <hr className="bg-primary-500 w-full h-[1px]"/>
-          <ul className="flex flex-wrap gap-y-4">
+          <ul className="flex flex-wrap gap-y-2 border-t border-secondary-500 pt-4">
             {renderData.map((item, index)=>(
               <li key={index} className="w-1/2">
                 <h2 className="text-gray-500">{item.title}</h2>
@@ -103,8 +102,7 @@ export const PersonalInfoResume = ({ data }) => {
           </ul>
         </div>
       </div>
-      <hr className="bg-primary-500 h-[1px] my-10"/>
-      <p>{data.aboutMe}</p>
+      <p className="border-y border-secondary-500 mt-4 py-4">{data.aboutMe}</p>
     </section>
   )
 }

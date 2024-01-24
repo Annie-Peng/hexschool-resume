@@ -48,19 +48,28 @@ export const PortfolioResume = ({ data }) => {
 
   return (
     <section>
-      <h2 className="font-bold">專業成果 / 作品</h2>
-      <ul>
+      <h2 className="font-bold text-2xl">專業成果 / 作品</h2>
+      <ul className="flex flex-col gap-4 mt-4">
         {Object.values(portfolio).map((title, tIndex)=>{
           return (
-            <li key={`title ${tIndex}`}>
-              <h3>{title.name}</h3>
-              <ul>
+            <li key={`title ${tIndex}`} className="flex flex-col gap-4">
+              <h3 className="tag">{title.name}</h3>
+              <ul className="flex flex-col gap-4">
                 {Object.values(title.items).map((item, iIndex)=>{
+                  const itemsLength = Object.keys(title.items).length;
                   return (
-                    <li key={`item ${iIndex}`}>
-                      <p>網址 | {item.url}</p>
-                      <p>作品敘述 | {item.description}</p>
-                      <p>功能內容 | {item.functions}</p>
+                    <li key={`item ${iIndex}`} className={`flex gap-2 relative`}>
+                      {iIndex+1 !== itemsLength && (
+                        <div className="absolute top-[24px] left-[13px] h-full w-[2px] bg-primary-500" />
+                      )}
+                      <span className={`bg-thinBorderHexschool bg-contain w-[28px] h-[24px] text-center text-primary-500 font-bold flex-shrink-0`}>
+                        {iIndex+1}
+                      </span>
+                      <div className="flex flex-col">
+                        <p>網址 | {item.url}</p>
+                        <p>作品敘述 | {item.description}</p>
+                        <p>功能內容 | {item.functions}</p>
+                      </div>
                     </li>
                   )
                 })}
