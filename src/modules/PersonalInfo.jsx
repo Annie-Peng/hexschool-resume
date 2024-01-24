@@ -83,7 +83,7 @@ export const PersonalInfoResume = ({ data }) => {
   return (
     <section>
       <div className="flex gap-8 mt-4">
-        <div className="w-[400px] h-[300px]">
+        <div className="w-[400px] h-[350px]">
           <img src={data.profile} alt="profile" className="w-full h-full object-cover rounded-md"/>
         </div>
         <div className="w-full flex flex-wrap">
