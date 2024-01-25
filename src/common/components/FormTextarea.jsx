@@ -8,7 +8,7 @@ const FormTextarea = ({formData, register, error, formClass}) => {
 
   return (
     <div className="flex items-center gap-2 p-2">
-      <label className="w-1/4 text-right" htmlFor={name}>
+      <label className="w-[20%] flex-shrink-0 text-right" htmlFor={name}>
         <h3 className={`resumeH3 ${requiredClass(required)}`}>{hMsg}</h3>
       </label>
       <textarea className={`${error && "focus:outline-red-500"} ${textareaClass}`} id={name} type={type} placeholder={placeholder} {...register(name, validation)}/>

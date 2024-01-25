@@ -51,7 +51,8 @@ export const resumeStyleSet = {
       name: "aboutMe",
       errClass: "",
       inputClass: "",
-      hClass: ""
+      hClass: "",
+      labelClass: "self-start"
     },
     {
       name: "currentCity",
@@ -99,14 +100,14 @@ export const resumeStyleSet = {
           name: "jobSkills.id1.name",
           errClass: "",
           inputClass: "!w-fit",
-          labelClass: "w-auto",
+          labelClass: "w-fit",
           hClass: "",
         },
         {
           name: "jobSkills.id1.items.id1.name",
           errClass: "",
           inputClass: "!w-full",
-          labelClass: "w-auto",
+          labelClass: "w-fit",
           hClass: "",
         },
       ],
@@ -168,9 +169,9 @@ export const resumeStyleSet = {
             {
               name: "jobExperience.id1.workingLength.isLeft",
               errClass: "ml-[60px]",
-              inputClass: "after:top-1/2 after:-translate-y-1/2 after:ml-[20px] after:absolute  after:content-['仍在職']",
+              inputClass: "after:top-1/2 after:-translate-y-1/2 after:ml-[20px] after:absolute after:content-['仍在職']",
               hClass: "hidden",
-              labelClass: "w-auto",
+              labelClass: "!w-fit",
               outerClass: "w-full h-[40px] relative px-0",
             },
           ]
@@ -179,13 +180,15 @@ export const resumeStyleSet = {
           name: "jobExperience.id1.description",
           errClass: "",
           inputClass: "",
-          hClass: ""
+          hClass: "",
+          labelClass: "self-start"
         },
         {
           name: "jobExperience.id1.achievement",
           errClass: "",
           inputClass: "",
-          hClass: ""
+          hClass: "",
+          labelClass: "self-start"
         },
       ]
     }
@@ -199,12 +202,12 @@ export const resumeStyleSet = {
           name: "portfolio.id1.name",
           errClass: "",
           inputClass: "!w-fit",
-          labelClass: "w-auto",
+          labelClass: "w-fit",
           hClass: "",
           outerClass: "p-0"
         },
         {
-          outerClass: "ml-auto w-[96%] border-2 border-secondary-500 rounded-md mt-2",
+          outerClass: "ml-auto w-[96%] border-2 border-secondary-500 rounded-md m-2",
           containerClass: "flex flex-col py-6",
           group: [
             {
