@@ -5,4 +5,12 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/hexschool-resume/",
   plugins: [react()],
+  optimizeDeps: {
+    include: ["@workspace/ckeditor5-custom-build"],
+  },
+  build: {
+    commonjsOptions: {
+      include: [/@workspace\/ckeditor5-custom-build/, /node_modules/],
+    },
+  },
 });

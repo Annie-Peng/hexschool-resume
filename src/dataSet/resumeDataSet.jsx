@@ -92,7 +92,7 @@ export const resumeDataSet = {
       {
         hMsg: "個人簡歷",
         name: "aboutMe",
-        component: "input",
+        component: "editor",
         type: "text",
         required: false,
         validation: {
@@ -346,7 +346,7 @@ export const resumeDataSet = {
             id: "id1",
             key: "description",
             name: "jobExperience.id1.description",
-            component: "textarea",
+            component: "editor",
             validation: {
               required: commonRequiredMsg
             },
@@ -358,7 +358,7 @@ export const resumeDataSet = {
             id: "id1",
             key: "achievement",
             name: "jobExperience.id1.achievement",
-            component: "textarea",
+            component: "editor",
             validation: {
               required: commonRequiredMsg
             },
