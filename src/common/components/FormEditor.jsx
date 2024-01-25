@@ -3,7 +3,7 @@ import { useFormContext, Controller } from 'react-hook-form';
 import Editor from "./Editor";
 import MarkdownIdentifier from "./MarkdownIdentifier";
 
-const FormTextarea = ({formData, error, formClass, edit, getValues}) => {
+const FormEditor = ({formData, error, formClass, edit, getValues}) => {
 
   const { control } = useFormContext();
 
@@ -13,7 +13,7 @@ const FormTextarea = ({formData, error, formClass, edit, getValues}) => {
 
   return (
     <div className="flex items-center gap-2 p-2">
-      <label className={`w-1/4 text-right ${labelClass}`} htmlFor={name}>
+      <label className={`w-[20%] flex-shrink-0 text-right ${labelClass}`} htmlFor={name}>
         <h3 className={`resumeH3 ${requiredClass(required)}`}>{hMsg}</h3>
       </label>
       {edit ? (
@@ -37,4 +37,4 @@ const FormTextarea = ({formData, error, formClass, edit, getValues}) => {
     );
 }
 
-export default FormTextarea;
+export default FormEditor;
