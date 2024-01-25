@@ -1,23 +1,37 @@
 import { requiredClass } from "../../dataSet/validationMsg";
+import { useFormContext, Controller } from 'react-hook-form';
+import Editor from "./Editor";
+import MarkdownIdentifier from "./MarkdownIdentifier";
 
-const FormTextarea = ({formData, register, error, formClass, edit, getValues}) => {
+const FormTextarea = ({formData, error, formClass, edit, getValues}) => {
 
-  const { type, hMsg, name, placeholder, validation, required } = formData;
+  const { control } = useFormContext();
 
-  const { textareaClass, errClass, labelClass } = formClass;
+  const { hMsg, name, placeholder, validation, required } = formData;
+
+  const { errClass, labelClass } = formClass;
 
   return (
     <div className="flex items-center gap-2 p-2">
       <label className={`w-1/4 text-right ${labelClass}`} htmlFor={name}>
         <h3 className={`resumeH3 ${requiredClass(required)}`}>{hMsg}</h3>
       </label>
-      { edit ? (
-        <>
-          <textarea className={`${error && "focus:outline-red-500"} ${textareaClass}`} id={name} type={type} placeholder={placeholder} {...register(name, validation)}/>
-          {error && <p className={`${errClass} text-sm text-red-500`}>{error.message}</p>}
-        </>
+      {edit ? (
+        <Controller
+          name={name}
+          control={control}
+          rules={validation}
+          render={({ field }) => (
+            <Editor 
+              {...field} 
+              placeholder={placeholder} 
+              error={error}
+              errClass={errClass}
+            />
+          )}
+        />
       ) : (
-        getValues(name)
+        <MarkdownIdentifier texts={getValues(name)} />
       ) }
     </div>
     );
