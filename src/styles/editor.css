@@ -1,0 +1,47 @@
+/* 整個編輯器 */
+.ck.ck-editor {
+  @apply w-full;
+}
+
+/* toolbar、內文 */
+.ck.ck-toolbar,
+.ck.ck-editor__main {
+  @apply text-black border-2 border-secondary-500 placeholder:text-secondary-500 p-2 focus:outline-primary-500 
+  disabled:border-gray-200 disabled:bg-gray-100 disabled:text-gray-400;
+}
+
+/* 內文外框border */
+.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+  @apply border-white;
+}
+
+/* 內文外框 */
+.ck.ck-editor__main {
+  @apply p-0;
+}
+
+/* 內文 */
+.ck.ck-editor__editable_inline {
+  @apply p-6;
+}
+
+/* 內文第一行&最後一行 */
+.ck.ck-editor__editable_inline > :first-child,
+.ck.ck-editor__editable_inline > :last-child {
+  @apply m-0;
+}
+
+/* 內文focus */
+.ck.ck-editor__editable.ck-focused:not(.ck-editor_nested_editable) {
+  @apply border-primary-500;
+}
+
+/* 內文list-style */
+.ck-content ul {
+  list-style-type: "# ";
+}
+
+/* markdown list-style */
+.markdownList ul li {
+  @apply before:content-['#'] before:block before:mr-2 flex;
+}
