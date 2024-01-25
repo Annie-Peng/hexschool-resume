@@ -36,12 +36,9 @@
   @apply border-primary-500;
 }
 
-/* 內文list-style */
-.ck-content ul {
+/* 內文, markdown list-style */
+.ck-content ul,
+.markdownList ul {
   list-style-type: "# ";
-}
-
-/* markdown list-style */
-.markdownList ul li {
-  @apply before:content-['#'] before:block before:mr-2 flex;
+  padding-left: 20px;
 }
