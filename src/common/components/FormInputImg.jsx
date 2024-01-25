@@ -19,7 +19,7 @@ const FormInputImg = ({formData, register, error, getValues, formClass, edit, se
 
   return (
     <div className={`flex items-center p-2 gap-2 ${outerClass}`}>
-      <label className={`w-1/4 text-right ${labelClass}`} htmlFor={name}>
+      <label className={`w-[20%] flex-shrink-0 text-right ${labelClass}`} htmlFor={name}>
         <h3 className={`resumeH3 ${hClass} ${requiredClass(required)}`}>{hMsg}</h3>
       </label>
       { edit ? (

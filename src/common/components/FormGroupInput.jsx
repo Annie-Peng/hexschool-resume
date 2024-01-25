@@ -12,7 +12,7 @@ const FormGroupInput = ({ groupDataSet, register, errors, formClass, edit, ...pr
 
   return (
       <div className={`${outerClass}`}>
-        {groupTitle && <h3 className={`resumeH3 w-1/4 text-right ${groupTitleClass}`}>{groupTitle}</h3>}
+        {groupTitle && <h3 className={`resumeH3 w-[20%] flex-shrink-0 text-right ${groupTitleClass}`}>{groupTitle}</h3>}
         <div className={`relative ${containerClass}`}>
           {group.map((formData, index)=>{
 

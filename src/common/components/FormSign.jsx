@@ -28,7 +28,7 @@ const FormSign = ({formData, getValues, setValue, formClass}) => {
           modal
           trigger={
             <div className={`flex items-center gap-2 ${outerClass}`}>
-              <label className={`w-1/4 text-right ${labelClass}`} htmlFor={name}>
+              <label className={`w-[20%] flex-shrink-0 text-right ${labelClass}`} htmlFor={name}>
                 <h3 className={`resumeH3 ${hClass} ${requiredClass(required)}`}>{hMsg}</h3>
               </label>
               {imageURL ? (
