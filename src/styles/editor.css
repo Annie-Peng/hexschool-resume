@@ -1,6 +1,6 @@
 /* 整個編輯器 */
 .ck.ck-editor {
-  @apply w-full;
+  @apply w-2/3;
 }
 
 /* toolbar、內文 */
@@ -10,9 +10,19 @@
   disabled:border-gray-200 disabled:bg-gray-100 disabled:text-gray-400;
 }
 
+/* toolbar border圓角、高度 */
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar {
+  @apply rounded-t-md h-[32px];
+}
+
+/*  內文 border圓角 */
+.ck.ck-editor__main {
+  @apply rounded-b-md;
+}
+
 /* 內文外框border */
 .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
-  @apply border-white;
+  @apply border-white rounded-b-md;
 }
 
 /* 內文外框 */
@@ -22,7 +32,7 @@
 
 /* 內文 */
 .ck.ck-editor__editable_inline {
-  @apply p-6;
+  @apply p-2 max-h-[200px] overflow-y-scroll;
 }
 
 /* 內文第一行&最後一行 */
