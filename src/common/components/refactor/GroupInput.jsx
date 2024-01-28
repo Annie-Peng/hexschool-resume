@@ -15,8 +15,8 @@ const GroupInput = ({ formDataSet, name, insertData, edit }) => {
 
   return (
     <div>
-      {edit && <hr className="border-dashed"/>}
-      <ul>
+      <hr className="border-dashed border-2 my-4"/>
+      <ul className={`${edit && "flex flex-col gap-4"}`}>
         {fields.map((filed, index) => {
           const keys = Object.keys(filed).filter(key => key !== 'id'); //id以外的key
           return (
