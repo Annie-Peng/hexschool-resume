@@ -24,11 +24,14 @@ const GroupInput = ({ formDataSet, name, insertData, edit }) => {
               {keys.map(key => {
                 return Object.keys(filed[key]).map(subKey => { 
                   const newName = `${name}.${index}.${key}.${subKey}`;
+                  const dataName = `${name}.${subKey}`;
+                  const formClass = `resumeStyleSet.${dataName}`
                   return ( //第二個key
                   <Fragment key={subKey}>
                     <Input
                       formDataSet={formDataSet}
-                      dataName={`${name}.${subKey}`}
+                      formClass={formClass}
+                      dataName={dataName}
                       name={newName}
                       edit={edit}
                       error={errors?.[name]?.[index]?.[key]?.[subKey]}
