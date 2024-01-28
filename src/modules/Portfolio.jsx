@@ -1,21 +1,40 @@
-import { Fragment, useContext } from "react";
-import { controller } from "../dataSet/controller";
+import { useContext } from "react";
 import { FormContext } from "../common/features/FormContext";
-import { resumeStyleSet } from '../dataSet/resumeStyleSet';
-import FormGroupInput from "../common/components/FormGroupInput";
-import { portFolioTestDataSet } from "../dataSet/testDataSet";
 import useCusForm from "../common/hook/useCusForm";
+import { useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import { turnGroupObject } from "../common/components/helper/turnGroupObject";
+import SubGroupInput from "../common/components/refactor/SubGroupInput";
+import { turnArray } from "../common/components/helper/turnArray";
+import { useState } from "react";
+import PortfolioCard from "./PortfolioCard";
+
 
 
 const Portfolio = () => {
 
-  const { portfolio } = useContext(FormContext);
-  const { Form, formFunctions, formFunctions: { formState: {errors} }, renderItem, setRenderItem, formDataSet, title, edit, setEdit } = useCusForm({
-    defaultValues: portFolioTestDataSet,
-    formTitle: "portfolio"
+  const { portfolio, updateSection } = useContext(FormContext);
+  const [renderItem, setRenderItem] = useState(portfolio);
+  const { Form, formFunctions: { reset }, formDataSet, title, edit, setEdit } = useCusForm({
+    defaultValues: portfolio,
+    formTitle: "portfolio",
+    onSubmit
   });
+  const id = uuidv4();
 
-  console.log(portfolio);
+  useEffect(()=>{
+    setRenderItem({portfolio});
+    const newPortfolio = turnArray({portfolio});
+    reset(newPortfolio); //初始化表單預設值
+
+  },[portfolio])
+
+
+  function onSubmit (values) {
+    const newValues = turnGroupObject(values.portfolio);
+    updateSection({name: "portfolio", values: newValues});
+    setEdit(false)
+  }
 
   return (
     <section className="resumeSection">
@@ -24,18 +43,30 @@ const Portfolio = () => {
         <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
       <Form>
-        {formDataSet.map((formData, index)=>{
-          const RenderForm = controller[formData.component]; // 選擇表單元件
-          const formClass = resumeStyleSet.portfolio[index];
-          if(formData.group) { // group表單
-            return <FormGroupInput initGroupDataSet={formDataSet[index]} groupDataSet={formData} errors={errors[formData.group[0].group]} key={index} renderItem={renderItem} setRenderItem={setRenderItem} formIndex={index} formClass={formClass} edit={edit} {...formFunctions} />
-            
-          }
-          return (
-            <Fragment key={index}>
-              {RenderForm && <RenderForm formData={formData} error={errors[formData.name]} formClass={formClass} edit={edit} {...formFunctions}/>}
-            </Fragment>
-          )
+        {Object.entries(renderItem).map(([name], index)=>{
+            const subInsertData = {[id]:{url:"", description:"", functions:""}};
+            const insertData = {[id]:{name:"",items: [subInsertData]}};
+
+            return (
+              <SubGroupInput
+                key={index}
+                formDataSet={formDataSet}
+                name={name}
+                insertData={insertData}
+                edit={edit}
+                subInsertData={subInsertData}
+              >
+                  {(itemData, dataName) => (
+                    <PortfolioCard
+                      formDataSet={formDataSet}
+                      data={itemData}
+                      dataName={dataName}
+                      error=""
+                      edit={edit}
+                    />
+                  )}
+              </SubGroupInput>
+            )
         })}
       </Form>
     </section>
@@ -45,15 +76,13 @@ const Portfolio = () => {
 export default Portfolio;
 
 export const PortfolioResume = ({ data }) => {
-
-  if(!data.portfolio) return;
-  const { portfolio } = data;
+  if(!data) return;
 
   return (
     <section>
       <h2 className="font-bold text-2xl">專業成果 / 作品</h2>
       <ul className="flex flex-col gap-4 mt-4">
-        {Object.values(portfolio).map((title, tIndex)=>{
+        {Object.values(data).map((title, tIndex)=>{
           return (
             <li key={`title ${tIndex}`} className="flex flex-col gap-4">
               <h3 className="tag">{title.name}</h3>
