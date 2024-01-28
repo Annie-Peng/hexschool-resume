@@ -1,21 +1,35 @@
-import { Fragment, useContext } from "react";
-import { controller } from "../dataSet/controller";
+import { useContext, useState, useEffect } from "react";
 import { FormContext } from "../common/features/FormContext";
-import { resumeStyleSet } from '../dataSet/resumeStyleSet';
-import FormGroupInput from "../common/components/FormGroupInput";
-import { jobSkillTestDataSet } from "../dataSet/testDataSet";
 import useCusForm from "../common/hook/useCusForm";
-
+import { v4 as uuidv4 } from 'uuid';
+import { turnArray } from "../common/components/helper/turnArray";
+import { turnGroupObject } from "../common/components/helper/turnGroupObject";
+import SubGroupInput from "../common/components/refactor/SubGroupInput";
+import JobSkillsCard from "./JobSkillsCard";
 
 const JobSkills = () => {
 
-  const { jobSkills } = useContext(FormContext);
-  const { Form, formFunctions, formFunctions: { formState: {errors} }, renderItem, setRenderItem, formDataSet, title, edit, setEdit } = useCusForm({
-    defaultValues: jobSkillTestDataSet,
-    formTitle: "jobSkills"
+  const { jobSkills, updateSection } = useContext(FormContext);
+  const [renderItem, setRenderItem] = useState(jobSkills);
+  const { Form, formFunctions: { reset }, formDataSet, title, edit, setEdit } = useCusForm({
+    defaultValues: jobSkills,
+    formTitle: "jobSkills",
+    onSubmit
   });
+  const id = uuidv4();
 
-  console.log(jobSkills);
+  useEffect(()=>{
+    setRenderItem({jobSkills});
+    const newJobSkills = turnArray({jobSkills});
+    reset(newJobSkills); //初始化表單預設值
+
+  },[jobSkills])
+
+  function onSubmit (values) {
+    const newValues = turnGroupObject(values.jobSkills);
+    updateSection({name: "jobSkills", values: newValues});
+    setEdit(false)
+  }
 
   return (
     <section className="resumeSection">
@@ -24,17 +38,30 @@ const JobSkills = () => {
         <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
       <Form>
-        {formDataSet.map((formData, index)=>{
-          const RenderForm = controller[formData.component]; // 選擇表單元件
-          const formClass = resumeStyleSet.jobSkills[index];
-          if(formData.group) { // group表單
-            return <FormGroupInput initGroupDataSet={formDataSet[index]} groupDataSet={formData} errors={errors[formData.group[0].group]} key={index} renderItem={renderItem} setRenderItem={setRenderItem} formIndex={index} formClass={formClass} edit={edit} {...formFunctions}/>
-          }
-          return (
-            <Fragment key={index}>
-              {RenderForm && <RenderForm formData={formData} error={errors[formData.name]} formClass={formClass} edit={edit} {...formFunctions}/>}
-            </Fragment>
-          )
+        {Object.entries(renderItem).map(([name], index)=>{
+            const subInsertData = {[id]:{name:""}};
+            const insertData = {[id]:{name:"",items: [subInsertData]}};
+
+            return (
+              <SubGroupInput
+                key={index}
+                formDataSet={formDataSet}
+                name={name}
+                insertData={insertData}
+                edit={edit}
+                subInsertData={subInsertData}
+              >
+                  {(itemData, dataName) => (
+                    <JobSkillsCard
+                      formDataSet={formDataSet}
+                      data={itemData}
+                      dataName={dataName}
+                      error=""
+                      edit={edit}
+                    />
+                  )}
+              </SubGroupInput>
+            )
         })}
       </Form>
     </section>
@@ -45,14 +72,13 @@ export default JobSkills;
 
 export const JobSkillsResume = ({ data }) => {
 
-  if(!data.jobSkills) return;
-  const { jobSkills } = data;
+  if(!data) return;
 
   return (
     <section>
       <h2 className="font-bold text-2xl">工作技能</h2>
       <ul className="mt-4">
-        {Object.values(jobSkills).map((title, tIndex)=>{
+        {Object.values(data).map((title, tIndex)=>{
           console.log(title);
           return (
             <li key={`title ${tIndex}`}>
