@@ -10,7 +10,7 @@ import { turnObject } from "../common/components/helper/turnObject";
 const PersonalInfo = () => {
 
   const { personalInfo, updateSection } = useContext(FormContext);
-  const { Form, formFunctions, formFunctions: { formState: {errors}, control, register, getValues }, formDataSet, title, edit, setEdit, renderItem } = useCusForm({
+  const { Form, formFunctions, formFunctions: { formState: {errors} }, formDataSet, title, edit, setEdit, renderItem } = useCusForm({
     defaultValues: personalInfo,
     formTitle: "personalInfo",
     onSubmit
@@ -37,13 +37,11 @@ const PersonalInfo = () => {
           const insertData = {[id]:{name:"",major:"",leftTime:""}};
           return (
             <GroupInput
+              formDataSet={formDataSet} 
               key={index}
               name={name}
-              control={control}
-              register={register}
               insertData={insertData}
               edit={edit}
-              getValues={getValues}
             />
           )
         }
