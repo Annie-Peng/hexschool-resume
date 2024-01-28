@@ -40,7 +40,7 @@ const PersonalInfo = () => {
       }
       <Form>
         {Object.entries(renderItem).map(([name, values], index)=>{
-          const formClass = resumeStyleSet.personalInfo[name];
+        const formClass = resumeStyleSet.personalInfo;
         if(typeof values === "object"){
           const insertData = {[id]:{name:"",major:"",leftTime:""}};
           return (
@@ -57,7 +57,7 @@ const PersonalInfo = () => {
 
         return (
             <Fragment key={index}>
-              {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass} edit={edit} />}
+              {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass[name]} edit={edit} />}
             </Fragment>
           )
       })}
