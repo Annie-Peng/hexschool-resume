@@ -42,10 +42,8 @@ const JobExperience = () => {
               company: "",
               occupation: "",
               workingLength: {
-                startYear: "",
-                startMonth: "",
-                endYear: "",
-                endMonth: "",
+                startTime: "",
+                endTime: "",
                 isLeft: false
               },
               description: "",
