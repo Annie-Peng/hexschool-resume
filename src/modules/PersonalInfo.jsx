@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState, useEffect } from "react";
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
 import GroupInput from "../common/components/refactor/GroupInput";
@@ -6,17 +6,25 @@ import useCusForm from "../common/hook/useCusForm";
 import { resumeStyleSet } from '../dataSet/resumeStyleSet';
 import { v4 as uuidv4 } from 'uuid';
 import { turnObject } from "../common/components/helper/turnObject";
+import { turnArray } from "../common/components/helper/turnArray";
 
 const PersonalInfo = () => {
 
   const { personalInfo, updateSection } = useContext(FormContext);
-  const { Form, formFunctions, formFunctions: { formState: {errors} }, formDataSet, title, edit, setEdit, renderItem } = useCusForm({
+  const [ renderItem, setRenderItem ] = useState(personalInfo);
+  const { Form, formFunctions: { formState: {errors}, reset }, formDataSet, title, edit, setEdit } = useCusForm({
     defaultValues: personalInfo,
     formTitle: "personalInfo",
     onSubmit
   });
-
   const id = uuidv4();
+
+  useEffect(()=>{
+    setRenderItem(personalInfo);
+    const newPersonalInfo = turnArray(personalInfo);
+    reset(newPersonalInfo); //初始化表單預設值
+
+  },[personalInfo])
 
   function onSubmit (values) {
     const newValues = turnObject(values);
@@ -32,7 +40,7 @@ const PersonalInfo = () => {
       }
       <Form>
         {Object.entries(renderItem).map(([name, values], index)=>{
-          const formClass = resumeStyleSet.personalInfo[index];
+          const formClass = resumeStyleSet.personalInfo[name];
         if(typeof values === "object"){
           const insertData = {[id]:{name:"",major:"",leftTime:""}};
           return (
@@ -45,11 +53,11 @@ const PersonalInfo = () => {
             />
           )
         }
-        const RenderForm = controller[formDataSet[name]?.component]; // 選擇表單元件
+        const RenderForm = controller[formDataSet[name].component]; // 選擇表單元件
 
         return (
             <Fragment key={index}>
-              {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass} edit={edit} {...formFunctions}/>}
+              {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass} edit={edit} />}
             </Fragment>
           )
       })}
