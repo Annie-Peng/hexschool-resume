@@ -11,7 +11,7 @@ const JobSkills = () => {
 
   const { jobSkills, updateSection } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(jobSkills);
-  const { Form, formFunctions: { reset }, formDataSet, title, edit, setEdit } = useCusForm({
+  const { Form, formFunctions: { reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
     defaultValues: jobSkills,
     formTitle: "jobSkills",
     onSubmit
@@ -46,6 +46,7 @@ const JobSkills = () => {
               <SubGroupInput
                 key={index}
                 formDataSet={formDataSet}
+                formClass={formClass}
                 name={name}
                 insertData={insertData}
                 edit={edit}
@@ -54,6 +55,7 @@ const JobSkills = () => {
                   {(itemData, dataName) => (
                     <JobSkillsCard
                       formDataSet={formDataSet}
+                      formClass={formClass}
                       data={itemData}
                       dataName={dataName}
                       error=""
