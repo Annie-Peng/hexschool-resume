@@ -12,7 +12,7 @@ const PersonalInfo = () => {
 
   const { personalInfo, updateSection } = useContext(FormContext);
   const [ renderItem, setRenderItem ] = useState(personalInfo);
-  const { Form, formFunctions: { formState: {errors}, reset }, formDataSet, title, edit, setEdit } = useCusForm({
+  const { Form, formFunctions: { formState: {errors}, reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
     defaultValues: personalInfo,
     formTitle: "personalInfo",
     onSubmit
@@ -40,7 +40,6 @@ const PersonalInfo = () => {
       }
       <Form>
         {Object.entries(renderItem).map(([name, values], index)=>{
-        const formClass = resumeStyleSet.personalInfo;
         if(typeof values === "object"){
           const insertData = {[id]:{name:"",major:"",leftTime:""}};
           return (
