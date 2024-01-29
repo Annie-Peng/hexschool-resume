@@ -14,7 +14,7 @@ const JobSkillsCard = ({formDataSet, formClass, data, dataName, edit}) => {
           const error = getNestedError(errors, `${dataName}.${subKey}`);
 
           return (
-            <Input key={index} formDataSet={formDataSet} formClass={`${formClass}.jobSkills.items.${subKey}`} dataName={`jobSkills.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit}/>
+            <Input key={index} formDataSet={formDataSet} formClass={formClass[`jobSkills.items.${subKey}`]} dataName={`jobSkills.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit}/>
           )
         })}
       </div>
