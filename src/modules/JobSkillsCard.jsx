@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form"
 import Input from "../common/components/refactor/Input"
 
-const JobSkillsCard = ({formDataSet, data, dataName, error, edit}) => {
+const JobSkillsCard = ({formDataSet, formClass, data, dataName, error, edit}) => {
 
   const { getValues } = useFormContext();
 
@@ -10,7 +10,7 @@ const JobSkillsCard = ({formDataSet, data, dataName, error, edit}) => {
     {edit ? (
       <div className="w-full">
         {Object.keys(data).map((subKey, index) => (
-          <Input key={index} formDataSet={formDataSet} dataName={`jobSkills.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit}/>
+          <Input key={index} formDataSet={formDataSet} formClass={`${formClass}.jobSkills.items.${subKey}`} dataName={`jobSkills.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit}/>
         ))}
       </div>
     ) : (
