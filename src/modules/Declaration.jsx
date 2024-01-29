@@ -1,7 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
-import { resumeStyleSet } from '../dataSet/resumeStyleSet';
 import useCusForm from "../common/hook/useCusForm";
 import { turnDateFormat } from "../common/components/helper/turnDateFormat";
 
@@ -40,18 +39,20 @@ useEffect(()=>{
           本人確認所提供之個人資料及相關經歷均屬實，如有不實情形，願意承擔相應責任。 
         </li>
       </ol>
-      <Form className="flex flex-wrap items-center justify-between">
-        {Object.entries(renderItem).map(([name, values], index)=>{
+      <Form>
+        <div className="flex flex-wrap items-center justify-between">
+          {Object.entries(renderItem).map(([name, values], index)=>{
 
-        const RenderForm = controller[formDataSet[name]?.component]; // 選擇表單元件
+          const RenderForm = controller[formDataSet[name]?.component]; // 選擇表單元件
 
-        return (
-            <Fragment key={index}>
-              {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass[name]} edit={edit} />}
-            </Fragment>
-          )
-      })}
+          return (
+              <Fragment key={index}>
+                {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass[name]} edit={true} />}
+              </Fragment>
+            )
+        })}
         <p className="w-[150px]">日期 {declaration.signatureUpdatedTime}</p>
+        </div>
       </Form>
     </section>
   );
