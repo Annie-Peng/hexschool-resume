@@ -58,7 +58,6 @@ const JobSkills = () => {
                       formClass={formClass}
                       data={itemData}
                       dataName={dataName}
-                      error=""
                       edit={edit}
                     />
                   )}
