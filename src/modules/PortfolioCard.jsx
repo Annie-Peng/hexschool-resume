@@ -1,18 +1,22 @@
-import { useFormContext } from "react-hook-form"
+import { useFormContext } from "react-hook-form";
 import Input from "../common/components/refactor/Input"
+import { getNestedError } from "../common/components/helper/getNestedError";
 
-const PortfolioCard = ({formDataSet, formClass, data, dataName, error, edit}) => {
+const PortfolioCard = ({formDataSet, formClass, data, dataName, edit}) => {
 
-  const { getValues } = useFormContext();
+  const { formState: { errors }, getValues } = useFormContext();
 
   return (
     <>
     {edit ? (
-      <div className="ml-auto w-[96%] border-2 border-secondary-500 rounded-md">
+      <div className="ml-auto w-[96.5%] border-2 border-secondary-500 rounded-md">
       <div className="relative flex flex-col py-6">
-        {Object.keys(data).map((subKey, index) => (
-          <Input key={index} formDataSet={formDataSet} formClass={`${formClass}.portfolio.items.${subKey}`} dataName={`portfolio.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit}/>
-        ))}
+        {Object.keys(data).map((subKey, index) => {
+          const error = getNestedError(errors, `${dataName}.${subKey}`);
+          return (
+            <Input key={index} formDataSet={formDataSet} formClass={`${formClass}.portfolio.items.${subKey}`} dataName={`portfolio.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit}/>
+          )
+        })}
       </div>
     </div>
     ) : (
