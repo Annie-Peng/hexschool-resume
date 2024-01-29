@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form"
 import Input from "../common/components/refactor/Input"
 
-const PortfolioCard = ({formDataSet, data, dataName, error, edit}) => {
+const PortfolioCard = ({formDataSet, formClass, data, dataName, error, edit}) => {
 
   const { getValues } = useFormContext();
 
@@ -11,7 +11,7 @@ const PortfolioCard = ({formDataSet, data, dataName, error, edit}) => {
       <div className="ml-auto w-[96%] border-2 border-secondary-500 rounded-md">
       <div className="relative flex flex-col py-6">
         {Object.keys(data).map((subKey, index) => (
-          <Input key={index} formDataSet={formDataSet} dataName={`portfolio.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit}/>
+          <Input key={index} formDataSet={formDataSet} formClass={`${formClass}.portfolio.items.${subKey}`} dataName={`portfolio.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit}/>
         ))}
       </div>
     </div>

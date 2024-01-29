@@ -15,7 +15,7 @@ const Portfolio = () => {
 
   const { portfolio, updateSection } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(portfolio);
-  const { Form, formFunctions: { reset }, formDataSet, title, edit, setEdit } = useCusForm({
+  const { Form, formFunctions: { reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
     defaultValues: portfolio,
     formTitle: "portfolio",
     onSubmit
@@ -51,6 +51,7 @@ const Portfolio = () => {
               <SubGroupInput
                 key={index}
                 formDataSet={formDataSet}
+                formClass={formClass}
                 name={name}
                 insertData={insertData}
                 edit={edit}
@@ -59,6 +60,7 @@ const Portfolio = () => {
                   {(itemData, dataName) => (
                     <PortfolioCard
                       formDataSet={formDataSet}
+                      formClass={formClass} 
                       data={itemData}
                       dataName={dataName}
                       error=""
