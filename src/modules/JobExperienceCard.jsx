@@ -92,13 +92,14 @@ const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
                               )
                           });
                         })}
-                          <FormButtons
+                        {edit && (
+                            <FormButtons
                             btns={btns}
                             onAdd={() => {insert(index+1, {...insertData})}}
                             onDelete={() => remove(index)}
                             dragProvided={{...provided.dragHandleProps}}
-                            edit={edit}
                           />
+                        )}
                       </li>
                     )}
                   </Draggable>
