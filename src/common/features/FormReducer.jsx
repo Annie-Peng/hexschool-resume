@@ -70,6 +70,7 @@ const FormReducer = (state, action) => {
   switch (type) {
     case "updateForm": {
       state = payload;
+      localStorage.setItem("resumeData", JSON.stringify(state));
       return state
     }
     case "updateSection": {
