@@ -23,7 +23,7 @@
     "react-signature-canvas": "^1.0.6",
     "reactjs-popup": "^2.0.6",
     "rehype-raw": "^7.0.0",
-    "uuidv4": "^6.2.13",
+    "uuid": "^9.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
