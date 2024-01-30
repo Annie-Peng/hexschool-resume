@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import FormButtons from "../FormButtons";
-import { btns } from "../../../dataSet/btns";
 import Input from "./Input";
 import Drag from "../Drag";
 import { Draggable } from "react-beautiful-dnd";
@@ -14,6 +13,12 @@ const GroupInput = ({ formDataSet, name, insertData, edit }) => {
     name,
     control
   })
+
+  const btns = {
+    hasAddBtn: true,
+    hasDeleteBtn: true,
+    hasDragBtn: true,
+  }
 
   return (
     <Drag move={move}>
@@ -57,7 +62,7 @@ const GroupInput = ({ formDataSet, name, insertData, edit }) => {
                       />
                       { edit && (
                         <FormButtons
-                          btns={btns[name]}
+                          btns={btns}
                           onAdd={() => {insert(index+1, {...insertData})}}
                           onDelete={() => fields.length > 1 ? remove(index) : null}
                           dragProvided={{...provided.dragHandleProps}}
