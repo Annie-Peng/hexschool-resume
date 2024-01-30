@@ -48,58 +48,61 @@ const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
             {fields.map((field, index) => {
               const keys = Object.keys(field).filter(key => key !== 'id'); //id以外的key
               return (
-                <Draggable
-                  key={field.id}
-                  draggableId={field.id}
-                  index={index}
-                  isDragDisabled={edit ? false : true}
-                  >
-                  {(provided) => (
-                    <li
-                      {...provided.draggableProps}
-                      ref={provided.innerRef}
-                      key={field.id} className="relative"
+                  <Fragment key={index}>
+                  {index>0 && <hr className="border-dashed border-2 my-4"/>}
+                  <Draggable
+                    key={field.id}
+                    draggableId={field.id}
+                    index={index}
+                    isDragDisabled={edit ? false : true}
                     >
-                      {keys.map((key) => {
-                        return Object.keys(field[key]).map((subKey, subKeyIndex) => { 
-                          const newName = `${name}.${index}.${key}.${subKey}`;
-                          const dataName = `${name}.${subKey}`;
-                          const error = errors.jobExperience?.[index]?.[key][subKey];
-          
-                          if(typeof field[key][subKey] === "object" && subKey === "workingLength") {
+                    {(provided) => (
+                      <li
+                        {...provided.draggableProps}
+                        ref={provided.innerRef}
+                        key={field.id} className="relative"
+                      >
+                        {keys.map((key) => {
+                          return Object.keys(field[key]).map((subKey, subKeyIndex) => { 
+                            const newName = `${name}.${index}.${key}.${subKey}`;
+                            const dataName = `${name}.${subKey}`;
+                            const error = errors.jobExperience?.[index]?.[key][subKey];
+            
+                            if(typeof field[key][subKey] === "object" && subKey === "workingLength") {
+                              return (
+                                <WorkingLengthField
+                                  key={subKeyIndex}
+                                  dataSet={field[key][subKey]}
+                                  name={newName}
+                                  dataName={dataName}
+                                  formDataSet={formDataSet}
+                                  edit={edit}
+                                  error={error}
+                                />
+                              )
+                            }
+            
+                            const RenderForm = controller[formDataSet[dataName].component]; // 選擇表單元件
+                            const formClass = resumeStyleSet.jobExperience[dataName];
+            
                             return (
-                              <WorkingLengthField
-                                key={subKeyIndex}
-                                dataSet={field[key][subKey]}
-                                name={newName}
-                                dataName={dataName}
-                                formDataSet={formDataSet}
-                                edit={edit}
-                                error={error}
-                              />
-                            )
-                          }
-          
-                          const RenderForm = controller[formDataSet[dataName].component]; // 選擇表單元件
-                          const formClass = resumeStyleSet.jobExperience[dataName];
-          
-                          return (
-                              <Fragment key={subKeyIndex}>
-                                {RenderForm && <RenderForm formDataSet={formDataSet} name={newName} error={error} formClass={formClass} edit={edit} dataName={dataName} />}
-                              </Fragment>
-                            )
-                        });
-                      })}
-                        <FormButtons
-                          btns={btns}
-                          onAdd={() => {insert(index+1, {...insertData})}}
-                          onDelete={() => remove(index)}
-                          dragProvided={{...provided.dragHandleProps}}
-                          edit={edit}
-                        />
-                    </li>
-                  )}
-                </Draggable>
+                                <Fragment key={subKeyIndex}>
+                                  {RenderForm && <RenderForm formDataSet={formDataSet} name={newName} error={error} formClass={formClass} edit={edit} dataName={dataName} />}
+                                </Fragment>
+                              )
+                          });
+                        })}
+                          <FormButtons
+                            btns={btns}
+                            onAdd={() => {insert(index+1, {...insertData})}}
+                            onDelete={() => remove(index)}
+                            dragProvided={{...provided.dragHandleProps}}
+                            edit={edit}
+                          />
+                      </li>
+                    )}
+                  </Draggable>
+                </Fragment>
               )
             })}
             {provided.placeholder}
