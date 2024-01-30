@@ -2,11 +2,14 @@ import { Fragment } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import FormButtons from "../FormButtons";
 import Input from "./Input";
+import { getNestedError } from "../helper/getNestedError";
+import Drag from "../Drag";
+import { Draggable } from "react-beautiful-dnd";
 
-const SubGroupInput = ({ formDataSet, name, insertData, subInsertData, edit, children }) => {
+const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData, edit, children }) => {
 
-  const { control, getValues } = useFormContext();
-  const { fields, insert, remove } = useFieldArray({
+  const { control, getValues, formState: { errors } } = useFormContext();
+  const { fields, insert, remove, move } = useFieldArray({
     name,
     control
   })
@@ -18,26 +21,46 @@ const SubGroupInput = ({ formDataSet, name, insertData, subInsertData, edit, chi
   }
 
   return (
-    <div>
-      <ul>
-        {fields.map((item, index) => {
-          const keys = Object.keys(item).filter(key => key !== 'id'); //id以外的key
+    <Drag move={move}>
+      {(provided)=>(
+        <ul
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+        {fields.map((field, index) => {
+          const keys = Object.keys(field).filter(key => key !== 'id'); //id以外的key
           return (
-            <Fragment key={item.id}>
-                {keys.map((key, kIndex) => {
-                  const titleName = `${name}.${index}.${key}`;
+            <Draggable
+            key={field.id}
+            draggableId={field.id}
+            index={index}
+            isDragDisabled={edit ? false : true}
+            >
+              {(provided)=>(
+                <li key={field.id}
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+                >
+                  {keys.map((key, kIndex) => {
+                    const titleName = `${name}.${index}.${key}`;
+                    const dataName = `${name}.name`;
+                    const error = getNestedError(errors, `${titleName}.name`);
+                    
                   return (
                     <Fragment key={kIndex}>
                     {edit && index>0 && <hr className="border-dashed border-2 mt-8 mb-6"/>}
-                    <li className="relative my-2">
+                    <div className="relative my-2">
                       {edit ? (
                         <>
-                          <Input key={index} formDataSet={formDataSet} dataName={`${name}.name`} name={`${titleName}.name`} error={""} edit={edit}/>
-                          <FormButtons
+                          <Input key={index} formDataSet={formDataSet} formClass={formClass[dataName]} dataName={dataName} name={`${titleName}.name`} error={error} edit={edit}/>
+                          {edit && (
+                            <FormButtons
                             btns={btns}
                             onAdd={() => {insert(index+1, {...insertData})}}
                             onDelete={() => fields.length > 1 ? remove(index) : null}
+                            dragProvided={{...provided.dragHandleProps}}
                           />
+                          )}
                         </>
                         ) : (
                           <h3 className="relative py-4 after:absolute after:content-[''] after:w-full after:-z-10 after:h-[2px] after:block after:bg-secondary-500 after:right-0 after:top-1/2 after:-translate-y-1/2">
@@ -47,15 +70,19 @@ const SubGroupInput = ({ formDataSet, name, insertData, subInsertData, edit, chi
                       <Card subName={`${titleName}.items`} edit={edit} subInsertData={subInsertData}>
                         {children}
                       </Card>
-                    </li>
+                    </div>
                   </Fragment>
                 )
                 })}
-            </Fragment>
+                </li>
+              )}
+            </Draggable>
           );
         })}
+        {provided.placeholder}
       </ul>
-    </div>
+      )}
+    </Drag>
   )
 }
 
