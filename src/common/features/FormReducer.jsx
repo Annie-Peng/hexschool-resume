@@ -48,9 +48,9 @@ export const initialState = {
       name: "",
       items: {
         id1: {
-          link: "",
+          url: "",
           description: "",
-          function: ""
+          functions: ""
         },
       }
     },
