@@ -1,8 +1,12 @@
+import { useFormContext } from "react-hook-form";
 import { requiredClass } from "../../dataSet/validationMsg";
 
-const FormSelect = ({formData, register, error, formClass, edit, getValues}) => {
+const FormSelect = ({formDataSet, dataName, name, error, formClass, edit}) => {
 
-  const { hMsg, name, disabledOption, options, validation, required } = formData;
+  let newDataName = dataName ? dataName : name;
+
+  const { register, getValues } = useFormContext();
+  const { hMsg, disabledOption, options, validation, required } = formDataSet[newDataName];
   const { selectClass, errClass, } = formClass;
 
   return (

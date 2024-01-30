@@ -3,11 +3,15 @@ import { useFormContext, Controller } from 'react-hook-form';
 import Editor from "./Editor";
 import MarkdownIdentifier from "./MarkdownIdentifier";
 
-const FormEditor = ({formData, error, formClass, edit, getValues}) => {
+const FormEditor = ({formDataSet, name, dataName, error, formClass, edit}) => {
 
-  const { control } = useFormContext();
+  const { control, getValues } = useFormContext();
 
-  const { hMsg, name, placeholder, validation, required } = formData;
+  let newDataName = dataName ? dataName : name;
+
+  const validation = formDataSet[newDataName].validation;
+
+  const { hMsg, placeholder, required } = formDataSet[newDataName];
 
   const { errClass, labelClass } = formClass;
 
