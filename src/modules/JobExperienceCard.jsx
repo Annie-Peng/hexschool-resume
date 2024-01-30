@@ -4,11 +4,13 @@ import FormButtons from "../common/components/FormButtons";
 import { controller } from "../dataSet/controller";
 import { resumeStyleSet } from "../dataSet/resumeStyleSet";
 import { requiredClass } from "../dataSet/validationMsg";
+import Drag from "../common/components/Drag";
+import { Draggable } from "react-beautiful-dnd";
 
 const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
 
   const { control, formState: {errors} } = useFormContext()
-  const { fields, insert, remove } = useFieldArray({
+  const { fields, insert, remove, move } = useFieldArray({
     name,
     control
   })
@@ -40,52 +42,70 @@ const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
 
 
   return (
-    <ul>
-      {fields.map((filed, index) => {
-        const keys = Object.keys(filed).filter(key => key !== 'id'); //id以外的key
-        return (
-          <li key={filed.id} className="relative">
-            {keys.map((key) => {
-              return Object.keys(filed[key]).map((subKey, subKeyIndex) => { 
-                const newName = `${name}.${index}.${key}.${subKey}`;
-                const dataName = `${name}.${subKey}`;
-                const error = errors.jobExperience?.[index]?.[key][subKey];
-
-                if(typeof filed[key][subKey] === "object" && subKey === "workingLength") {
-                  return (
-                    <WorkingLengthField
-                      key={subKeyIndex}
-                      dataSet={filed[key][subKey]}
-                      name={newName}
-                      dataName={dataName}
-                      formDataSet={formDataSet}
-                      edit={edit}
-                      error={error}
-                    />
-                  )
-                }
-
-                const RenderForm = controller[formDataSet[dataName].component]; // 選擇表單元件
-                const formClass = resumeStyleSet.jobExperience[dataName];
-
-                return (
-                    <Fragment key={subKeyIndex}>
-                      {RenderForm && <RenderForm formDataSet={formDataSet} name={newName} error={error} formClass={formClass} edit={edit} dataName={dataName} />}
-                    </Fragment>
-                  )
-              });
+    <Drag move={move}>
+        {(provided) => (
+          <ul ref={provided.innerRef} {...provided.droppableProps}>
+            {fields.map((field, index) => {
+              const keys = Object.keys(field).filter(key => key !== 'id'); //id以外的key
+              return (
+                <Draggable
+                  key={field.id}
+                  draggableId={field.id}
+                  index={index}
+                  isDragDisabled={edit ? false : true}
+                  >
+                  {(provided) => (
+                    <li
+                      {...provided.draggableProps}
+                      ref={provided.innerRef}
+                      key={field.id} className="relative"
+                    >
+                      {keys.map((key) => {
+                        return Object.keys(field[key]).map((subKey, subKeyIndex) => { 
+                          const newName = `${name}.${index}.${key}.${subKey}`;
+                          const dataName = `${name}.${subKey}`;
+                          const error = errors.jobExperience?.[index]?.[key][subKey];
+          
+                          if(typeof field[key][subKey] === "object" && subKey === "workingLength") {
+                            return (
+                              <WorkingLengthField
+                                key={subKeyIndex}
+                                dataSet={field[key][subKey]}
+                                name={newName}
+                                dataName={dataName}
+                                formDataSet={formDataSet}
+                                edit={edit}
+                                error={error}
+                              />
+                            )
+                          }
+          
+                          const RenderForm = controller[formDataSet[dataName].component]; // 選擇表單元件
+                          const formClass = resumeStyleSet.jobExperience[dataName];
+          
+                          return (
+                              <Fragment key={subKeyIndex}>
+                                {RenderForm && <RenderForm formDataSet={formDataSet} name={newName} error={error} formClass={formClass} edit={edit} dataName={dataName} />}
+                              </Fragment>
+                            )
+                        });
+                      })}
+                        <FormButtons
+                          btns={btns}
+                          onAdd={() => {insert(index+1, {...insertData})}}
+                          onDelete={() => remove(index)}
+                          dragProvided={{...provided.dragHandleProps}}
+                          edit={edit}
+                        />
+                    </li>
+                  )}
+                </Draggable>
+              )
             })}
-            {edit && (
-              <FormButtons
-                btns={btns}
-                onAdd={() => {insert(index+1, {...insertData})}}
-                onDelete={() => remove(index)}
-              />
-            )} 
-          </li>
-        );
-      })}
-    </ul>
+            {provided.placeholder}
+          </ul>
+        )}
+    </Drag>
   )
 }
 
