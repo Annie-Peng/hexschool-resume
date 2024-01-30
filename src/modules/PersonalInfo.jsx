@@ -1,19 +1,36 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState, useEffect } from "react";
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
-import { personalInfoTestData } from '../dataSet/testDataSet';
-import FormGroupInput from "../common/components/FormGroupInput";
+import GroupInput from "../common/components/refactor/GroupInput";
 import useCusForm from "../common/hook/useCusForm";
 import { resumeStyleSet } from '../dataSet/resumeStyleSet';
-
+import { v4 as uuidv4 } from 'uuid';
+import { turnObject } from "../common/components/helper/turnObject";
+import { turnArray } from "../common/components/helper/turnArray";
 
 const PersonalInfo = () => {
 
-  const { personalInfo } = useContext(FormContext);
-  const { Form, formFunctions, formFunctions: { formState: {errors} }, renderItem, setRenderItem, formDataSet, title, edit, setEdit } = useCusForm({
-    defaultValues: personalInfoTestData,
-    formTitle: "personalInfo"
+  const { personalInfo, updateSection } = useContext(FormContext);
+  const [ renderItem, setRenderItem ] = useState(personalInfo);
+  const { Form, formFunctions: { formState: {errors}, reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
+    defaultValues: personalInfo,
+    formTitle: "personalInfo",
+    onSubmit
   });
+  const id = uuidv4();
+
+  useEffect(()=>{
+    setRenderItem(personalInfo);
+    const newPersonalInfo = turnArray(personalInfo);
+    reset(newPersonalInfo); //初始化表單預設值
+
+  },[personalInfo])
+
+  function onSubmit (values) {
+    const newValues = turnObject(values);
+    updateSection({name: "personalInfo", values: newValues})
+    setEdit(false)
+  }
 
   return (
     <section className="resumeSection">
@@ -22,19 +39,27 @@ const PersonalInfo = () => {
         <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
       <Form>
-        {formDataSet.map((formData, index)=>{
-          const RenderForm = controller[formData.component]; // 選擇表單元件
-          const formClass = resumeStyleSet.personalInfo[index];
-          if(formData.group) { // group表單
-            return <FormGroupInput initGroupDataSet={formDataSet[index]} groupDataSet={formData} errors={errors[formData.group[0].group]} key={index} renderItem={renderItem} setRenderItem={setRenderItem} formIndex={index} formClass={formClass} edit={edit} {...formFunctions}/>
-          }
-
+        {Object.entries(renderItem).map(([name, values], index)=>{
+        if(typeof values === "object"){
+          const insertData = {[id]:{name:"",major:"",leftTime:""}};
           return (
+            <GroupInput
+              formDataSet={formDataSet} 
+              key={index}
+              name={name}
+              insertData={insertData}
+              edit={edit}
+            />
+          )
+        }
+        const RenderForm = controller[formDataSet[name].component]; // 選擇表單元件
+
+        return (
             <Fragment key={index}>
-              {RenderForm && <RenderForm formData={formData} error={errors[formData.name]} formClass={formClass} edit={edit} {...formFunctions}/>}
+              {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass[name]} edit={edit} />}
             </Fragment>
           )
-        })}
+      })}
       </Form>
     </section>
   );
