@@ -2,10 +2,15 @@ import { useRef, useState } from "react";
 import Popup from "reactjs-popup";
 import SignaturePad from "react-signature-canvas";
 import { requiredClass } from "../../dataSet/validationMsg";
+import { useFormContext } from "react-hook-form";
 
-const FormSign = ({formData, getValues, setValue, formClass}) => {
+const FormSign = ({formDataSet, dataName, name, formClass}) => {
 
-  const { hMsg, name, placeholder, required } = formData;
+  const { getValues, setValue, } = useFormContext();
+
+  let newDataName = dataName ? dataName : name;
+
+  const { hMsg, placeholder, required } = formDataSet[newDataName];
   const { imgData, outerClass,
     hClass,
     labelClass } = formClass;
@@ -51,7 +56,7 @@ const FormSign = ({formData, getValues, setValue, formClass}) => {
                   <SignaturePad
                       ref={sigCanvas}
                       canvasProps={{
-                          className: "border bg-white",
+                          className: "border bg-white w-full h-full mx-auto",
                       }}
                   />
                   <div className="flex gap-2">
