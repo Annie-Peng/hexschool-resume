@@ -2,10 +2,13 @@ import { useRef } from "react";
 import useUploadImg from "../hook/useUploadImg";
 import { requiredClass } from "../../dataSet/validationMsg";
 import { useEffect } from "react";
+import { useFormContext } from "react-hook-form";
 
-const FormInputImg = ({formData, register, error, getValues, formClass, edit, setValue}) => {
+const FormInputImg = ({formDataSet, name, error, formClass, edit }) => {
 
-  const { type, accept, hMsg, name, placeholder, validation, required, disabled } = formData;
+  const { register, getValues, setValue } = useFormContext();
+
+  const { type, accept, hMsg, placeholder, validation, required, disabled } = formDataSet[name];
 
   const { inputClass, errClass, outerClass, hClass, labelClass, imgData} = formClass;
 
