@@ -1,21 +1,34 @@
-import { Fragment, useContext } from "react";
-import { controller } from "../dataSet/controller";
+import { useContext, useState, useEffect } from "react";
 import { FormContext } from "../common/features/FormContext";
-import { resumeStyleSet } from '../dataSet/resumeStyleSet';
-import { jobExperienceTestDataSet } from '../dataSet/testDataSet';
-import FormGroupInput from "../common/components/FormGroupInput";
 import useCusForm from "../common/hook/useCusForm";
-
+import { turnArray } from "../common/components/helper/turnArray";
+import { v4 as uuidv4 } from 'uuid';
+import { turnObject } from "../common/components/helper/turnObject";
+import JobExperienceCard from "./JobExperienceCard";
 
 const JobExperience = () => {
 
-  const { jobExperience } = useContext(FormContext);
-  const { Form, formFunctions, formFunctions: { formState: {errors} }, renderItem, setRenderItem, formDataSet, title, edit, setEdit } = useCusForm({
-    defaultValues: jobExperienceTestDataSet,
-    formTitle: "jobExperience"
+  const { jobExperience, updateSection } = useContext(FormContext);
+  const [renderItem, setRenderItem] = useState(jobExperience);
+  const { Form, formFunctions: { formState: { errors }, reset }, formDataSet, title, edit, setEdit } = useCusForm({
+    defaultValues: jobExperience,
+    formTitle: "jobExperience",
+    onSubmit
   });
+  const id = uuidv4();
 
-  console.log(jobExperience);
+  useEffect(()=>{
+    setRenderItem({jobExperience});
+    const newJobExperience = turnArray({jobExperience});
+    reset(newJobExperience); //初始化表單預設值
+    
+  },[jobExperience])
+
+  function onSubmit (values) {
+    const newValues = turnObject(values);
+    updateSection({name: "jobExperience", values: newValues.jobExperience});
+    setEdit(false)
+  }
 
   return (
     <section className="resumeSection">
@@ -24,18 +37,21 @@ const JobExperience = () => {
         <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
       <Form>
-        {formDataSet.map((formData, index)=>{
-          const RenderForm = controller[formData.component]; // 選擇表單元件
-          const formClass = resumeStyleSet.jobExperience[index];
-          if(formData.group) { // group表單
-            return <FormGroupInput initGroupDataSet={formDataSet[index]} groupDataSet={formData} errors={errors[formData.group[0].group]} key={index} renderItem={renderItem} setRenderItem={setRenderItem} formIndex={index} formClass={formClass} edit={edit} {...formFunctions} />
-            
-          }
-          return (
-            <Fragment key={index}>
-              {RenderForm && <RenderForm formData={formData} error={errors[formData.name]} formClass={formClass} edit={edit} {...formFunctions} />}
-            </Fragment>
-          )
+        {Object.entries(renderItem).map(([name], index)=>{
+            const insertData = {[id]:{
+              company: "",
+              occupation: "",
+              workingLength: {
+                startTime: "",
+                endTime: "",
+                isLeft: false
+              },
+              description: "",
+              achievement: ""
+            }};
+            return (
+              <JobExperienceCard key={index} formDataSet={formDataSet} name={name} insertData={insertData} edit={edit} />
+            )
         })}
       </Form>
     </section>
@@ -46,16 +62,15 @@ export default JobExperience;
 
 export const JobExperienceResume = ({ data }) => {
 
-  if(!data.jobExperience) return;
-  const { jobExperience } = data;
+  if(!data) return;
 
   return (
     <section>
       <h2 className="font-bold text-2xl">工作經驗</h2>
       <ul>
-        {Object.values(jobExperience).map((title, tIndex)=>{
+        {Object.values(data).map((title, tIndex)=>{
           const { startYear, startMonth, endYear, endMonth, isLeft } = title.workingLength;
-          const itemsLength = Object.values(jobExperience).length;
+          const itemsLength = Object.values(data).length;
           return (
             <li key={`title ${tIndex}`} className="flex gap-2 mt-4 relative">
               {tIndex+1 !== itemsLength && (

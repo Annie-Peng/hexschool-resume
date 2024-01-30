@@ -1,5 +1,7 @@
 import { createContext, useReducer } from 'react';
 import FormReducer, { initialState } from './FormReducer';
+import { useEffect } from 'react';
+import { localStorageTest } from '../../dataSet/testDataSet';
 
 export const FormContext = createContext(initialState);
 
@@ -7,10 +9,17 @@ export const FormProvider = ({children}) => {
 
   const [state, dispatch] = useReducer(FormReducer, initialState);
   const { declaration, jobExperience, jobSkills, personalInfo, portfolio } = state;
-
-  const updateForm = (data) => { // 在這裡整理資料，再傳進去
+  
+  useEffect(()=>{
     dispatch({
       type: "updateForm",
+      payload: localStorageTest
+    })
+  },[])
+
+  const updateSection = (data) => { // 在這裡整理資料，再傳進去
+    dispatch({
+      type: "updateSection",
       payload: data
     })
   }
@@ -21,7 +30,7 @@ export const FormProvider = ({children}) => {
     jobSkills,
     personalInfo,
     portfolio,
-    updateForm
+    updateSection
   }
 
   return (

@@ -10,13 +10,51 @@ export const initialState = {
     aboutMe: "",
     currentCity: "",
     futureCities: "",
-    graduateSchool: "",
-    graduateMajor: "",
-    leaveSchoolTime: ""
+    graduateSchool: {
+      id1: {
+        name: "",
+        major: "",
+        leftTime: ""
+      }
+    }
   },
-  jobSkills: {},
-  jobExperience: {},
-  portfolio: {},
+  jobSkills: {
+    id1: {
+      name: "",
+      items: {
+        id1: {
+          name: ""
+        },
+      }
+    }
+  },
+  jobExperience: {
+    id1: {
+      company: "",
+      occupation: "",
+      workingLength: {
+        startYear: "",
+        startMonth: "",
+        endYear: "",
+        endMonth: "",
+        isLeft: false
+      },
+      description: "",
+      achievement: ""
+    },
+  },
+  portfolio: {
+    id1: {
+      name: "",
+      items: {
+        id1: {
+          link: "",
+          description: "",
+          function: ""
+        },
+      }
+    },
+  },
   declaration: {
     approved: false,
     signature: "",
@@ -29,10 +67,12 @@ const FormReducer = (state, action) => {
 
   const { type, payload } = action;
 
-  console.log(payload);
-
   switch (type) {
     case "updateForm": {
+      state = payload;
+      return state
+    }
+    case "updateSection": {
       return {
         ...state,
         [payload.name]: payload.values
