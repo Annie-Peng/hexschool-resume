@@ -9,7 +9,7 @@ const Declaration = () => {
 
   const { declaration, updateSection } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(declaration);
-  const { Form, formFunctions: { formState: {errors}, watch, reset }, formDataSet, formClass, title, edit } = useCusForm({
+  const { Form, formFunctions: { formState: {errors}, watch, reset }, formDataSet, formClass, title } = useCusForm({
     defaultValues: declaration,
     formTitle: "declaration"
   });
@@ -27,6 +27,12 @@ useEffect(()=>{
   };
   updateSection({name: "declaration", values });
 },[watchSignature, watchApproved])
+
+useEffect(()=>{
+  setRenderItem(declaration);
+  reset(declaration); //初始化表單預設值
+
+},[declaration])
 
   return (
     <section className="resumeSection">
