@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FormContext } from "../common/features/FormContext";
 import useCusForm from "../common/hook/useCusForm";
+import Form from '../common/components/Form';
 import { useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { turnGroupObject } from "../common/components/helper/turnGroupObject";
@@ -15,11 +16,12 @@ const Portfolio = () => {
 
   const { portfolio, updateSection } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(portfolio);
-  const { Form, formFunctions: { reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
+  const { formFunctions, formFunctions: { reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
     defaultValues: portfolio,
     formTitle: "portfolio",
-    onSubmit
   });
+
+
   const id = uuidv4();
 
   useEffect(()=>{
@@ -42,7 +44,12 @@ const Portfolio = () => {
       {!edit && 
         <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
-      <Form>
+      <Form
+        formFunctions={formFunctions}
+        edit={edit}
+        setEdit={setEdit}
+        onSubmit={onSubmit}
+      >
         {Object.entries(renderItem).map(([name], index)=>{
             const subInsertData = {[id]:{url:"", description:"", functions:""}};
             const insertData = {[id]:{name:"",items: [subInsertData]}};

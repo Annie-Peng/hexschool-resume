@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { FormContext } from "../common/features/FormContext";
 import useCusForm from "../common/hook/useCusForm";
+import Form from '../common/components/Form';
 import { turnArray } from "../common/components/helper/turnArray";
 import { v4 as uuidv4 } from 'uuid';
 import { turnObject } from "../common/components/helper/turnObject";
@@ -10,10 +11,9 @@ const JobExperience = () => {
 
   const { jobExperience, updateSection } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(jobExperience);
-  const { Form, formFunctions: { formState: { errors }, reset }, formDataSet, title, edit, setEdit } = useCusForm({
+  const { formFunctions, formFunctions: { formState: { errors }, reset }, formDataSet, title, edit, setEdit } = useCusForm({
     defaultValues: jobExperience,
     formTitle: "jobExperience",
-    onSubmit
   });
   const id = uuidv4();
 
@@ -36,7 +36,12 @@ const JobExperience = () => {
       {!edit && 
         <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
-      <Form>
+      <Form
+        formFunctions={formFunctions}
+        edit={edit}
+        setEdit={setEdit}
+        onSubmit={onSubmit}
+      >
         {Object.entries(renderItem).map(([name], index)=>{
             const insertData = {[id]:{
               company: "",
