@@ -3,6 +3,7 @@ import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
 import GroupInput from "../common/components/refactor/GroupInput";
 import useCusForm from "../common/hook/useCusForm";
+import Form from '../common/components/Form';
 import { resumeStyleSet } from '../dataSet/resumeStyleSet';
 import { v4 as uuidv4 } from 'uuid';
 import { turnObject } from "../common/components/helper/turnObject";
@@ -12,10 +13,9 @@ const PersonalInfo = () => {
 
   const { personalInfo, updateSection } = useContext(FormContext);
   const [ renderItem, setRenderItem ] = useState(personalInfo);
-  const { Form, formFunctions: { formState: {errors}, reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
+  const { formFunctions, formFunctions: { formState: {errors}, reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
     defaultValues: personalInfo,
     formTitle: "personalInfo",
-    onSubmit
   });
   const id = uuidv4();
 
@@ -38,7 +38,12 @@ const PersonalInfo = () => {
       {!edit && 
         <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
-      <Form>
+      <Form
+        formFunctions={formFunctions}
+        edit={edit}
+        setEdit={setEdit}
+        onSubmit={onSubmit}
+      >
         {Object.entries(renderItem).map(([name, values], index)=>{
         if(typeof values === "object"){
           const insertData = {[id]:{name:"",major:"",leftTime:""}};

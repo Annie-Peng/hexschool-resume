@@ -2,6 +2,7 @@ import { Fragment, useContext, useEffect, useState } from "react";
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
 import useCusForm from "../common/hook/useCusForm";
+import Form from '../common/components/Form';
 import { turnDateFormat } from "../common/components/helper/turnDateFormat";
 
 
@@ -9,7 +10,7 @@ const Declaration = () => {
 
   const { declaration, updateSection } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(declaration);
-  const { Form, formFunctions: { formState: {errors}, watch, reset }, formDataSet, formClass, title, edit } = useCusForm({
+  const { formFunctions, formFunctions: { formState: {errors}, watch, reset }, formDataSet, formClass, title, edit } = useCusForm({
     defaultValues: declaration,
     formTitle: "declaration"
   });
@@ -39,7 +40,10 @@ useEffect(()=>{
           本人確認所提供之個人資料及相關經歷均屬實，如有不實情形，願意承擔相應責任。 
         </li>
       </ol>
-      <Form>
+      <Form
+        formFunctions={formFunctions}
+        edit={edit}
+      >
         <div className="flex flex-wrap items-center justify-between">
           {Object.entries(renderItem).map(([name, values], index)=>{
 
