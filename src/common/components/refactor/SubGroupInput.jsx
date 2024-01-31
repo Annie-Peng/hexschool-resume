@@ -5,10 +5,11 @@ import Input from "./Input";
 import { getNestedError } from "../helper/getNestedError";
 import Drag from "../Drag";
 import { Draggable } from "react-beautiful-dnd";
+import { useEffect } from "react";
 
 const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData, edit, children }) => {
 
-  const { control, getValues, formState: { errors } } = useFormContext();
+  const { control, getValues, reset, formState: { errors } } = useFormContext();
   const { fields, insert, remove, move } = useFieldArray({
     name,
     control
@@ -19,6 +20,10 @@ const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData
     hasDeleteBtn: true,
     hasDragBtn: true,
   }
+
+  useEffect(()=>{ //useForm更新後重新渲染Form
+    reset()
+  }, [name])
 
   return (
     <Drag move={move}>
