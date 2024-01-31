@@ -41,7 +41,7 @@
 
 /* 內文 */
 .ck.ck-editor__editable_inline {
-  @apply p-2 max-h-[200px] overflow-y-scroll !important;
+  @apply p-2 h-[150px] overflow-y-scroll !important;
 }
 
 /* 內文第一行&最後一行 */
