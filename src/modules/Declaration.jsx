@@ -29,6 +29,12 @@ useEffect(()=>{
   updateSection({name: "declaration", values });
 },[watchSignature, watchApproved])
 
+useEffect(()=>{
+  setRenderItem(declaration);
+  reset(declaration); //初始化表單預設值
+
+},[declaration])
+
   return (
     <section className="resumeSection">
       <h2 className="resumeH2">{title}</h2>

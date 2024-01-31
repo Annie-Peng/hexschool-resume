@@ -6,14 +6,20 @@ import { resumeStyleSet } from "../dataSet/resumeStyleSet";
 import { requiredClass } from "../dataSet/validationMsg";
 import Drag from "../common/components/Drag";
 import { Draggable } from "react-beautiful-dnd";
+import { useEffect } from "react";
 
 const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
 
-  const { control, formState: {errors} } = useFormContext()
+  const { control, formState: {errors}, reset } = useFormContext()
   const { fields, insert, remove, move } = useFieldArray({
     name,
     control
   })
+
+  useEffect(()=>{ //useForm更新後重新渲染Form
+    reset()
+  }, [name])
+
   const btns = {
     hasAddBtn: true,
     hasDeleteBtn: true,
