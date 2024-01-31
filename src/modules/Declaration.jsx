@@ -21,8 +21,8 @@ const watchApproved = watch("approved");
 useEffect(()=>{
   const formattedUpdatedDate = turnDateFormat(new Date());
   const values = {
-    signature: watchSignature,
     approved: watchApproved,
+    signature: watchSignature,
     signatureBuiltTime: declaration.signatureBuiltTime === "" ? formattedUpdatedDate : declaration.signatureBuiltTime,
     signatureUpdatedTime: formattedUpdatedDate,
   };
