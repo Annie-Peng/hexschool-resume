@@ -56,10 +56,10 @@ const FormSign = ({formDataSet, dataName, name, formClass}) => {
                   <SignaturePad
                       ref={sigCanvas}
                       canvasProps={{
-                          className: "border bg-white w-full h-full mx-auto",
+                          className: "border-2 rounded-md bg-white w-full h-full mx-auto",
                       }}
                   />
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 bg-white">
                     <button onClick={() => save(close)}>儲存</button>
                     <button onClick={clear}>清空</button>
                     <button onClick={close}>關閉</button>
