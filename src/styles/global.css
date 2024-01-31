@@ -22,6 +22,11 @@
   @apply text-sm text-red-500;
 }
 
+ol {
+  list-style-type: number;
+  list-style-position: inside;
+}
+
 input,
 select,
 textarea {
