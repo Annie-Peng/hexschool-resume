@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { FormContext } from "../common/features/FormContext";
 import useCusForm from "../common/hook/useCusForm";
+import Form from '../common/components/Form';
 import { v4 as uuidv4 } from 'uuid';
 import { turnArray } from "../common/components/helper/turnArray";
 import { turnGroupObject } from "../common/components/helper/turnGroupObject";
@@ -11,10 +12,9 @@ const JobSkills = () => {
 
   const { jobSkills, updateSection } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(jobSkills);
-  const { Form, formFunctions: { reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
+  const { formFunctions, formFunctions: { reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
     defaultValues: jobSkills,
     formTitle: "jobSkills",
-    onSubmit
   });
   const id = uuidv4();
 
@@ -37,7 +37,12 @@ const JobSkills = () => {
       {!edit && 
         <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
-      <Form>
+      <Form
+        formFunctions={formFunctions}
+        edit={edit}
+        setEdit={setEdit}
+        onSubmit={onSubmit}
+      >
         {Object.entries(renderItem).map(([name], index)=>{
             const subInsertData = {[id]:{name:""}};
             const insertData = {[id]:{name:"",items: [subInsertData]}};
