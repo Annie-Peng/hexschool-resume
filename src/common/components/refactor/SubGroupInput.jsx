@@ -15,15 +15,35 @@ const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData
     control
   })
 
+  useEffect(()=>{ //useForm更新後重新渲染Form
+    reset()
+  }, [name])
+
   const btns = {
     hasAddBtn: true,
     hasDeleteBtn: true,
     hasDragBtn: true,
   }
 
-  useEffect(()=>{ //useForm更新後重新渲染Form
-    reset()
-  }, [name])
+  if(fields.length===0){
+    const btns = {
+      hasAddBtn: true,
+      hasDeleteBtn: false,
+      hasDragBtn: false,
+    }
+    return (
+      <div className="relative">
+        <ul className="relative min-h-[60px]">
+          {edit && (
+            <FormButtons
+              btns={btns}
+              onAdd={() => {insert(0, {...insertData})}}
+            />
+          )}
+        </ul>
+      </div>
+    )
+  }
 
   return (
     <Drag move={move}>
