@@ -59,17 +59,17 @@ export default SnapShot;
 function RenderForm(data) {
 
   return (
-    <>
+    <div>
       <header>
         <img src={banner} alt="banner" />
       </header>
-      <div className="px-[50px] py-[20px] flex flex-col gap-4">
+      <div className="px-[40px] py-[30px] flex flex-col gap-20">
         <PersonalInfoResume data={data.personalInfo} />
         <JobSkillsResume data={data.jobSkills} />
         <JobExperienceResume data={data.jobExperience} />
         <PortfolioResume data={data.portfolio} />
         <DeclarationResume data={data.declaration} />
       </div>
-    </>
+    </div>
   )
 }

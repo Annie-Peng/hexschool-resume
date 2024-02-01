@@ -6,12 +6,13 @@ import { turnArray } from "../common/components/helper/turnArray";
 import { v4 as uuidv4 } from 'uuid';
 import { turnObject } from "../common/components/helper/turnObject";
 import JobExperienceCard from "./JobExperienceCard";
+import MarkdownIdentifier from "../common/components/MarkdownIdentifier";
 
 const JobExperience = () => {
 
   const { jobExperience, updateSection } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(jobExperience);
-  const { formFunctions, formFunctions: { formState: { errors }, reset }, formDataSet, title, edit, setEdit } = useCusForm({
+  const { formFunctions, formFunctions: { reset }, formDataSet, title, edit, setEdit } = useCusForm({
     defaultValues: jobExperience,
     formTitle: "jobExperience",
   });
@@ -67,35 +68,35 @@ export default JobExperience;
 
 export const JobExperienceResume = ({ data }) => {
 
-  if(!data) return;
+  if(Object.keys(data).length === 0) return;
 
   return (
     <section>
       <h2 className="font-bold text-2xl">工作經驗</h2>
-      <ul>
+      <ul className="flex flex-col gap-6 mt-4">
         {Object.values(data).map((title, tIndex)=>{
-          const { startYear, startMonth, endYear, endMonth, isLeft } = title.workingLength;
-          const itemsLength = Object.values(data).length;
+          const { startTime, endTime, isLeft } = title.workingLength;
           return (
-            <li key={`title ${tIndex}`} className="flex gap-2 mt-4 relative">
-              {tIndex+1 !== itemsLength && (
-                <div className="absolute top-[24px] left-[13px] h-full w-[2px] bg-primary-500" />
-              )}
+            <li key={`title ${tIndex}`} className="flex gap-6 relative">
+              <div className="absolute top-[24px] left-[13px] h-[93%] w-[2px] bg-primary-500" />
               <span className={`bg-filledHexschool bg-cover w-[28px] h-[24px] text-center text-primary-500 font-bold flex-shrink-0`} />
-              <div>
-                <div className="flex justify-between">
-                  <h3 className="font-bold text-lg">
-                    {title.company}<span className="text-primary-500">・{title.occupation}</span>
+              <div className="w-full">
+                <div className="flex justify-between items-center">
+                  <h3 className="font-bold text-xl">
+                    {title.company}
+                    <span className="text-primary-500">
+                      ・{title.occupation}
+                    </span>
                   </h3>
-                  <p>{startYear}年{startMonth}月 - {isLeft ? `${endYear}年${endMonth}月` : "至今" }</p>
+                  <p>{startTime} - {isLeft ? "至今" : `${endTime}` }</p>
                 </div>
-                <div className="mt-4 flex flex-col gap-2">
+                <div className="mt-6 flex flex-col gap-2">
                   <h4 className="tag">工作內容</h4>
-                  <p>{title.description}</p>
+                  <MarkdownIdentifier texts={title.description} />
                 </div>
                 <div className="mt-2 flex flex-col gap-2">
                   <h4 className="tag">工作成果</h4>
-                  <p>{title.achievement}</p>
+                  <MarkdownIdentifier texts={title.achievement} />
                 </div>
               </div>
             </li>
