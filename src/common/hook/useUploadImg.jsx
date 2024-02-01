@@ -21,13 +21,12 @@ const useUploadImg = (initialData) => {
       reader.readAsDataURL(file);
       reader.onload = function (event) {
         const result = event.target?.result;
-        console.log(result);
         setFileSrc(result);
       };
     }
   }
 
-  return [fileSrc, handleUploadImg];
+  return [fileSrc, setFileSrc, handleUploadImg];
 };
 
 export default useUploadImg;

@@ -6,19 +6,31 @@ import { useFormContext } from "react-hook-form";
 
 const FormInputImg = ({formDataSet, name, error, formClass, edit }) => {
 
-  const { register, getValues, setValue } = useFormContext();
+  const { register, getValues, setValue, watch } = useFormContext();
 
   const { type, accept, hMsg, placeholder, validation, required, disabled } = formDataSet[name];
 
   const { inputClass, errClass, outerClass, hClass, labelClass, imgData} = formClass;
 
   const img = getValues(name);
-  const [fileSrc, handleUploadImg] = useUploadImg(img);
+  const watchValue = watch(name);
+  const [fileSrc, setFileSrc, handleUploadImg] = useUploadImg(img);
   const inputRef = useRef(null);
 
   useEffect(()=>{
-    setValue(name, fileSrc)
+    if(edit) {
+      setValue(name, fileSrc)
+    }
   }, [fileSrc])
+
+  useEffect(()=>{
+    if(!edit){
+      if(fileSrc !== img) {
+        setFileSrc("")
+      }
+    }
+  },[watchValue])
+
 
   return (
     <div className={`flex items-center p-2 gap-2 ${outerClass}`}>
@@ -31,13 +43,19 @@ const FormInputImg = ({formDataSet, name, error, formClass, edit }) => {
           <div className={`${imgData.containerClass}`} onClick={()=>{
             inputRef.current.click();
           }}>
-            {fileSrc ? <img src={fileSrc} className={imgData.class} alt={name} /> : <p>{placeholder}</p> }
+            {img ? <img src={fileSrc || img } className={imgData.class} alt={name} /> : <p>{placeholder}</p> }
           </div>
         </>
       ) : (
-        <div className={`${imgData.containerClass} border-none`}>
-          {fileSrc ? <img src={fileSrc} className={`${imgData.class} rounded-md`} alt={name} /> : <p>{placeholder}</p> }
-        </div>
+        <>
+          {img ? (
+            <div className={`${imgData.containerClass} border-none`}>
+              <img src={img} className={`${imgData.class} rounded-md`} alt={name} /> 
+            </div>
+          )
+          : null
+          }
+        </>
       )}
       {error && <p className={`resumeErr ${errClass}`}>{error.message}</p>}
     </div>
