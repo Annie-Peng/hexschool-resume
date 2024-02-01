@@ -60,8 +60,9 @@ textarea {
 }
 
 .addBtn,
-.deleteBtn {
-  @apply p-0 w-[20px] md:p-2 md:w-[30px] lg:min-w-[40px];
+.deleteBtn,
+.dragBtn {
+  @apply p-0 w-[20px] md:p-2 md:w-[30px] lg:min-w-[40px] text-center;
 }
 
 .addBtn {
