@@ -63,6 +63,7 @@ const Portfolio = () => {
                 insertData={insertData}
                 edit={edit}
                 subInsertData={subInsertData}
+                requiredShowResume={false}
               >
                   {(itemData, dataName) => (
                     <PortfolioCard
@@ -94,7 +95,7 @@ export const PortfolioResume = ({ data }) => {
         {Object.values(data).map((title, tIndex)=>{
           return (
             <li key={`title ${tIndex}`} className="flex flex-col gap-4">
-              <h3 className="tag">{title.name}</h3>
+              <h3 className="tag">{title.name ? title.name : "尚未填寫"}</h3>
               <ul className="flex flex-col gap-4">
                 {Object.values(title.items).map((item, iIndex)=>{
                   return (
@@ -104,9 +105,9 @@ export const PortfolioResume = ({ data }) => {
                         {iIndex+1}
                       </span>
                       <div className="flex flex-col gap-2">
-                        <p>網址 | {item.url}</p>
-                        <p>作品敘述 | {item.description}</p>
-                        <p>功能內容 | {item.functions}</p>
+                        <p>網址 | {item.url ? item.url : "尚未填寫"}</p>
+                        <p>作品敘述 | {item.description ? item.description : "尚未填寫"}</p>
+                        <p>功能內容 | {item.functions ? item.functions : "尚未填寫"}</p>
                       </div>
                     </li>
                   )
