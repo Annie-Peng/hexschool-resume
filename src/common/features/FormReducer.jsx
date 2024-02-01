@@ -19,41 +19,10 @@ export const initialState = {
     }
   },
   jobSkills: {
-    id1: {
-      name: "",
-      items: {
-        id1: {
-          name: ""
-        },
-      }
-    }
   },
   jobExperience: {
-    id1: {
-      company: "",
-      occupation: "",
-      workingLength: {
-        startYear: "",
-        startMonth: "",
-        endYear: "",
-        endMonth: "",
-        isLeft: false
-      },
-      description: "",
-      achievement: ""
-    },
   },
   portfolio: {
-    id1: {
-      name: "",
-      items: {
-        id1: {
-          url: "",
-          description: "",
-          functions: ""
-        },
-      }
-    },
   },
   declaration: {
     approved: false,
