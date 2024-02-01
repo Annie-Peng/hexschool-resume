@@ -4,10 +4,10 @@ import { FormContext } from "../common/features/FormContext";
 import GroupInput from "../common/components/refactor/GroupInput";
 import useCusForm from "../common/hook/useCusForm";
 import Form from '../common/components/Form';
-import { resumeStyleSet } from '../dataSet/resumeStyleSet';
 import { v4 as uuidv4 } from 'uuid';
 import { turnObject } from "../common/components/helper/turnObject";
 import { turnArray } from "../common/components/helper/turnArray";
+import MarkdownIdentifier from "../common/components/MarkdownIdentifier";
 
 const PersonalInfo = () => {
 
@@ -89,6 +89,16 @@ export const PersonalInfoResume = ({ data }) => {
     {
       title: "期望薪資",
       name: "expectedSalary",
+      packed: (data) => {
+
+        if(!data) return
+
+        return (
+          <p className="text-xl mt-1">
+            {data} (年薪/月薪)
+          </p>
+        )
+      }
     },
     {
       title: "目前現居地",
@@ -102,9 +112,15 @@ export const PersonalInfoResume = ({ data }) => {
       title: "學歷",
       name: "graduateSchool",
       packed: (data) => {
-        console.log(data);
         return Object.values(data).map((value, index)=>{
-          return <p key={index}>{value.leftTime}畢業 / {value.name} / {value.major}</p>
+
+          if(!value.name) return
+
+          return (
+            <p key={index} className="text-xl whitespace-nowrap mt-1">
+              {value.leftTime}畢業 / {value.name} / {value.major}
+            </p>
+          )
         })
       }
     },
@@ -112,28 +128,45 @@ export const PersonalInfoResume = ({ data }) => {
 
   return (
     <section>
-      <div className="flex gap-8 mt-4">
+      <div className="flex gap-8 items-start">
         <div className="w-[400px] h-[350px]">
-          <img src={data.profile} alt="profile" className="w-full h-full object-cover rounded-md"/>
+          { data.profile ? (
+            <img src={data.profile} alt="profile" className="w-full h-[350px] object-cover rounded-md"/>
+          ) : (
+            <div className="border h-full rounded-md flex justify-center items-center text-gray-500 bg-gray-300">
+              尚未更新照片
+            </div>
+          )}
         </div>
         <div className="w-full flex flex-wrap">
-          <h1 className="w-1/2 font-bold">{data.applicantName}</h1>
-          <p className="w-1/2 font-bold">#{data.occupation}</p>
-          <ul className="flex flex-wrap gap-y-2 border-t border-secondary-500 pt-4">
+          <h1 className="w-1/2 font-bold text-4xl">
+            {data.applicantName ? data.applicantName : "姓名"}
+          </h1>
+          <p className="w-1/2 font-bold text-lg before:content-['#'] self-end">
+            {data.occupation ? data.occupation : "目前工作職稱"}
+          </p>
+          <ul className="flex flex-wrap gap-y-4 border-t-2 border-secondary-300 pt-4 mt-1">
             {renderData.map((item, index)=>(
               <li key={index} className="w-1/2">
                 <h2 className="text-gray-500">{item.title}</h2>
                 {item.packed ? (
                   item.packed(data[item.name])
                 ) : (
-                  <p>{data[item.name]}</p>
+                  <p className="text-xl mt-1">
+                    {data[item.name]}
+                  </p>
                 )  }
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <p className="border-y border-secondary-500 mt-4 py-4">{data.aboutMe}</p>
+      {data.aboutMe &&
+        <div className="border-y border-secondary-300 mt-[30px] py-[30px] text-xl">
+          <MarkdownIdentifier texts={data.aboutMe} />
+        </div>
+      }
+      
     </section>
   )
 }

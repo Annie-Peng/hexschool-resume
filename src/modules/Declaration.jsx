@@ -87,8 +87,16 @@ export const DeclarationResume = ({ data }) => {
       <div className="flex justify-between mt-4">
         <div className="flex gap-2 items-center w-full">
           <span>簽名</span>
-          <img src={data.signature} alt="signature" width={200} height={100} className="rounded-md"/>
-          <p className="ml-auto">日期 {data.signatureUpdatedTime}</p>
+          { data.signature ?  (
+            <div className="w-[200px] h-[100px]">
+              <img src={data.signature} alt="signature" className="w-full h-full object-contain rounded-md"/>
+            </div>
+          ) : (
+            <p className="w-[200px] p-4 border-2 border-secondary-300 rounded-md text-center text-secondary-500">尚未簽名</p>
+          )}
+          <p className="ml-auto">
+            日期 {data.signatureUpdatedTime}
+          </p>
         </div>
       </div>
     </section>

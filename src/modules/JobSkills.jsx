@@ -78,12 +78,12 @@ export default JobSkills;
 
 export const JobSkillsResume = ({ data }) => {
 
-  if(!data) return;
+  if(Object.keys(data).length === 0) return;
 
   return (
     <section>
       <h2 className="font-bold text-2xl">工作技能</h2>
-      <ul className="mt-4">
+      <ul className="mt-4 flex flex-col gap-4">
         {Object.values(data).map((title, tIndex)=>{
           console.log(title);
           return (
@@ -93,7 +93,7 @@ export const JobSkillsResume = ({ data }) => {
                 {Object.values(title.items).map((item, iIndex)=>{
                   return (
                     <li key={`item ${iIndex}`}>
-                      <p className="before:content-['#'] before:mr-2">{item.name}</p>
+                      <p className="before:content-['#'] before:mr-4">{item.name}</p>
                     </li>
                   )
                 })}
