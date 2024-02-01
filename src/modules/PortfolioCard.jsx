@@ -22,7 +22,15 @@ const PortfolioCard = ({formDataSet, formClass, data, dataName, edit}) => {
     ) : (
       <div className="flex flex-col gap-2">
       {Object.keys(data).map((subKey, index) => (
-          <p key={index}>{getValues(`${dataName}.${subKey}`)}</p>
+          <p key={index}>
+            {getValues(`${dataName}.${subKey}`) ? (
+              getValues(`${dataName}.${subKey}`)
+            ) : (
+              <>
+                {index===0 && "自行填寫作品資訊"}
+              </>
+            )}
+          </p>
         ))}
       </div>
     ) }
