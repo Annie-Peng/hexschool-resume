@@ -1,12 +1,12 @@
-import { Fragment } from "react";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { Fragment, useEffect } from "react";
+import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import FormButtons from "../common/components/FormButtons";
 import { controller } from "../dataSet/controller";
 import { resumeStyleSet } from "../dataSet/resumeStyleSet";
 import { requiredClass } from "../dataSet/validationMsg";
 import Drag from "../common/components/Drag";
 import { Draggable } from "react-beautiful-dnd";
-import { useEffect } from "react";
+import { getNestedError } from "../common/components/helper/getNestedError";
 
 const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
 
@@ -123,12 +123,27 @@ export default JobExperienceCard;
 
 function WorkingLengthField ({dataSet, name, dataName, formDataSet, edit, error}) {
 
+  const { watch, formState: { touchedFields }, clearErrors, setError, control } = useFormContext();
+
   const data = {
     required: true,
     groupTitle: "任職時間",
     groupTitleClass: "requiredMark",
     outerClass: "flex items-center p-2 gap-2",
   }
+  
+  const endTimeDisabled = watch(`${name}.isLeft`);
+  const endTime = watch(`${name}.endTime`);
+  const isLeftTouched = getNestedError(touchedFields, `${name}.isLeft`)
+
+  useEffect(()=>{
+    if(endTimeDisabled) {
+      clearErrors(`${name}.endTime`);
+    }else if (isLeftTouched && !endTime) {
+      setError(`${name}.endTime`, { type: "required", message: "必填" });
+    }
+  },[endTimeDisabled, isLeftTouched])
+
 
   return (
     <div className={data.outerClass}>
@@ -139,10 +154,24 @@ function WorkingLengthField ({dataSet, name, dataName, formDataSet, edit, error}
           const newDataName = `${dataName}.${key}`;
           const RenderForm = controller[formDataSet[newDataName]?.component]; // 選擇表單元件
           const formClass = resumeStyleSet.jobExperience[newDataName];
+
+          const disabled = (key === "endTime" && endTimeDisabled);
+          const endTimeValidation = { required: (disabled ? false : "必填") }; 
+          const validation = (key === "endTime" ? endTimeValidation : formDataSet[newDataName].validation );
+
           return (
-            <Fragment key={index}>
-              {RenderForm && <RenderForm formDataSet={formDataSet} name={`${name}.${key}`} dataNmae={`${dataName}.${key}`} error={error?.[key]} formClass={formClass} edit={edit} dataName={newDataName} validation={formDataSet[newDataName].validation}/>}
-            </Fragment>
+            <Controller
+              key={index}
+              name={`${name}.${key}`}
+              control={control}
+              rules={validation} 
+              render={() => (
+                <Fragment key={index}>
+                  {RenderForm && <RenderForm formDataSet={formDataSet} name={`${name}.${key}`} error={error?.[key]} formClass={formClass} edit={edit} dataName={newDataName} disabled={disabled} />}
+                  { key === "startTime" && <p>至</p> }
+                </Fragment>
+              )}
+            />
           )
         })}
         
