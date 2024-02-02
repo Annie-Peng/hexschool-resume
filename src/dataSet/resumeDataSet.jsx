@@ -36,9 +36,6 @@ export const resumeDataSet = {
           },
         },
         placeholder: "請輸入10碼數字",
-        errClass: "",
-        inputClass: "",
-        hClass: ""
       },
       email: {
         hMsg: "個人Mail",
@@ -123,7 +120,7 @@ export const resumeDataSet = {
         placeholder: "例如：最高學歷",
       },
       "graduateSchool.major": {
-        hMsg: "畢業學校",
+        hMsg: "畢業科系",
         component: "refactorInput",
         type: "text",
         validation: {
@@ -209,7 +206,6 @@ export const resumeDataSet = {
           required: commonRequiredMsg
         },
         placeholder: "起始年月",
-        pMsg: "至"
       },
       "jobExperience.workingLength.endTime": {
         group: "jobExperience",
@@ -218,6 +214,9 @@ export const resumeDataSet = {
         item: "endTime",
         component: "refactorInput",
         type: "month",
+        validation: {
+          required: commonRequiredMsg
+        },
         required: false,
         placeholder: "結束年月",
       },
@@ -229,7 +228,6 @@ export const resumeDataSet = {
         component: "refactorInput",
         type: "checkbox",
         required: false,
-        pMsg: "",
       },
       "jobExperience.description": {
         group: "jobExperience",

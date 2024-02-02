@@ -4,11 +4,11 @@ import { requiredClass } from "../../dataSet/validationMsg";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
-const FormInputImg = ({formDataSet, name, error, formClass, edit }) => {
+const FormInputImg = ({formDataSet, name, error, formClass, edit, validation }) => {
 
-  const { register, getValues, setValue, watch } = useFormContext();
+  const { register, getValues, setValue, watch, trigger } = useFormContext();
 
-  const { type, accept, hMsg, placeholder, validation, required, disabled } = formDataSet[name];
+  const { type, accept, hMsg, placeholder, required, disabled } = formDataSet[name];
 
   const { inputClass, errClass, outerClass, hClass, labelClass, imgData} = formClass;
 
@@ -19,7 +19,8 @@ const FormInputImg = ({formDataSet, name, error, formClass, edit }) => {
 
   useEffect(()=>{
     if(edit) {
-      setValue(name, fileSrc)
+      setValue(name, fileSrc);
+      trigger(name);
     }
   }, [fileSrc])
 

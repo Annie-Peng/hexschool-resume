@@ -57,7 +57,7 @@ useEffect(()=>{
 
           return (
               <Fragment key={index}>
-                {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass[name]} edit={true} />}
+                {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass[name]} edit={true} validation={formDataSet[name]}/>}
               </Fragment>
             )
         })}

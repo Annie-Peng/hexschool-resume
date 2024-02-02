@@ -61,7 +61,7 @@ const PersonalInfo = () => {
 
         return (
             <Fragment key={index}>
-              {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass[name]} edit={edit} />}
+              {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass[name]} edit={edit} validation={formDataSet[name].validation}/>}
             </Fragment>
           )
       })}

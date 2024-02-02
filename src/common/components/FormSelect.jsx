@@ -1,12 +1,12 @@
 import { useFormContext } from "react-hook-form";
 import { requiredClass } from "../../dataSet/validationMsg";
 
-const FormSelect = ({formDataSet, dataName, name, error, formClass, edit}) => {
+const FormSelect = ({formDataSet, dataName, name, error, formClass, edit, validation}) => {
 
   let newDataName = dataName ? dataName : name;
 
   const { register, getValues } = useFormContext();
-  const { hMsg, disabledOption, options, validation, required } = formDataSet[newDataName];
+  const { hMsg, disabledOption, options, required } = formDataSet[newDataName];
   const { selectClass, errClass, } = formClass;
 
   return (
@@ -14,7 +14,6 @@ const FormSelect = ({formDataSet, dataName, name, error, formClass, edit}) => {
       <label className="w-[20%] flex-shrink-0 text-right" htmlFor={name}>
         <h3 className={`resumeH3 ${requiredClass(required)}`}>{hMsg}</h3>
       </label>
-      <div className="w-1/2">
         { edit ? (
           <select className={selectClass} {...register(name, validation)}>
           <option value="" disabled>
@@ -29,7 +28,6 @@ const FormSelect = ({formDataSet, dataName, name, error, formClass, edit}) => {
         ) : (
           getValues(name)
         ) }
-      </div>
       {error && <p className={`resumeErr ${errClass}`}>{error.message}</p>}
     </div>
     );
