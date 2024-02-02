@@ -12,10 +12,6 @@ const Editor = forwardRef(({ onChange, value, placeholder, error, errClass }, re
                     placeholder,
                 }}
                 data={value}
-                onReady={(editor) => {
-                    ref.current = editor;
-                    editor.setData(value);
-                }}
                 onChange={(event, editor) => {
                     const data = editor.getData();
                     onChange(data);
