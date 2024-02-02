@@ -93,7 +93,7 @@ const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
             
                             return (
                                 <Fragment key={subKeyIndex}>
-                                  {RenderForm && <RenderForm formDataSet={formDataSet} name={newName} error={error} formClass={formClass} edit={edit} dataName={dataName} />}
+                                  {RenderForm && <RenderForm formDataSet={formDataSet} name={newName} error={error} formClass={formClass} edit={edit} dataName={dataName} validation={formDataSet[dataName].validation}/>}
                                 </Fragment>
                               )
                           });
@@ -141,7 +141,7 @@ function WorkingLengthField ({dataSet, name, dataName, formDataSet, edit, error}
           const formClass = resumeStyleSet.jobExperience[newDataName];
           return (
             <Fragment key={index}>
-              {RenderForm && <RenderForm formDataSet={formDataSet} name={`${name}.${key}`} dataNmae={`${dataName}.${key}`} error={error?.[key]} formClass={formClass} edit={edit} dataName={newDataName} />}
+              {RenderForm && <RenderForm formDataSet={formDataSet} name={`${name}.${key}`} dataNmae={`${dataName}.${key}`} error={error?.[key]} formClass={formClass} edit={edit} dataName={newDataName} validation={formDataSet[newDataName].validation}/>}
             </Fragment>
           )
         })}
