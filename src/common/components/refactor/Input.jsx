@@ -1,22 +1,20 @@
 import { useFormContext } from "react-hook-form";
 import { requiredClass } from "../../../dataSet/validationMsg";
 
-const Input = ({formDataSet, formClass, dataName, name, error, edit}) => {
+const Input = ({formDataSet, formClass, dataName, name, error, edit, disabled, validation}) => {
 
   const { register, getValues } = useFormContext()
 
   let newDataName = dataName ? dataName : name;
 
-  const validation = formDataSet[newDataName].validation;
+  const { type, accept, hMsg, placeholder, pMsg, required } = formDataSet[newDataName];
 
-  const { type, accept, hMsg, placeholder, pMsg, disabled, required } = formDataSet[newDataName];
-
-    const { inputClass,
-      errClass,
-      outerClass,
-      hClass,
-      pClass,
-      labelClass } = formClass;
+  const { inputClass,
+    errClass,
+    outerClass,
+    hClass,
+    pClass,
+    labelClass } = formClass;
 
   return (
     <div className={`flex items-center p-2 gap-2 ${outerClass}`}>
