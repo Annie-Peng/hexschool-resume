@@ -123,7 +123,7 @@ export default JobExperienceCard;
 
 function WorkingLengthField ({dataSet, name, dataName, formDataSet, edit, error}) {
 
-  const { watch, formState: { touchedFields }, clearErrors, setError, control } = useFormContext();
+  const { watch, formState: { touchedFields }, clearErrors, setError, control, setValue } = useFormContext();
 
   const data = {
     required: true,
@@ -139,6 +139,7 @@ function WorkingLengthField ({dataSet, name, dataName, formDataSet, edit, error}
   useEffect(()=>{
     if(endTimeDisabled) {
       clearErrors(`${name}.endTime`);
+      setValue(`${name}.endTime`, "");
     }else if (isLeftTouched && !endTime) {
       setError(`${name}.endTime`, { type: "required", message: "必填" });
     }
@@ -150,6 +151,7 @@ function WorkingLengthField ({dataSet, name, dataName, formDataSet, edit, error}
       <label className={`w-[20%] flex-shrink-0 text-right`} htmlFor={name}>
         <h3 className={`resumeH3 ${requiredClass(data.required)}`}>{data.groupTitle}</h3>
       </label>
+      <div className="flex flex-wrap gap-2 items-center w-2/3">
         {Object.keys(dataSet).map((key, index) => {
           const newDataName = `${dataName}.${key}`;
           const RenderForm = controller[formDataSet[newDataName]?.component]; // 選擇表單元件
@@ -158,7 +160,6 @@ function WorkingLengthField ({dataSet, name, dataName, formDataSet, edit, error}
           const disabled = (key === "endTime" && endTimeDisabled);
           const endTimeValidation = { required: (disabled ? false : "必填") }; 
           const validation = (key === "endTime" ? endTimeValidation : formDataSet[newDataName].validation );
-
           return (
             <Controller
               key={index}
@@ -169,12 +170,15 @@ function WorkingLengthField ({dataSet, name, dataName, formDataSet, edit, error}
                 <Fragment key={index}>
                   {RenderForm && <RenderForm formDataSet={formDataSet} name={`${name}.${key}`} error={error?.[key]} formClass={formClass} edit={edit} dataName={newDataName} disabled={disabled} />}
                   { key === "startTime" && <p>至</p> }
+                  { key === "startTime" &&
+                    (!edit && endTimeDisabled && <p>今</p>)
+                  }
                 </Fragment>
               )}
             />
           )
         })}
-        
+      </div>
     </div>
   )
 }
