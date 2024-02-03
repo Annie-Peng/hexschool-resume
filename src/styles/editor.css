@@ -56,8 +56,7 @@
 }
 
 /* 內文, markdown list-style */
-.ck-content ul,
-.markdownList ul {
+.ck-content ul {
   list-style-type: "# " !important;
   padding-left: 20px !important;
 }
@@ -65,4 +64,14 @@
 .ck .ck-placeholder:before,
 .ck.ck-placeholder:before {
   @apply text-secondary-500 !important;
+}
+
+.markdownList ul li {
+  @apply flex gap-5;
+}
+
+.markdownList ul li:before {
+  content: "#";
+  display: block;
+  position: relative;
 }

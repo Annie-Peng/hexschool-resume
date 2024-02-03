@@ -89,34 +89,37 @@ export const PortfolioResume = ({ data }) => {
   if(Object.keys(data).length === 0) return;
 
   return (
-    <section>
-      <h2 className="font-bold text-2xl">專業成果 / 作品</h2>
-      <ul className="flex flex-col gap-8 mt-4">
-        {Object.values(data).map((title, tIndex)=>{
-          return (
-            <li key={`title ${tIndex}`} className="flex flex-col gap-4">
-              <h3 className="tag">{title.name ? title.name : "尚未填寫"}</h3>
-              <ul className="flex flex-col gap-4">
-                {Object.values(title.items).map((item, iIndex)=>{
-                  return (
-                    <li key={`item ${iIndex}`} className="flex gap-6 relative">
-                      <div className="absolute top-[24px] left-[13px] h-[93%] w-[2px] bg-primary-500" />
-                      <span className="bg-thinBorderHexschool bg-contain w-[28px] h-[24px] text-center text-primary-500 font-bold flex-shrink-0">
-                        {iIndex+1}
-                      </span>
-                      <div className="flex flex-col gap-2">
-                        <p>網址 | {item.url ? item.url : "尚未填寫"}</p>
-                        <p>作品敘述 | {item.description ? item.description : "尚未填寫"}</p>
-                        <p>功能內容 | {item.functions ? item.functions : "尚未填寫"}</p>
-                      </div>
-                    </li>
-                  )
-                })}
-              </ul>
-            </li>
-          )
-        })}
-      </ul>
-    </section>
+    <>
+      <hr className="h-[1px] border-secondary-300" />
+      <section className="py-[30px]">
+        <h2 className="font-bold text-2xl">專業成果 / 作品</h2>
+        <ul className="flex flex-col gap-8 mt-4">
+          {Object.values(data).map((title, tIndex)=>{
+            return (
+              <li key={`title ${tIndex}`} className="flex flex-col gap-4">
+                <h3 className="tag">{title.name ? title.name : "尚未填寫"}</h3>
+                <ul className="flex flex-col gap-4">
+                  {Object.values(title.items).map((item, iIndex)=>{
+                    return (
+                      <li key={`item ${iIndex}`} className="flex gap-6 relative">
+                        <div className="absolute -z-10 top-0 left-[13px] h-full w-[2px] bg-primary-500" />
+                        <span className="bg-thinBorderHexschool bg-contain w-[28px] h-[24px] text-center text-primary-500 font-bold flex-shrink-0">
+                          {iIndex+1}
+                        </span>
+                        <div className="flex flex-col gap-2">
+                          <p>網址 | {item.url ? item.url : "尚未填寫"}</p>
+                          <p>作品敘述 | {item.description ? item.description : "尚未填寫"}</p>
+                          <p>功能內容 | {item.functions ? item.functions : "尚未填寫"}</p>
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </li>
+            )
+          })}
+        </ul>
+      </section>
+    </>
   )
 }
