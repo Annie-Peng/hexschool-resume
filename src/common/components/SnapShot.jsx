@@ -50,7 +50,7 @@ const SnapShot = () => {
         pdf.setPage(i);
         pdf.addImage(logo, "PNG", xPosition, yPosition, logoWidth, logoHeight);
       }
-      
+      document.body.removeChild(element);
     }).save();
         
   };
