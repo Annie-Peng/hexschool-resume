@@ -23,7 +23,7 @@ const SnapShot = () => {
     await ReactDOM.createRoot(element).render(renderForm);
 
     const opt = {
-      margin:       [0, 0, 12, 0],
+      margin:       [0, 0, 10, 0],
       filename:     'resume.pdf',
       pagebreak:    {mode: ['css', 'legacy', 'avoid-all']},
       image:        { type: 'jpeg', quality: 0.98 },
@@ -41,7 +41,7 @@ const SnapShot = () => {
       const logoHeight = 20;
     
       const offsetX = 0;
-      const offsetY = 0;
+      const offsetY = -2;
     
       const xPosition = pageWidth - logoWidth - offsetX;
       const yPosition = pageHeight - logoHeight - offsetY;
@@ -78,7 +78,7 @@ function RenderForm(data) {
       <header>
         <img src={banner} alt="banner" />
       </header>
-      <div className="px-[40px] py-[30px] flex flex-col gap-20">
+      <div className="px-[40px] py-[30px] flex flex-col">
         <PersonalInfoResume data={data.personalInfo} />
         <JobSkillsResume data={data.jobSkills} />
         <JobExperienceResume data={data.jobExperience} />

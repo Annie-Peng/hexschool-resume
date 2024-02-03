@@ -71,14 +71,16 @@ export const JobExperienceResume = ({ data }) => {
   if(Object.keys(data).length === 0) return;
 
   return (
-    <section>
+    <>
+      <hr className="h-[1px] border-secondary-300" />
+      <section className="py-[30px]">
       <h2 className="font-bold text-2xl">工作經驗</h2>
       <ul className="flex flex-col gap-6 mt-4">
         {Object.values(data).map((title, tIndex)=>{
           const { startTime, endTime, isLeft } = title.workingLength;
           return (
             <li key={`title ${tIndex}`} className="flex gap-6 relative">
-              <div className="absolute top-[24px] left-[13px] h-[93%] w-[2px] bg-primary-500" />
+              <div className="absolute -z-10 top-0 left-[13px] h-full w-[2px] bg-primary-500" />
               <span className={`bg-filledHexschool bg-cover w-[28px] h-[24px] text-center text-primary-500 font-bold flex-shrink-0`} />
               <div className="w-full">
                 <div className="flex justify-between items-center">
@@ -103,6 +105,7 @@ export const JobExperienceResume = ({ data }) => {
           )
         })}
       </ul>
-    </section>
+      </section>
+    </>
   )
 }

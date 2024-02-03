@@ -94,7 +94,7 @@ export const PersonalInfoResume = ({ data }) => {
         if(!data) return
 
         return (
-          <p className="text-xl mt-1">
+          <p className="mt-1">
             {data} (年薪/月薪)
           </p>
         )
@@ -117,7 +117,7 @@ export const PersonalInfoResume = ({ data }) => {
           if(!value.name) return
 
           return (
-            <p key={index} className="text-xl whitespace-nowrap mt-1">
+            <p key={index} className="whitespace-nowrap mt-1">
               {value.leftTime}畢業 / {value.name} / {value.major}
             </p>
           )
@@ -128,10 +128,10 @@ export const PersonalInfoResume = ({ data }) => {
 
   return (
     <section>
-      <div className="flex gap-8 items-start">
-        <div className="w-[400px] h-[350px]">
+      <div className="flex gap-8 mb-[30px]">
+        <div className="w-[350px] min-h-[250px]">
           { data.profile ? (
-            <img src={data.profile} alt="profile" className="w-full h-[350px] object-cover rounded-md"/>
+            <img src={data.profile} alt="profile" className="w-full h-full object-cover rounded-md"/>
           ) : (
             <div className="border h-full rounded-md flex justify-center items-center text-gray-500 bg-gray-300">
               尚未更新照片
@@ -139,20 +139,20 @@ export const PersonalInfoResume = ({ data }) => {
           )}
         </div>
         <div className="w-full flex flex-wrap">
-          <h1 className="w-1/2 font-bold text-4xl">
+          <h1 className="w-1/2 font-bold text-4xl self-end">
             {data.applicantName ? data.applicantName : "姓名"}
           </h1>
           <p className="w-1/2 font-bold text-lg before:content-['#'] self-end">
             {data.occupation ? data.occupation : "目前工作職稱"}
           </p>
-          <ul className="flex flex-wrap gap-y-4 border-t-2 border-secondary-300 pt-4 mt-1">
+          <ul className="flex flex-wrap gap-y-4 border-t-2 border-secondary-300 pt-4 mt-1 w-full">
             {renderData.map((item, index)=>(
               <li key={index} className="w-1/2">
-                <h2 className="text-gray-500">{item.title}</h2>
+                <h2 className="text-gray-700 text-sm">{item.title}</h2>
                 {item.packed ? (
                   item.packed(data[item.name])
                 ) : (
-                  <p className="text-xl mt-1">
+                  <p className="mt-1">
                     {data[item.name]}
                   </p>
                 )  }
@@ -162,11 +162,10 @@ export const PersonalInfoResume = ({ data }) => {
         </div>
       </div>
       {data.aboutMe &&
-        <div className="border-y border-secondary-300 mt-[30px] py-[30px] text-xl">
+        <div className="py-[30px] border-t border-secondary-300">
           <MarkdownIdentifier texts={data.aboutMe} />
         </div>
       }
-      
     </section>
   )
 }
