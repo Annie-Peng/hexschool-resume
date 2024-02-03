@@ -82,30 +82,33 @@ export const JobSkillsResume = ({ data }) => {
   if(Object.keys(data).length === 0) return;
 
   return (
-    <section>
-      <h2 className="font-bold text-2xl">工作技能</h2>
-      <ul className="mt-4 flex flex-col gap-4">
-        {Object.values(data).map((title, tIndex)=>{
-          return (
-            <li key={`title ${tIndex}`}>
-              <h3 className="tag">
-                {title.name ? title.name : "尚未填寫"}
-              </h3>
-              <ul className="flex flex-col gap-2 mt-4">
-                {Object.values(title.items).map((item, iIndex)=>{
-                  return (
-                    <li key={`item ${iIndex}`}>
-                      <p className="before:content-['#'] before:mr-4">
-                        {item.name ? item.name : "尚未填寫"}
-                        </p>
-                    </li>
-                  )
-                })}
-              </ul>
-            </li>
-          )
-        })}
-      </ul>
-    </section>
+    <>
+      <hr className="h-[1px] border-secondary-300" />
+      <section className="py-[30px]">
+        <h2 className="font-bold text-2xl">工作技能</h2>
+        <ul className="mt-4 flex flex-col gap-4">
+          {Object.values(data).map((title, tIndex)=>{
+            return (
+              <li key={`title ${tIndex}`}>
+                <h3 className="tag">
+                  {title.name ? title.name : "尚未填寫"}
+                </h3>
+                <ul className="flex flex-col gap-2 mt-4">
+                  {Object.values(title.items).map((item, iIndex)=>{
+                    return (
+                      <li key={`item ${iIndex}`}>
+                        <p className="before:content-['#'] before:mr-4">
+                          {item.name ? item.name : "尚未填寫"}
+                          </p>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </li>
+            )
+          })}
+        </ul>
+      </section>
+    </>
   )
 }

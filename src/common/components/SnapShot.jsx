@@ -1,6 +1,4 @@
 import ReactDOM from 'react-dom/client'
-import html2canvas from "html2canvas";
-import jsPDF from 'jspdf';
 import { useContext } from 'react';
 import { FormContext } from '../features/FormContext';
 import { PersonalInfoResume } from '../../modules/PersonalInfo';
@@ -9,37 +7,55 @@ import { PortfolioResume } from '../../modules/Portfolio';
 import { JobExperienceResume } from '../../modules/JobExperience';
 import { DeclarationResume } from '../../modules/Declaration';
 import banner from "../../../public/images/Banner.png";
+import logo from "../../../public/images/logo.png";
+import html2pdf from 'html2pdf.js';
 
-const A4_WIDTH = 592.28;
-const A4_HEIGHT = 841.89;
 
 const SnapShot = () => {
-
   const data = useContext(FormContext);
   const renderForm = RenderForm(data);
 
-    const saveImage = async() => {
-      const tempDiv = document.createElement("div");
+
+  const saveImage = async () => {
+    const element = document.createElement('div');
+    document.body.appendChild(element);
+
+    await ReactDOM.createRoot(element).render(renderForm);
+
+    const opt = {
+      margin:       [0, 0, 10, 0],
+      filename:     'resume.pdf',
+      pagebreak:    {mode: ['css', 'legacy', 'avoid-all']},
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).toPdf().get('pdf').then(function (pdf) {
+
+      const totalPages = pdf.internal.getNumberOfPages();
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+    
+      const logoWidth = 36;
+      const logoHeight = 20;
+    
+      const offsetX = 0;
+      const offsetY = -2;
+    
+      const xPosition = pageWidth - logoWidth - offsetX;
+      const yPosition = pageHeight - logoHeight - offsetY;
+    
+      for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.addImage(logo, "PNG", xPosition, yPosition, logoWidth, logoHeight);
+      }
       
-      document.body.appendChild(tempDiv);
-
-      await ReactDOM.createRoot(tempDiv).render(renderForm);
-      await html2canvas(tempDiv, { useCORS: true })
-      .then((canvas) => {
-          const contentWidth = canvas.width;
-          const contentHeight = canvas.height;
-
-          const imgWidth = A4_WIDTH;
-          const imgHeight = A4_WIDTH/contentWidth * contentHeight;
-          const pageData = canvas.toDataURL('image/jpeg', 1.0);
+    }).save();
+        
+  };
   
-          const pdf = new jsPDF('', 'pt', 'a4');
   
-          pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight );
-          pdf.save("resume.pdf")
-          document.body.removeChild(tempDiv);
-        })
-    }
 
     return (
       <>
@@ -48,7 +64,6 @@ const SnapShot = () => {
             <button type="button" onClick={saveImage} className="btn saveBtn !w-fit block ml-auto">下載履歷(PDF)</button>
           </div>
         </div>
-        {/* {renderForm} */}
       </>
     )
 }
@@ -63,7 +78,7 @@ function RenderForm(data) {
       <header>
         <img src={banner} alt="banner" />
       </header>
-      <div className="px-[40px] py-[30px] flex flex-col gap-20">
+      <div className="px-[40px] py-[30px] flex flex-col">
         <PersonalInfoResume data={data.personalInfo} />
         <JobSkillsResume data={data.jobSkills} />
         <JobExperienceResume data={data.jobExperience} />
