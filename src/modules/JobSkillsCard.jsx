@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form"
-import Input from "../common/components/refactor/Input"
+import FormInput from "../common/components/FormInput"
 import { getNestedError } from "../common/components/helper/getNestedError";
 
 const JobSkillsCard = ({formDataSet, formClass, data, dataName, edit}) => {
@@ -14,7 +14,7 @@ const JobSkillsCard = ({formDataSet, formClass, data, dataName, edit}) => {
           const error = getNestedError(errors, `${dataName}.${subKey}`);
 
           return (
-            <Input key={index} formDataSet={formDataSet} formClass={formClass[`jobSkills.items.${subKey}`]} dataName={`jobSkills.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit} validation={formDataSet[`jobSkills.items.${subKey}`].validation}/>
+            <FormInput key={index} formDataSet={formDataSet} formClass={formClass[`jobSkills.items.${subKey}`]} dataName={`jobSkills.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit} validation={formDataSet[`jobSkills.items.${subKey}`].validation}/>
           )
         })}
       </div>

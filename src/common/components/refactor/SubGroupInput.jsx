@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import FormButtons from "../FormButtons";
-import Input from "./Input";
+import FormInput from "../FormInput";
 import { getNestedError } from "../helper/getNestedError";
 import Drag from "../Drag";
 import { Draggable } from "react-beautiful-dnd";
@@ -76,7 +76,7 @@ const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData
                       <div className="relative my-2" key={kIndex}>
                         {edit ? (
                           <>
-                            <Input key={index} formDataSet={formDataSet} formClass={formClass[dataName]} dataName={dataName} name={`${titleName}.name`} error={error} edit={edit} validation={formDataSet[dataName].validation}/>
+                            <FormInput key={index} formDataSet={formDataSet} formClass={formClass[dataName]} dataName={dataName} name={`${titleName}.name`} error={error} edit={edit} validation={formDataSet[dataName].validation}/>
                               <FormButtons
                               btns={btns}
                               onAdd={() => {insert(index+1, {...insertData})}}
