@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form"
 import FormInput from "../common/components/FormInput"
-import { getNestedError } from "../common/components/helper/getNestedError";
+import { getNestedError } from "../common/helpers/getNestedError";
 
 const JobSkillsCard = ({formDataSet, formClass, data, dataName, edit}) => {
 

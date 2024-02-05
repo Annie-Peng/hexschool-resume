@@ -5,8 +5,8 @@ import GroupInput from "../common/components/GroupInput";
 import useCusForm from "../common/hook/useCusForm";
 import Form from '../common/components/Form';
 import { v4 as uuidv4 } from 'uuid';
-import { turnObject } from "../common/components/helper/turnObject";
-import { turnArray } from "../common/components/helper/turnArray";
+import { turnObject } from "../common/helpers/turnObject";
+import { turnArray } from "../common/helpers/turnArray";
 import MarkdownIdentifier from "../common/components/MarkdownIdentifier";
 
 const PersonalInfo = () => {

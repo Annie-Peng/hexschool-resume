@@ -3,7 +3,7 @@ import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
 import useCusForm from "../common/hook/useCusForm";
 import Form from '../common/components/Form';
-import { turnDateFormat } from "../common/components/helper/turnDateFormat";
+import { turnDateFormat } from "../common/helpers/turnDateFormat";
 
 
 const Declaration = () => {

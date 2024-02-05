@@ -3,8 +3,8 @@ import { FormContext } from "../common/features/FormContext";
 import useCusForm from "../common/hook/useCusForm";
 import Form from '../common/components/Form';
 import { v4 as uuidv4 } from 'uuid';
-import { turnArray } from "../common/components/helper/turnArray";
-import { turnGroupObject } from "../common/components/helper/turnGroupObject";
+import { turnArray } from "../common/helpers/turnArray";
+import { turnGroupObject } from "../common/helpers/turnGroupObject";
 import SubGroupInput from "../common/components/SubGroupInput";
 import JobSkillsCard from "./JobSkillsCard";
 
