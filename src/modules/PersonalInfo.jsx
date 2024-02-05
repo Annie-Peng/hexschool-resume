@@ -1,7 +1,7 @@
 import { Fragment, useContext, useState, useEffect } from "react";
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
-import GroupInput from "../common/components/refactor/GroupInput";
+import GroupInput from "../common/components/GroupInput";
 import useCusForm from "../common/hook/useCusForm";
 import Form from '../common/components/Form';
 import { v4 as uuidv4 } from 'uuid';
