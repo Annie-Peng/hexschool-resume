@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { FormContext } from "../common/features/FormContext";
-import useCusForm from "../common/hook/useCusForm";
+import useCusForm from "../common/hooks/useCusForm";
 import Form from '../common/components/Form';
 import { turnArray } from "../common/helpers/turnArray";
 import { turnObject } from "../common/helpers/turnObject";

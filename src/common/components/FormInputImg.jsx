@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import useUploadImg from "../hook/useUploadImg";
+import useUploadImg from "../hooks/useUploadImg";
 import { requiredClass } from "../../dataSet/validationMsg";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
