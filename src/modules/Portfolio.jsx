@@ -5,7 +5,7 @@ import Form from '../common/components/Form';
 import { useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { turnGroupObject } from "../common/components/helper/turnGroupObject";
-import SubGroupInput from "../common/components/refactor/SubGroupInput";
+import SubGroupInput from "../common/components/SubGroupInput";
 import { turnArray } from "../common/components/helper/turnArray";
 import { useState } from "react";
 import PortfolioCard from "./PortfolioCard";

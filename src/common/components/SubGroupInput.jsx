@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import FormButtons from "../FormButtons";
-import FormInput from "../FormInput";
-import { getNestedError } from "../helper/getNestedError";
-import Drag from "../Drag";
+import FormButtons from "./FormButtons";
+import FormInput from "./FormInput";
+import { getNestedError } from "./helper/getNestedError";
+import Drag from "./Drag";
 import { Draggable } from "react-beautiful-dnd";
 import { useEffect } from "react";
 
