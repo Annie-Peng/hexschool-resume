@@ -77,7 +77,7 @@ export const resumeDataSet = {
             message: "期望薪資格式錯誤"
           }
         },
-        placeholder: "請註記 年薪/月薪",
+        placeholder: "請輸入年薪及月薪數字，範例：70/3 (單位：萬)",
       },
       aboutMe: {
         hMsg: "個人簡歷",
@@ -98,6 +98,9 @@ export const resumeDataSet = {
         validation: {
           required: commonRequiredMsg
         },
+        others: {
+          isMulti: false
+        },
         disabledOption: "請選擇",
         options: cityOptions,
       },
@@ -105,10 +108,14 @@ export const resumeDataSet = {
         hMsg: "未來想要工作地",
         component: "select",
         validation: {
-          required: commonRequiredMsg
+          required: commonRequiredMsg,
+        },
+        others: {
+          valuesMaxLength: 3,
+          isMulti: true
         },
         disabledOption: "請選擇",
-        options: cityOptions,
+        options: [{ option: "不拘", value: "不拘" }, ...cityOptions],
       },
       "graduateSchool.name": {
         hMsg: "畢業學校",
