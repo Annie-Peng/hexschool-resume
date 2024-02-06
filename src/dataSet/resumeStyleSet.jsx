@@ -53,8 +53,9 @@ export const resumeStyleSet = {
     },
     futureCities: {
       errClass: "",
-      inputClass: "",
-      hClass: ""
+      selectClass: "w-1/2",
+      hClass: "",
+      labelClass: ""
     },
     "graduateSchool.name": {
       errClass: "",
