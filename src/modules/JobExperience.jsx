@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect } from "react";
 import { FormContext } from "../common/features/FormContext";
-import useCusForm from "../common/hook/useCusForm";
+import useCusForm from "../common/hooks/useCusForm";
 import Form from '../common/components/Form';
-import { turnArray } from "../common/components/helper/turnArray";
+import { turnArray } from "../common/helpers/turnArray";
+import { turnObject } from "../common/helpers/turnObject";
 import { v4 as uuidv4 } from 'uuid';
-import { turnObject } from "../common/components/helper/turnObject";
 import JobExperienceCard from "./JobExperienceCard";
 import MarkdownIdentifier from "../common/components/MarkdownIdentifier";
 

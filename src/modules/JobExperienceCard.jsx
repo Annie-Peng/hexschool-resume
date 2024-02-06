@@ -6,7 +6,7 @@ import { resumeStyleSet } from "../dataSet/resumeStyleSet";
 import { requiredClass } from "../dataSet/validationMsg";
 import Drag from "../common/components/Drag";
 import { Draggable } from "react-beautiful-dnd";
-import { getNestedError } from "../common/components/helper/getNestedError";
+import { getNestedError } from "../common/helpers/getNestedError";
 
 const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
 

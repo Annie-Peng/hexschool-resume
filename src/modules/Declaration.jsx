@@ -1,9 +1,9 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
-import useCusForm from "../common/hook/useCusForm";
+import useCusForm from "../common/hooks/useCusForm";
 import Form from '../common/components/Form';
-import { turnDateFormat } from "../common/components/helper/turnDateFormat";
+import { turnDateFormat } from "../common/helpers/turnDateFormat";
 
 
 const Declaration = () => {
