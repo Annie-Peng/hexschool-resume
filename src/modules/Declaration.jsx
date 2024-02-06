@@ -96,7 +96,7 @@ export const DeclarationResume = ({ data }) => {
             ) : (
               <p className="w-[200px] p-4 border-2 border-secondary-300 rounded-md text-center text-secondary-500">尚未簽名</p>
             )}
-            <p className="ml-auto">
+            <p className="ml-auto w-[150px]">
               日期 {data.signatureUpdatedTime}
             </p>
           </div>
