@@ -53,8 +53,9 @@ export const resumeStyleSet = {
     },
     futureCities: {
       errClass: "",
-      inputClass: "",
-      hClass: ""
+      selectClass: "w-1/2",
+      hClass: "",
+      labelClass: ""
     },
     "graduateSchool.name": {
       errClass: "",
@@ -75,7 +76,7 @@ export const resumeStyleSet = {
   jobSkills: {
     "jobSkills.name": {
       errClass: "",
-      inputClass: "!w-fit",
+      inputClass: "!w-[36%]",
       labelClass: "w-fit",
       hClass: "",
     },
@@ -134,7 +135,7 @@ export const resumeStyleSet = {
   portfolio: {
     "portfolio.name": {
           errClass: "",
-          inputClass: "!w-fit",
+          inputClass: "!w-[36%]",
           labelClass: "w-fit",
           hClass: "",
           outerClass: "p-0"

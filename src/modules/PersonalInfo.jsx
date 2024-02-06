@@ -1,12 +1,12 @@
 import { Fragment, useContext, useState, useEffect } from "react";
 import { controller } from "../dataSet/controller";
 import { FormContext } from "../common/features/FormContext";
-import GroupInput from "../common/components/refactor/GroupInput";
-import useCusForm from "../common/hook/useCusForm";
+import GroupInput from "../common/components/GroupInput";
+import useCusForm from "../common/hooks/useCusForm";
 import Form from '../common/components/Form';
 import { v4 as uuidv4 } from 'uuid';
-import { turnObject } from "../common/components/helper/turnObject";
-import { turnArray } from "../common/components/helper/turnArray";
+import { turnObject } from "../common/helpers/turnObject";
+import { turnArray } from "../common/helpers/turnArray";
 import MarkdownIdentifier from "../common/components/MarkdownIdentifier";
 
 const PersonalInfo = () => {
@@ -27,8 +27,12 @@ const PersonalInfo = () => {
   },[personalInfo])
 
   function onSubmit (values) {
-    const newValues = turnObject(values);
-    updateSection({name: "personalInfo", values: newValues})
+    const newCurrentCity = values.currentCity.value;
+    const newFutureCities = values.futureCities.map(city => city.value).join(',');
+    const newValues = { ...values, currentCity: newCurrentCity, futureCities: newFutureCities };
+    const objectValues = turnObject(newValues);
+
+    updateSection({name: "personalInfo", values: objectValues})
     setEdit(false)
   }
 
@@ -36,7 +40,7 @@ const PersonalInfo = () => {
     <section className="resumeSection">
       <h2 className="resumeH2">{title}</h2>
       {!edit && 
-        <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
+        <button title="編輯" className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
       <Form
         formFunctions={formFunctions}
@@ -45,7 +49,7 @@ const PersonalInfo = () => {
         onSubmit={onSubmit}
       >
         {Object.entries(renderItem).map(([name, values], index)=>{
-        if(typeof values === "object"){
+        if(typeof values === "object" && name === "graduateSchool"){
           const insertData = {[id]:{name:"",major:"",leftTime:""}};
           return (
             <GroupInput
@@ -94,8 +98,9 @@ export const PersonalInfoResume = ({ data }) => {
         if(!data) return
 
         return (
-          <p className="mt-1">
-            {data} (年薪/月薪)
+          <p className="mt-1 flex gap-2">
+            {data}
+            <span className="text-sm">(年薪/月薪，單位：萬)</span>
           </p>
         )
       }
@@ -129,7 +134,7 @@ export const PersonalInfoResume = ({ data }) => {
   return (
     <section>
       <div className="flex gap-8 mb-[30px]">
-        <div className="w-[350px] min-h-[250px]">
+        <div className="w-[270px] h-[330px] flex-shrink-0">
           { data.profile ? (
             <img src={data.profile} alt="profile" className="w-full h-full object-cover rounded-md"/>
           ) : (

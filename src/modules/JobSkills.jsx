@@ -1,11 +1,11 @@
 import { useContext, useState, useEffect } from "react";
 import { FormContext } from "../common/features/FormContext";
-import useCusForm from "../common/hook/useCusForm";
+import useCusForm from "../common/hooks/useCusForm";
 import Form from '../common/components/Form';
 import { v4 as uuidv4 } from 'uuid';
-import { turnArray } from "../common/components/helper/turnArray";
-import { turnGroupObject } from "../common/components/helper/turnGroupObject";
-import SubGroupInput from "../common/components/refactor/SubGroupInput";
+import { turnArray } from "../common/helpers/turnArray";
+import { turnGroupObject } from "../common/helpers/turnGroupObject";
+import SubGroupInput from "../common/components/SubGroupInput";
 import JobSkillsCard from "./JobSkillsCard";
 
 const JobSkills = () => {
@@ -35,7 +35,7 @@ const JobSkills = () => {
     <section className="resumeSection">
       <h2 className="resumeH2">{title}</h2>
       {!edit && 
-        <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
+        <button title="編輯" className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
       <Form
         formFunctions={formFunctions}
@@ -56,7 +56,8 @@ const JobSkills = () => {
                 insertData={insertData}
                 edit={edit}
                 subInsertData={subInsertData}
-                requiredShowResume={true}
+                requiredShowResume={false}
+                initContent="若您欲新增工作技能，請點選右上方的「編輯圖示」"
               >
                   {(itemData, dataName) => (
                     <JobSkillsCard

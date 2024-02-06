@@ -19,6 +19,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
     "react-markdown": "^9.0.1",
+    "react-select": "^5.8.0",
     "react-signature-canvas": "^1.0.6",
     "reactjs-popup": "^2.0.6",
     "rehype-raw": "^7.0.0",

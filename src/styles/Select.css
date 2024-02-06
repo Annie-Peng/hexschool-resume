@@ -1,0 +1,15 @@
+/* placeholder樣式 */
+.css-1jqq78o-placeholder {
+  @apply text-secondary-500 !important;
+}
+
+/* focus樣式 */
+.css-t3ipsp-control {
+  box-shadow: none !important;
+  @apply p-0 transition-none border-2 !important;
+}
+
+/* Select container */
+.multiSelect {
+  @apply py-[2px] border-2 rounded-md !important;
+}

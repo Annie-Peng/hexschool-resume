@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import FormButtons from "../FormButtons";
-import Input from "./Input";
-import Drag from "../Drag";
+import FormButtons from "./FormButtons";
+import FormInput from "./FormInput";
+import Drag from "./Drag";
 import { Draggable } from "react-beautiful-dnd";
 
 const GroupInput = ({ formDataSet, name, insertData, edit }) => {
@@ -52,7 +52,7 @@ const GroupInput = ({ formDataSet, name, insertData, edit }) => {
                     const formClass = `resumeStyleSet.${dataName}`
                     return ( //第二個key
                     <Fragment key={subKey}>
-                      <Input
+                      <FormInput
                         formDataSet={formDataSet}
                         formClass={formClass}
                         dataName={dataName}

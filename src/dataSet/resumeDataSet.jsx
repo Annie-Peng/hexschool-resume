@@ -17,7 +17,7 @@ export const resumeDataSet = {
       },
       applicantName: {
         hMsg: "姓名",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
@@ -26,7 +26,7 @@ export const resumeDataSet = {
       },
       phone: {
         hMsg: "電話",
-        component: "refactorInput",
+        component: "input",
         type: "number",
         validation: {
           required: commonRequiredMsg,
@@ -39,7 +39,7 @@ export const resumeDataSet = {
       },
       email: {
         hMsg: "個人Mail",
-        component: "refactorInput",
+        component: "input",
         type: "email",
         validation: {
           required: commonRequiredMsg,
@@ -51,7 +51,7 @@ export const resumeDataSet = {
       },
       occupation: {
         hMsg: "目前工作職稱",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
@@ -59,7 +59,7 @@ export const resumeDataSet = {
       },
       workingLength: {
         hMsg: "累積年資",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg,
@@ -68,7 +68,7 @@ export const resumeDataSet = {
       },
       expectedSalary: {
         hMsg: "期望薪資",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg,
@@ -77,7 +77,7 @@ export const resumeDataSet = {
             message: "期望薪資格式錯誤"
           }
         },
-        placeholder: "請註記 年薪/月薪",
+        placeholder: "請輸入年薪及月薪數字，範例：70/3 (單位：萬)",
       },
       aboutMe: {
         hMsg: "個人簡歷",
@@ -98,6 +98,9 @@ export const resumeDataSet = {
         validation: {
           required: commonRequiredMsg
         },
+        others: {
+          isMulti: false
+        },
         disabledOption: "請選擇",
         options: cityOptions,
       },
@@ -105,14 +108,18 @@ export const resumeDataSet = {
         hMsg: "未來想要工作地",
         component: "select",
         validation: {
-          required: commonRequiredMsg
+          required: commonRequiredMsg,
+        },
+        others: {
+          valuesMaxLength: 3,
+          isMulti: true
         },
         disabledOption: "請選擇",
-        options: cityOptions,
+        options: [{ option: "不拘", value: "不拘" }, ...cityOptions],
       },
       "graduateSchool.name": {
         hMsg: "畢業學校",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
@@ -121,7 +128,7 @@ export const resumeDataSet = {
       },
       "graduateSchool.major": {
         hMsg: "畢業科系",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
@@ -133,7 +140,7 @@ export const resumeDataSet = {
         id: "id1",
         key: "leftTime",
         type: "month",
-        component: "refactorInput",
+        component: "input",
         validation: {
           required: commonRequiredMsg
         },
@@ -147,24 +154,24 @@ export const resumeDataSet = {
         group: "jobSkills",
         id: "id1",
         key: "name",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
         },
-        placeholder: "請自行敘述專業技能項目",
+        placeholder: "請填寫專業技能，例如：前端框架",
       },
       "jobSkills.items.name": {
         group: "jobSkills",
         id: "id1",
         key: "items",
         secondKey: "name",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
         },
-        placeholder: "請自行敘述相關技能",
+        placeholder: "請填寫技能相關敘述",
       },
     },
   },
@@ -176,7 +183,7 @@ export const resumeDataSet = {
         hMsg: "公司名稱",
         id: "id1",
         key: "company",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
@@ -188,7 +195,7 @@ export const resumeDataSet = {
           hMsg: "公司職稱",
           id: "id1",
           key: "occupation",
-          component: "refactorInput",
+          component: "input",
           type: "text",
           validation: {
             required: commonRequiredMsg
@@ -200,7 +207,7 @@ export const resumeDataSet = {
         id: "id1",
         key: "workingLength",
         item: "startTime",
-        component: "refactorInput",
+        component: "input",
         type: "month",
         validation: {
           required: commonRequiredMsg
@@ -212,7 +219,7 @@ export const resumeDataSet = {
         id: "id1",
         key: "workingLength",
         item: "endTime",
-        component: "refactorInput",
+        component: "input",
         type: "month",
         validation: {
           required: commonRequiredMsg
@@ -225,7 +232,7 @@ export const resumeDataSet = {
         id: "id1",
         key: "workingLength",
         item: "isLeft",
-        component: "refactorInput",
+        component: "input",
         type: "checkbox",
         required: false,
       },
@@ -260,19 +267,19 @@ export const resumeDataSet = {
         group: "portfolio",
         id: "id1",
         key: "name",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
         },
-        placeholder: "請自行敘述專業作品項目",
+        placeholder: "請填寫專業作品項目",
         },
       "portfolio.items.url": {
         group: "portfolio",
         id: "id1",
         key: "items",
         secondKey: "url",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
@@ -285,10 +292,10 @@ export const resumeDataSet = {
         id: "id1",
         key: "items",
         secondKey: "description",
-        component: "refactorInput",
+        component: "input",
         type: "text",
         required: false,
-        placeholder: "請自行輸入作品相關敘述",
+        placeholder: "請填寫作品相關敘述",
         hMsg: "作品描述"
       },
       "portfolio.items.functions": {
@@ -297,9 +304,9 @@ export const resumeDataSet = {
         key: "items",
         type: "text",
         secondKey: "functions",
-        component: "refactorInput",
+        component: "input",
         required: false,
-        placeholder: "請自行輸入功能相關敘述",
+        placeholder: "請填寫功能相關敘述",
         hMsg: "作品功能"
       },
     },
@@ -308,7 +315,7 @@ export const resumeDataSet = {
     title: "聲明事項",
     formDataSet: {
       approved: {
-        component: "refactorInput",
+        component: "input",
         type: "checkbox",
         required: false
       },
@@ -323,7 +330,3 @@ export const resumeDataSet = {
     }
   }
 }
-
-// components: input, refactorInput, inputImg, select, editor, sign
-
-// placeholder, type, accept, hMsg, group, title, id, key, secondKey, disabledOption, options, children  為選填

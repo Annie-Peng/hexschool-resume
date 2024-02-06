@@ -6,7 +6,7 @@ import { resumeStyleSet } from "../dataSet/resumeStyleSet";
 import { requiredClass } from "../dataSet/validationMsg";
 import Drag from "../common/components/Drag";
 import { Draggable } from "react-beautiful-dnd";
-import { getNestedError } from "../common/components/helper/getNestedError";
+import { getNestedError } from "../common/helpers/getNestedError";
 
 const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
 
@@ -34,14 +34,16 @@ const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
     }
     return (
       <div className="relative">
-        <ul className="relative min-h-[60px]">
-          {edit && (
+        <div className="relative min-h-[60px]">
+          {edit ? (
             <FormButtons
               btns={btns}
               onAdd={() => {insert(0, {...insertData})}}
             />
+          ) : (
+            <p className="text-lg text-center text-gray-500 leading-[60px]">若您欲新增工作經驗，請點選右上方的「編輯圖示」</p>
           )}
-        </ul>
+        </div>
       </div>
     )
   }
