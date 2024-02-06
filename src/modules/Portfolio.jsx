@@ -42,7 +42,7 @@ const Portfolio = () => {
     <section className="resumeSection">
       <h2 className="resumeH2">{title}</h2>
       {!edit && 
-        <button className="editBtn" type="button" onClick={()=>setEdit(true)} />
+        <button title="編輯" className="editBtn" type="button" onClick={()=>setEdit(true)} />
       }
       <Form
         formFunctions={formFunctions}
