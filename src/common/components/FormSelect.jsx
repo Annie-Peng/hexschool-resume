@@ -64,8 +64,6 @@ const FormSelect = ({
             }),
           }}
           render={({ field: { value, ...field } }) => {
-            console.log(value);
-
             return (
               <Select
                 isMulti={others.isMulti}
