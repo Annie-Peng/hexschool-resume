@@ -19,14 +19,6 @@ export const initialState = {
     }
   },
   jobSkills: {
-    id1: {
-      name: "",
-      items: {
-        id1: {
-          name: ""
-        },
-      }
-    }
   },
   jobExperience: {
   },
