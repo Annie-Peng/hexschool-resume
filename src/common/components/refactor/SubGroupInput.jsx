@@ -7,7 +7,7 @@ import Drag from "../Drag";
 import { Draggable } from "react-beautiful-dnd";
 import { useEffect } from "react";
 
-const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData, edit, children, requiredShowResume }) => {
+const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData, edit, children, requiredShowResume, initContent }) => {
 
   const { control, getValues, reset, formState: { errors } } = useFormContext();
   const { fields, insert, remove, move } = useFieldArray({
@@ -33,14 +33,16 @@ const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData
     }
     return (
       <div className="relative">
-        <ul className="relative min-h-[60px]">
-          {edit && (
+        <div className="relative min-h-[60px]">
+          {edit ? (
             <FormButtons
               btns={btns}
               onAdd={() => {insert(0, {...insertData})}}
             />
+          ) : (
+            <p className="text-lg text-center text-gray-500 leading-[60px]">{initContent}</p>
           )}
-        </ul>
+        </div>
       </div>
     )
   }

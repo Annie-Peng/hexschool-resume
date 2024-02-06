@@ -64,6 +64,7 @@ const Portfolio = () => {
                 edit={edit}
                 subInsertData={subInsertData}
                 requiredShowResume={false}
+                initContent="若您欲新增專業作品，請點選右上方的「編輯圖示」"
               >
                   {(itemData, dataName) => (
                     <PortfolioCard
