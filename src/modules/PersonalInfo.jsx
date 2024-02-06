@@ -27,8 +27,12 @@ const PersonalInfo = () => {
   },[personalInfo])
 
   function onSubmit (values) {
-    const newValues = turnObject(values);
-    updateSection({name: "personalInfo", values: newValues})
+    const newCurrentCity = values.currentCity.value;
+    const newFutureCities = values.futureCities.map(city => city.value).join(',');
+    const newValues = { ...values, currentCity: newCurrentCity, futureCities: newFutureCities };
+    const objectValues = turnObject(newValues);
+
+    updateSection({name: "personalInfo", values: objectValues})
     setEdit(false)
   }
 
@@ -45,7 +49,7 @@ const PersonalInfo = () => {
         onSubmit={onSubmit}
       >
         {Object.entries(renderItem).map(([name, values], index)=>{
-        if(typeof values === "object"){
+        if(typeof values === "object" && name === "graduateSchool"){
           const insertData = {[id]:{name:"",major:"",leftTime:""}};
           return (
             <GroupInput
@@ -94,8 +98,9 @@ export const PersonalInfoResume = ({ data }) => {
         if(!data) return
 
         return (
-          <p className="mt-1">
-            {data} (年薪/月薪)
+          <p className="mt-1 flex gap-2">
+            {data}
+            <span className="text-sm">(年薪/月薪，單位：萬)</span>
           </p>
         )
       }
