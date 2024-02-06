@@ -152,7 +152,7 @@ export const resumeDataSet = {
         validation: {
           required: commonRequiredMsg
         },
-        placeholder: "請自行敘述專業技能項目",
+        placeholder: "請填寫專業技能，例如：前端框架",
       },
       "jobSkills.items.name": {
         group: "jobSkills",
@@ -164,7 +164,7 @@ export const resumeDataSet = {
         validation: {
           required: commonRequiredMsg
         },
-        placeholder: "請自行敘述相關技能",
+        placeholder: "請填寫技能相關敘述",
       },
     },
   },
@@ -265,7 +265,7 @@ export const resumeDataSet = {
         validation: {
           required: commonRequiredMsg
         },
-        placeholder: "請自行敘述專業作品項目",
+        placeholder: "請填寫專業作品項目",
         },
       "portfolio.items.url": {
         group: "portfolio",
@@ -288,7 +288,7 @@ export const resumeDataSet = {
         component: "input",
         type: "text",
         required: false,
-        placeholder: "請自行輸入作品相關敘述",
+        placeholder: "請填寫作品相關敘述",
         hMsg: "作品描述"
       },
       "portfolio.items.functions": {
@@ -299,7 +299,7 @@ export const resumeDataSet = {
         secondKey: "functions",
         component: "input",
         required: false,
-        placeholder: "請自行輸入功能相關敘述",
+        placeholder: "請填寫功能相關敘述",
         hMsg: "作品功能"
       },
     },
@@ -323,7 +323,3 @@ export const resumeDataSet = {
     }
   }
 }
-
-// components: input, input, inputImg, select, editor, sign
-
-// placeholder, type, accept, hMsg, group, title, id, key, secondKey, disabledOption, options, children  為選填
