@@ -38,6 +38,9 @@ const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData
             <FormButtons
               btns={btns}
               onAdd={() => {insert(0, {...insertData})}}
+              tooltip={{
+                add: "新增",
+              }}
             />
           ) : (
             <p className="text-lg text-center text-gray-500 leading-[60px]">{initContent}</p>
@@ -75,7 +78,7 @@ const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData
                       const error = getNestedError(errors, `${titleName}.name`);
                       
                     return (
-                      <div className="relative my-2" key={kIndex}>
+                      <div className="relative my-2 ml-auto w-[90%]" key={kIndex}>
                         {edit ? (
                           <>
                             <FormInput key={index} formDataSet={formDataSet} formClass={formClass[dataName]} dataName={dataName} name={`${titleName}.name`} error={error} edit={edit} validation={formDataSet[dataName].validation}/>
@@ -88,6 +91,11 @@ const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData
                                 ) : (
                                   remove(index)
                                 )
+                              }}
+                              tooltip={{
+                                add: "新增大項目",
+                                delete: "刪除大項目",
+                                drag: "拖曳大項目"
                               }}
                               dragProvided={{...provided.dragHandleProps}}
                             />
@@ -152,6 +160,11 @@ function Card ({subName, edit, children, subInsertData}) {
                       btns={btns}
                       onAdd={() => insert(index + 1, { ...subInsertData })}
                       onDelete={() => fields.length > 1 ? remove(index) : null}
+                      tooltip={{
+                        add: "新增",
+                        delete: "刪除",
+                        drag: "拖曳"
+                      }}
                     />
                   }
                 </li>

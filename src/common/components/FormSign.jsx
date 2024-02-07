@@ -3,6 +3,7 @@ import Popup from "reactjs-popup";
 import SignaturePad from "react-signature-canvas";
 import { requiredClass } from "../../dataSet/validationMsg";
 import { useFormContext } from "react-hook-form";
+import { useEffect } from "react";
 
 const FormSign = ({formDataSet, dataName, name, formClass}) => {
 
@@ -26,6 +27,10 @@ const FormSign = ({formDataSet, dataName, name, formClass}) => {
     setValue(name, updateSign);
     close();
   };
+
+  useEffect(()=>{
+    setImageURL(img);
+  },[img])
 
   return (
     <>
@@ -52,19 +57,21 @@ const FormSign = ({formDataSet, dataName, name, formClass}) => {
           closeOnDocumentClick={true}
       >
           {(close) => (
-              <>
-                  <SignaturePad
-                      ref={sigCanvas}
-                      canvasProps={{
-                          className: "border-2 rounded-md bg-white w-full h-full mx-auto",
-                      }}
-                  />
-                  <div className="flex gap-2 bg-white">
-                    <button onClick={() => save(close)}>儲存</button>
-                    <button onClick={clear}>清空</button>
-                    <button onClick={close}>關閉</button>
-                  </div>
-              </>
+            <>
+              <SignaturePad
+                  ref={sigCanvas}
+                  canvasProps={{
+                      className: "border-2 rounded-md bg-white mx-auto",
+                      width: '600',
+                      height: '300'
+                  }}
+              />
+              <div className="flex gap-2 bg-white">
+                <button onClick={() => save(close)}>儲存</button>
+                <button onClick={clear}>清空</button>
+                <button onClick={close}>關閉</button>
+              </div>
+            </>
           )}
       </Popup>
     </>

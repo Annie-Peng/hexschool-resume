@@ -76,7 +76,7 @@ export const resumeStyleSet = {
   jobSkills: {
     "jobSkills.name": {
       errClass: "",
-      inputClass: "!w-[36%]",
+      inputClass: "!w-[40%]",
       labelClass: "w-fit",
       hClass: "",
     },
@@ -135,7 +135,7 @@ export const resumeStyleSet = {
   portfolio: {
     "portfolio.name": {
           errClass: "",
-          inputClass: "!w-[36%]",
+          inputClass: "!w-[40%]",
           labelClass: "w-fit",
           hClass: "",
           outerClass: "p-0"
@@ -159,7 +159,7 @@ export const resumeStyleSet = {
   declaration: {
     approved: {
       errClass: "",
-      inputClass: "relative after:content-['同意上述聲明及確認個人資料屬實。'] after:absolute after:left-[20px] after:top-1/2 after:-translate-y-1/2 after:whitespace-nowrap", 
+      inputClass: "relative after:content-['同意上述聲明及確認個人資料屬實。'] after:absolute after:left-[20px] after:top-1/2 after:-translate-y-1/2 after:whitespace-nowrap after:font-bold", 
       hClass: "",
       labelClass: "hidden",
       outerClass: "w-full px-0 my-4",
