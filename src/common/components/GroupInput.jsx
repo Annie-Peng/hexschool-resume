@@ -24,7 +24,7 @@ const GroupInput = ({ formDataSet, name, insertData, edit }) => {
     <Drag move={move}>
       {(provided)=>(
         <>
-          <hr className="border-dashed border-2 my-4"/>
+          { edit &&  <hr className="border-dashed border-2 my-4"/> }
           <ul
             className="gap-4 flex flex-col"
             ref={provided.innerRef}
