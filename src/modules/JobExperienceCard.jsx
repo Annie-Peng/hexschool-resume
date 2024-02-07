@@ -39,6 +39,9 @@ const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
             <FormButtons
               btns={btns}
               onAdd={() => {insert(0, {...insertData})}}
+              tooltip={{
+                add: "新增",
+              }}
             />
           ) : (
             <p className="text-lg text-center text-gray-500 leading-[60px]">若您欲新增工作經驗，請點選右上方的「編輯圖示」</p>
@@ -106,6 +109,11 @@ const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
                             onAdd={() => {insert(index+1, {...insertData})}}
                             onDelete={() => remove(index)}
                             dragProvided={{...provided.dragHandleProps}}
+                            tooltip={{
+                              add: "新增",
+                              delete: "刪除",
+                              drag: "拖曳"
+                            }}
                           />
                         )}
                       </li>
