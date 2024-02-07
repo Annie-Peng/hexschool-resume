@@ -38,32 +38,34 @@ useEffect(()=>{
   return (
     <section className="resumeSection">
       <h2 className="resumeH2">{title}</h2>
-      <ol>
-        <li>
-          本人同意多角人才基於就業服務之目的依法蒐集、處理、利用個人資料於任用相關作業之進行。
-        </li>
-        <li>
-          本人確認所提供之個人資料及相關經歷均屬實，如有不實情形，願意承擔相應責任。 
-        </li>
-      </ol>
-      <Form
-        formFunctions={formFunctions}
-        edit={edit}
-      >
-        <div className="flex flex-wrap items-center justify-between">
-          {Object.entries(renderItem).map(([name, values], index)=>{
+      <div className="ml-auto w-[90%]">
+        <ol>
+          <li>
+            本人同意多角人才基於就業服務之目的依法蒐集、處理、利用個人資料於任用相關作業之進行。
+          </li>
+          <li>
+            本人確認所提供之個人資料及相關經歷均屬實，如有不實情形，願意承擔相應責任。 
+          </li>
+        </ol>
+        <Form
+          formFunctions={formFunctions}
+          edit={edit}
+        >
+          <div className="flex flex-wrap items-center justify-between">
+            {Object.entries(renderItem).map(([name, values], index)=>{
 
-          const RenderForm = controller[formDataSet[name]?.component]; // 選擇表單元件
+            const RenderForm = controller[formDataSet[name]?.component]; // 選擇表單元件
 
-          return (
-              <Fragment key={index}>
-                {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass[name]} edit={true} validation={formDataSet[name]}/>}
-              </Fragment>
-            )
-        })}
-        <p className="w-[150px]">日期 {declaration.signatureUpdatedTime}</p>
-        </div>
-      </Form>
+            return (
+                <Fragment key={index}>
+                  {RenderForm && <RenderForm formDataSet={formDataSet} name={name} error={errors[name]} formClass={formClass[name]} edit={true} validation={formDataSet[name]}/>}
+                </Fragment>
+              )
+          })}
+          <p className="w-[150px] text-right">日期 {declaration.signatureUpdatedTime}</p>
+          </div>
+        </Form>
+      </div>
     </section>
   );
 };

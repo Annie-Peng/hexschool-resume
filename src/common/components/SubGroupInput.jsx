@@ -78,7 +78,7 @@ const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData
                       const error = getNestedError(errors, `${titleName}.name`);
                       
                     return (
-                      <div className="relative my-2" key={kIndex}>
+                      <div className="relative my-2 ml-auto w-[90%]" key={kIndex}>
                         {edit ? (
                           <>
                             <FormInput key={index} formDataSet={formDataSet} formClass={formClass[dataName]} dataName={dataName} name={`${titleName}.name`} error={error} edit={edit} validation={formDataSet[dataName].validation}/>
