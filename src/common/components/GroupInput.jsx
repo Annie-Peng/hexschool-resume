@@ -67,6 +67,11 @@ const GroupInput = ({ formDataSet, name, insertData, edit }) => {
                           onAdd={() => {insert(index+1, {...insertData})}}
                           onDelete={() => fields.length > 1 ? remove(index) : null}
                           dragProvided={{...provided.dragHandleProps}}
+                          tooltip={{
+                            add: "新增",
+                            delete: "刪除",
+                            drag: "拖曳"
+                          }}
                         />
                       )}
                     </Fragment>
