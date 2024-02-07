@@ -3,6 +3,7 @@ import Popup from "reactjs-popup";
 import SignaturePad from "react-signature-canvas";
 import { requiredClass } from "../../dataSet/validationMsg";
 import { useFormContext } from "react-hook-form";
+import { useEffect } from "react";
 
 const FormSign = ({formDataSet, dataName, name, formClass}) => {
 
@@ -26,6 +27,10 @@ const FormSign = ({formDataSet, dataName, name, formClass}) => {
     setValue(name, updateSign);
     close();
   };
+
+  useEffect(()=>{
+    setImageURL(img);
+  },[img])
 
   return (
     <>
