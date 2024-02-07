@@ -161,9 +161,8 @@ function Card ({subName, edit, children, subInsertData}) {
                       onAdd={() => insert(index + 1, { ...subInsertData })}
                       onDelete={() => fields.length > 1 ? remove(index) : null}
                       tooltip={{
-                        add: "新增",
-                        delete: "刪除",
-                        drag: "拖曳"
+                        add: "新增小項目",
+                        delete: "刪除小項目",
                       }}
                     />
                   }
