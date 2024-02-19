@@ -20,6 +20,8 @@ const FormSign = ({formDataSet, dataName, name, formClass}) => {
   const [imageURL, setImageURL] = useState(img);
   const sigCanvas = useRef({});
 
+  const signBtnClass="btn hover:bg-primary-100";
+
   const clear = () => sigCanvas.current.clear();
   const save = (close) => {
     const updateSign = sigCanvas.current.getTrimmedCanvas().toDataURL("image/png");
@@ -55,21 +57,22 @@ const FormSign = ({formDataSet, dataName, name, formClass}) => {
             </div>
           }
           closeOnDocumentClick={true}
+          overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
       >
           {(close) => (
             <>
               <SignaturePad
                   ref={sigCanvas}
                   canvasProps={{
-                      className: "border-2 rounded-md bg-white mx-auto",
+                      className: "border-2 rounded-t-md bg-white mx-auto",
                       width: '600',
                       height: '300'
                   }}
               />
-              <div className="flex gap-2 bg-white">
-                <button onClick={() => save(close)}>儲存</button>
-                <button onClick={clear}>清空</button>
-                <button onClick={close}>關閉</button>
+              <div className="flex gap-2 p-2 bg-white rounded-b-md">
+                <button className={signBtnClass} onClick={() => save(close)}>儲存</button>
+                <button className={signBtnClass} onClick={clear}>清空</button>
+                <button className={signBtnClass} onClick={close}>關閉</button>
               </div>
             </>
           )}
