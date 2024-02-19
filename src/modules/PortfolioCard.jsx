@@ -9,7 +9,7 @@ const PortfolioCard = ({formDataSet, formClass, data, dataName, edit}) => {
   return (
     <>
     {edit ? (
-      <div className="ml-auto w-[96.5%] border-2 border-secondary-500 rounded-md">
+      <div className="ml-auto w-[99%] border-2 border-secondary-500 rounded-md">
       <div className="relative flex flex-col py-6">
         {Object.keys(data).map((subKey, index) => {
           const error = getNestedError(errors, `${dataName}.${subKey}`);
