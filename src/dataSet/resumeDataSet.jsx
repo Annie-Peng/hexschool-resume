@@ -154,24 +154,26 @@ export const resumeDataSet = {
         group: "jobSkills",
         id: "id1",
         key: "name",
+        hMsg: "專業技能",
         component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
         },
-        placeholder: "請填寫專業技能，例如：前端框架",
+        placeholder: "例如：前端框架",
       },
       "jobSkills.items.name": {
         group: "jobSkills",
         id: "id1",
         key: "items",
         secondKey: "name",
+        hMsg: "技能描述",
         component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
         },
-        placeholder: "請填寫技能相關敘述",
+        placeholder: "",
       },
     },
   },
@@ -267,12 +269,13 @@ export const resumeDataSet = {
         group: "portfolio",
         id: "id1",
         key: "name",
+        hMsg: "專業作品",
         component: "input",
         type: "text",
         validation: {
           required: commonRequiredMsg
         },
-        placeholder: "請填寫專業作品項目",
+        placeholder: "",
         },
       "portfolio.items.url": {
         group: "portfolio",
