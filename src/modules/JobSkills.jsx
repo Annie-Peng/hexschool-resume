@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, Fragment } from "react";
 import { FormContext } from "../common/features/FormContext";
 import useCusForm from "../common/hooks/useCusForm";
 import Form from '../common/components/Form';
@@ -7,6 +7,8 @@ import { turnArray } from "../common/helpers/turnArray";
 import { turnGroupObject } from "../common/helpers/turnGroupObject";
 import SubGroupInput from "../common/components/SubGroupInput";
 import JobSkillsCard from "./JobSkillsCard";
+import Modal from "../common/components/Modal";
+import example from "../../public/images/jobskills-example.png";
 
 const JobSkills = () => {
 
@@ -48,27 +50,33 @@ const JobSkills = () => {
             const insertData = {[id]:{name:"",items: [subInsertData]}};
 
             return (
-              <SubGroupInput
-                key={index}
-                formDataSet={formDataSet}
-                formClass={formClass}
-                name={name}
-                insertData={insertData}
-                edit={edit}
-                subInsertData={subInsertData}
-                requiredShowResume={false}
-                initContent="若您欲新增工作技能，請點選右上方的「編輯圖示」"
-              >
-                  {(itemData, dataName) => (
-                    <JobSkillsCard
-                      formDataSet={formDataSet}
-                      formClass={formClass}
-                      data={itemData}
-                      dataName={dataName}
-                      edit={edit}
-                    />
-                  )}
-              </SubGroupInput>
+              <Fragment key={index}>
+                {edit && 
+                  <Modal btnText="看看範例">
+                    <img src={example} alt="example" className="rounded-md"/>
+                  </Modal>
+                  }
+                <SubGroupInput
+                  formDataSet={formDataSet}
+                  formClass={formClass}
+                  name={name}
+                  insertData={insertData}
+                  edit={edit}
+                  subInsertData={subInsertData}
+                  requiredShowResume={false}
+                  initContent="若您欲新增工作技能，請點選右上方的「編輯圖示」"
+                >
+                    {(itemData, dataName) => (
+                      <JobSkillsCard
+                        formDataSet={formDataSet}
+                        formClass={formClass}
+                        data={itemData}
+                        dataName={dataName}
+                        edit={edit}
+                      />
+                    )}
+                </SubGroupInput>
+              </Fragment>
             )
         })}
       </Form>
