@@ -66,18 +66,23 @@ export const resumeDataSet = {
         },
         placeholder: "針對此職位的職缺累積年資",
       },
-      expectedSalary: {
-        hMsg: "期望薪資",
+      expectedYearSalary: {
+        hMsg: "期望薪資(年薪)",
         component: "input",
-        type: "text",
+        type: "number",
         validation: {
-          required: commonRequiredMsg,
-          pattern: {
-            value: /^\d+\/\d+$/,
-            message: "期望薪資格式錯誤"
-          }
+          required: commonRequiredMsg
         },
-        placeholder: "請輸入年薪及月薪數字，範例：70/3 (單位：萬)",
+        placeholder: "單位：萬",
+      },
+      expectedMonthSalary: {
+        hMsg: "期望薪資(月薪)",
+        component: "input",
+        type: "number",
+        validation: {
+          required: commonRequiredMsg
+        },
+        placeholder: "單位：萬",
       },
       aboutMe: {
         hMsg: "個人簡歷",

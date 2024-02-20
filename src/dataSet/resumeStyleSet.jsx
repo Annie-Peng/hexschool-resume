@@ -35,7 +35,12 @@ export const resumeStyleSet = {
       inputClass: "",
       hClass: ""
     },
-    expectedSalary: {
+    expectedYearSalary: {
+      errClass: "",
+      inputClass: "",
+      hClass: ""
+    },
+    expectedMonthSalary: {
       errClass: "",
       inputClass: "",
       hClass: ""
