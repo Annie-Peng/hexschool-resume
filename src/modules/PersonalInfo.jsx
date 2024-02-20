@@ -98,7 +98,7 @@ export const PersonalInfoResume = ({ data }) => {
         if(!data) return
 
         return (
-          <p className="mt-1 flex gap-2">
+          <p className="mt-1 flex gap-2 items-center">
             {data}
             <span className="text-sm">(年薪/月薪，單位：萬)</span>
           </p>
@@ -131,12 +131,18 @@ export const PersonalInfoResume = ({ data }) => {
     },
   ]
 
+  const {expectedYearSalary, expectedMonthSalary, ...otherData} = data;
+  const newData = {
+    expectedSalary: `${expectedYearSalary}/${expectedMonthSalary}`,
+    ...otherData
+  };
+
   return (
     <section>
       <div className="flex gap-8 mb-[30px]">
         <div className="w-[270px] h-[330px] flex-shrink-0">
-          { data.profile ? (
-            <img src={data.profile} alt="profile" className="w-full h-full object-cover rounded-md"/>
+          { newData.profile ? (
+            <img src={newData.profile} alt="profile" className="w-full h-full object-cover rounded-md"/>
           ) : (
             <div className="border h-full rounded-md flex justify-center items-center text-gray-500 bg-gray-300">
               尚未更新照片
@@ -145,20 +151,20 @@ export const PersonalInfoResume = ({ data }) => {
         </div>
         <div className="w-full flex flex-wrap">
           <h1 className="w-1/2 font-bold text-4xl self-end">
-            {data.applicantName ? data.applicantName : "姓名"}
+            {newData.applicantName ? newData.applicantName : "姓名"}
           </h1>
           <p className="w-1/2 font-bold text-lg before:content-['#'] self-end">
-            {data.occupation ? data.occupation : "目前工作職稱"}
+            {newData.occupation ? newData.occupation : "目前工作職稱"}
           </p>
           <ul className="flex flex-wrap gap-y-4 border-t-2 border-secondary-300 pt-4 mt-1 w-full">
             {renderData.map((item, index)=>(
               <li key={index} className="w-1/2">
                 <h2 className="text-gray-700 text-sm">{item.title}</h2>
                 {item.packed ? (
-                  item.packed(data[item.name])
+                  item.packed(newData[item.name])
                 ) : (
                   <p className="mt-1">
-                    {data[item.name]}
+                    {newData[item.name]}
                   </p>
                 )  }
               </li>
@@ -166,7 +172,7 @@ export const PersonalInfoResume = ({ data }) => {
           </ul>
         </div>
       </div>
-      {data.aboutMe &&
+      {newData.aboutMe &&
         <div className="py-[30px] border-t border-secondary-300">
           <MarkdownIdentifier texts={data.aboutMe} />
         </div>
