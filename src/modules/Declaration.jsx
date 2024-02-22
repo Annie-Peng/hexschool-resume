@@ -10,7 +10,7 @@ const Declaration = () => {
 
   const { declaration, updateSection } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(declaration);
-  const { formFunctions, formFunctions: { formState: {errors}, watch, reset }, formDataSet, formClass, title, edit } = useCusForm({
+  const { formFunctions, formFunctions: { formState: {errors}, watch, reset }, formDataSet, formClass, title } = useCusForm({
     defaultValues: declaration,
     formTitle: "declaration"
   });
@@ -49,7 +49,7 @@ useEffect(()=>{
         </ol>
         <Form
           formFunctions={formFunctions}
-          edit={edit}
+          edit={false}
         >
           <div className="flex flex-wrap items-center justify-between">
             {Object.entries(renderItem).map(([name, values], index)=>{
