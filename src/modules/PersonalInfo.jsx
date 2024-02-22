@@ -33,7 +33,6 @@ const PersonalInfo = () => {
     const objectValues = turnObject(newValues);
 
     updateSection({name: "personalInfo", values: objectValues})
-    setEdit(false)
   }
 
   return (

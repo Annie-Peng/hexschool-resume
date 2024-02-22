@@ -28,7 +28,6 @@ const JobExperience = () => {
   function onSubmit (values) {
     const newValues = turnObject(values);
     updateSection({name: "jobExperience", values: newValues.jobExperience});
-    setEdit(false)
   }
 
   return (

@@ -35,7 +35,6 @@ const Portfolio = () => {
   function onSubmit (values) {
     const newValues = turnGroupObject(values.portfolio);
     updateSection({name: "portfolio", values: newValues});
-    setEdit(false)
   }
 
   return (

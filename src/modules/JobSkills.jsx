@@ -30,7 +30,6 @@ const JobSkills = () => {
   function onSubmit (values) {
     const newValues = turnGroupObject(values.jobSkills);
     updateSection({name: "jobSkills", values: newValues});
-    setEdit(false)
   }
 
   return (
