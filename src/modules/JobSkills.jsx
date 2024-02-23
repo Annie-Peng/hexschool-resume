@@ -59,7 +59,6 @@ const JobSkills = () => {
                   edit={edit}
                   subInsertData={subInsertData}
                   requiredShowResume={false}
-                  initContent="若您欲新增工作技能，請點選右上方的「編輯圖示」"
                 >
                     {(itemData, dataName) => (
                       <JobSkillsCard
