@@ -10,9 +10,9 @@ import MarkdownIdentifier from "../common/components/MarkdownIdentifier";
 
 const JobExperience = () => {
 
-  const { jobExperience, updateSection } = useContext(FormContext);
+  const { jobExperience, updateSection, edit } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(jobExperience);
-  const { formFunctions, formFunctions: { reset }, formDataSet, title, edit, setEdit } = useCusForm({
+  const { formFunctions, formFunctions: { reset }, formDataSet, title } = useCusForm({
     defaultValues: jobExperience,
     formTitle: "jobExperience",
   });
@@ -28,20 +28,15 @@ const JobExperience = () => {
   function onSubmit (values) {
     const newValues = turnObject(values);
     updateSection({name: "jobExperience", values: newValues.jobExperience});
-    setEdit(false)
   }
 
   return (
     <section className="resumeSection">
       <h2 className="resumeH2">{title}</h2>
-      {!edit && 
-        <button title="編輯" className="editBtn" type="button" onClick={()=>setEdit(true)} />
-      }
       <Form
         formFunctions={formFunctions}
-        edit={edit}
-        setEdit={setEdit}
         onSubmit={onSubmit}
+        edit={edit}
       >
         {Object.entries(renderItem).map(([name], index)=>{
             const insertData = {[id]:{
