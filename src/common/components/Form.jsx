@@ -1,7 +1,9 @@
 import { FormProvider } from "react-hook-form";
 
 const Form = ({ children, formFunctions, edit, onSubmit }) => {
-  const { handleSubmit } = formFunctions;
+  const { handleSubmit, formState: { dirtyFields } } = formFunctions;
+
+  const switchBtnClass = Object.keys(dirtyFields).length === 0 ? "cancelledBtn" : "saveBtn";
 
   return (
     <FormProvider {...formFunctions}>
@@ -9,7 +11,7 @@ const Form = ({ children, formFunctions, edit, onSubmit }) => {
         {children}
         {edit && (
           <div className="flex justify-end gap-4 mt-4">
-            <button className="saveBtn btn" type="submit">更新</button>
+            <button className={`btn ${switchBtnClass}`} type="submit">更新</button>
           </div>
         )}
       </form>
