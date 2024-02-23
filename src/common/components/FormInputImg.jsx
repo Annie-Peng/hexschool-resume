@@ -19,7 +19,7 @@ const FormInputImg = ({formDataSet, name, error, formClass, edit, validation }) 
 
   useEffect(()=>{
     if(edit) {
-      setValue(name, fileSrc);
+      setValue(name, fileSrc, { shouldDirty: true });
     }
   }, [fileSrc])
 
