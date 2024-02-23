@@ -11,9 +11,9 @@ import MarkdownIdentifier from "../common/components/MarkdownIdentifier";
 
 const PersonalInfo = () => {
 
-  const { personalInfo, updateSection } = useContext(FormContext);
+  const { personalInfo, updateSection, edit } = useContext(FormContext);
   const [ renderItem, setRenderItem ] = useState(personalInfo);
-  const { formFunctions, formFunctions: { formState: {errors}, reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
+  const { formFunctions, formFunctions: { formState: {errors}, reset }, formDataSet, formClass, title } = useCusForm({
     defaultValues: personalInfo,
     formTitle: "personalInfo",
   });
@@ -38,14 +38,10 @@ const PersonalInfo = () => {
   return (
     <section className="resumeSection">
       <h2 className="resumeH2">{title}</h2>
-      {!edit && 
-        <button title="編輯" className="editBtn" type="button" onClick={()=>setEdit(true)} />
-      }
       <Form
         formFunctions={formFunctions}
-        edit={edit}
-        setEdit={setEdit}
         onSubmit={onSubmit}
+        edit={edit}
       >
         {Object.entries(renderItem).map(([name, values], index)=>{
         if(typeof values === "object" && name === "graduateSchool"){

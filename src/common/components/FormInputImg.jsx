@@ -20,7 +20,6 @@ const FormInputImg = ({formDataSet, name, error, formClass, edit, validation }) 
   useEffect(()=>{
     if(edit) {
       setValue(name, fileSrc);
-      trigger(name);
     }
   }, [fileSrc])
 
@@ -46,6 +45,7 @@ const FormInputImg = ({formDataSet, name, error, formClass, edit, validation }) 
           }}>
             {img ? <img src={fileSrc || img } className={imgData.class} alt={name} /> : <p>{placeholder}</p> }
           </div>
+          {error && <p className={`resumeErr ${errClass}`}>{error.message}</p>}
         </>
       ) : (
         <>
@@ -58,7 +58,6 @@ const FormInputImg = ({formDataSet, name, error, formClass, edit, validation }) 
           }
         </>
       )}
-      {error && <p className={`resumeErr ${errClass}`}>{error.message}</p>}
     </div>
     );
 }

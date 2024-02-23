@@ -14,9 +14,9 @@ import PortfolioCard from "./PortfolioCard";
 
 const Portfolio = () => {
 
-  const { portfolio, updateSection } = useContext(FormContext);
+  const { portfolio, updateSection, edit } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(portfolio);
-  const { formFunctions, formFunctions: { reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
+  const { formFunctions, formFunctions: { reset }, formDataSet, formClass, title } = useCusForm({
     defaultValues: portfolio,
     formTitle: "portfolio",
   });
@@ -40,14 +40,10 @@ const Portfolio = () => {
   return (
     <section className="resumeSection">
       <h2 className="resumeH2">{title}</h2>
-      {!edit && 
-        <button title="編輯" className="editBtn" type="button" onClick={()=>setEdit(true)} />
-      }
       <Form
         formFunctions={formFunctions}
-        edit={edit}
-        setEdit={setEdit}
         onSubmit={onSubmit}
+        edit={edit}
       >
         {Object.entries(renderItem).map(([name], index)=>{
             const subInsertData = {[id]:{url:"", description:"", functions:""}};
