@@ -1,12 +1,14 @@
 import { createContext, useReducer } from 'react';
 import FormReducer, { initialState } from './FormReducer';
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 export const FormContext = createContext(initialState);
 
 export const FormProvider = ({children}) => {
 
   const [state, dispatch] = useReducer(FormReducer, initialState);
+  const [edit, setEdit] = useState(true);
   const { declaration, jobExperience, jobSkills, personalInfo, portfolio } = state;
   const getResumeData = JSON.parse(localStorage.getItem('resumeData'));
 
@@ -33,7 +35,9 @@ export const FormProvider = ({children}) => {
     jobSkills,
     personalInfo,
     portfolio,
-    updateSection
+    updateSection,
+    edit,
+    setEdit
   }
 
   return (

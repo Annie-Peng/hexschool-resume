@@ -6,7 +6,7 @@ import { resumeStyleSet } from '../../dataSet/resumeStyleSet';
 const useCusForm = ({ defaultValues, formTitle }) => {
   const { title, formDataSet } = resumeDataSet[formTitle];
   const formClass = resumeStyleSet[formTitle];
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(true);
 
   const formFunctions = useForm({ defaultValues });
 

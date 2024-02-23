@@ -23,22 +23,25 @@ const FormSelect = ({
     value: option.value,
     label: option.option,
   }));
+  const value = getValues(name);
 
   useEffect(() => {
-    const value = getValues(name);
-    let selectValue;
-    if (others.isMulti && value !== "" && edit) {
+    let selectValue = value;
+    if (others.isMulti && typeof value === "string" && value.length>0 && edit) {
       // 多選value處理
       selectValue = value.split(",").map((city) => ({
         value: city,
         label: city,
       }));
-    } else if (!others.isMulti && value !== "" && edit) {
+    } 
+    else if (!others.isMulti && typeof value === "string" && value.length>0 && edit) {
       // 單選value處理
       selectValue = { value: value, label: value };
     }
+
     setValue(name, selectValue);
-  }, [edit]);
+
+  }, [value]);
 
   return (
     <div className="flex items-center gap-2 p-2">
@@ -49,53 +52,59 @@ const FormSelect = ({
         <h3 className={`resumeH3 ${requiredClass(required)}`}>{hMsg}</h3>
       </label>
       {edit ? (
-        <Controller
-          name={name}
-          control={control}
-          rules={{
-            ...validation,
-            ...(others.valuesMaxLength && {
-              validate: (value) => {
-                return (
-                  value.length <= others.valuesMaxLength ||
-                  `不得超過${others.valuesMaxLength}項`
-                );
-              },
-            }),
-          }}
-          render={({ field: { value, ...field } }) => {
-            return (
-              <Select
-                isMulti={others.isMulti}
-                value={value}
-                options={newOptions}
-                isSearchable={false}
-                placeholder={`${disabledOption}
-                  ${
-                    others.valuesMaxLength
-                      ? `(最多${others.valuesMaxLength}項)`
-                      : ""
-                  }
-                  `}
-                classNames={{
-                  control: (state) => {
-                    const focusClass = state.isFocused
-                      ? "!border-primary-500"
-                      : "!border-secondary-500";
-                    const errorClass = error && "!border-red-500";
-                    return `multiSelect ${focusClass} ${errorClass}`;
-                  },
-                  container: () => `${selectClass}`,
-                }}
-                {...field}
-              />
-            );
-          }}
-        />
+        <>
+          <Controller
+            name={name}
+            control={control}
+            rules={{
+              ...validation,
+              ...(others.valuesMaxLength && {
+                validate: (value) => {
+                  return (
+                    value.length <= others.valuesMaxLength ||
+                    `不得超過${others.valuesMaxLength}項`
+                  );
+                },
+              }),
+            }}
+            render={({ field: { value, ...field } }) => {
+              return (
+                <Select
+                  isMulti={others.isMulti}
+                  value={value}
+                  options={newOptions}
+                  isSearchable={false}
+                  placeholder={`${disabledOption}
+                    ${
+                      others.valuesMaxLength
+                        ? `(最多${others.valuesMaxLength}項)`
+                        : ""
+                    }
+                    `}
+                  classNames={{
+                    control: (state) => {
+                      const focusClass = state.isFocused
+                        ? "!border-primary-500"
+                        : "!border-secondary-500";
+                      const errorClass = error && "!border-red-500";
+                      return `multiSelect ${focusClass} ${errorClass}`;
+                    },
+                    container: () => `${selectClass}`,
+                  }}
+                  {...field}
+                />
+              );
+            }}
+          />
+          {error && <p className={`resumeErr ${errClass}`}>{error.message}</p>}
+        </>
       ) : (
-        typeof getValues(name) === "string" && getValues(name)
+        <>
+          {Array.isArray(value)
+            ? value.map((item) => item.label).join(", ")
+            : value.label || value}
+        </>
       )}
-      {error && <p className={`resumeErr ${errClass}`}>{error.message}</p>}
     </div>
   );
 };
