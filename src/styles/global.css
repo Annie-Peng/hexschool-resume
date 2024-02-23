@@ -55,27 +55,21 @@ textarea {
   @apply rounded-md p-2 border border-primary-500;
 }
 
-.cancelledBtn,
 .saveBtn {
-  @apply w-[120px];
+  @apply bg-primary-500 text-white w-[120px] hover:bg-primary-600;
 }
 
-.saveBtn {
-  @apply bg-primary-500 text-white;
-}
-
-.addBtn,
-.deleteBtn,
-.dragBtn {
+.fullPrimaryBtn,
+.borderPrimaryBtn {
   @apply p-0 w-[20px] md:p-2 md:w-[30px] lg:min-w-[40px] text-center;
 }
 
-.addBtn {
-  @apply bg-primary-100 text-secondary-900;
+.fullPrimaryBtn {
+  @apply bg-primary-100 text-secondary-900 hover:bg-primary-500 hover:text-white;
 }
 
-.deleteBtn {
-  @apply bg-white text-secondary-900;
+.borderPrimaryBtn {
+  @apply bg-white text-secondary-900 hover:bg-gray-200;
 }
 
 .requiredMark {

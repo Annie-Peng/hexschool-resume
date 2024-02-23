@@ -3,9 +3,9 @@ const FormButtons = ({btns, onAdd, onDelete, dragProvided, tooltip}) => {
 
   return (
     <div className="flex gap-2 absolute top-[8px] right-[8px]">
-      {hasDeleteBtn && <button title={tooltip.delete} className="deleteBtn btn" type="button" onClick={onDelete}>-</button>}
-      {hasAddBtn && <button title={tooltip.add} className="addBtn btn" type="button" onClick={onAdd}>+</button>}
-      {hasDragBtn && <div title={tooltip.drag} className="dragBtn btn" {...dragProvided} >::</div>}
+      {hasDeleteBtn && <button title={tooltip.delete} className="borderPrimaryBtn btn" type="button" onClick={onDelete}>-</button>}
+      {hasAddBtn && <button title={tooltip.add} className="fullPrimaryBtn btn" type="button" onClick={onAdd}>+</button>}
+      {hasDragBtn && <div title={tooltip.drag} className="borderPrimaryBtn btn" {...dragProvided} >::</div>}
     </div>
   )
 }
