@@ -1,17 +1,16 @@
+import { DeclarationResume } from "../../modules/Declaration";
+import { JobExperienceResume } from "../../modules/JobExperience";
+import { JobSkillsResume } from "../../modules/JobSkills";
+import { PersonalInfoResume } from "../../modules/PersonalInfo";
+import { PortfolioResume } from "../../modules/Portfolio";
+import { useContext } from "react";
+import { FormContext } from "../features/FormContext";
 import ReactDOM from 'react-dom/client'
-import { useContext } from 'react';
-import { FormContext } from '../features/FormContext';
-import { PersonalInfoResume } from '../../modules/PersonalInfo';
-import { JobSkillsResume } from '../../modules/JobSkills';
-import { PortfolioResume } from '../../modules/Portfolio';
-import { JobExperienceResume } from '../../modules/JobExperience';
-import { DeclarationResume } from '../../modules/Declaration';
-import banner from "../../../public/images/Banner.png";
-import logo from "../../../public/images/logo.png";
 import html2pdf from 'html2pdf.js';
+import logo from "../../../public/images/logo.png";
+import banner from "../../../public/images/Banner.png";
 
-
-const SnapShot = () => {
+const ResumePDF = () => {
   const data = useContext(FormContext);
   const renderForm = RenderForm(data);
 
@@ -54,22 +53,19 @@ const SnapShot = () => {
     }).save();
         
   };
-  
-  
 
-    return (
-      <>
-        <div className="fixed w-full z-10 top-0 py-2 bg-white border-b border-blue-500">
-          <div className="container md:w-2/3 lg:w-1/2">
-            <button type="button" onClick={saveImage} className="btn saveBtn !w-fit block ml-auto">下載履歷(PDF)</button>
-          </div>
-        </div>
-      </>
-    )
+  return (
+    <button
+      type="button"
+      onClick={saveImage}
+      className="btn saveBtn block !w-fit"
+    >
+      下載履歷(PDF)
+    </button>
+  )
 }
 
-export default SnapShot;
-
+export default ResumePDF;
 
 function RenderForm(data) {
 

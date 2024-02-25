@@ -5,7 +5,7 @@ const Modal = ({ btnText, children }) => {
     <Popup
           modal
           trigger={
-            <button className="w-[88px] mr-2 ml-auto btn block" type="button">
+            <button className="!w-fit btn borderPrimaryBtn mr-2 ml-auto block" type="button">
               {btnText}
             </button>
           }

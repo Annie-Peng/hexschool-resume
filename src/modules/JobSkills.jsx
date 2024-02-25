@@ -12,9 +12,9 @@ import example from "../../public/images/jobskills-example.png";
 
 const JobSkills = () => {
 
-  const { jobSkills, updateSection } = useContext(FormContext);
+  const { jobSkills, updateSection, edit } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(jobSkills);
-  const { formFunctions, formFunctions: { reset }, formDataSet, formClass, title, edit, setEdit } = useCusForm({
+  const { formFunctions, formFunctions: { reset }, formDataSet, formClass, title } = useCusForm({
     defaultValues: jobSkills,
     formTitle: "jobSkills",
   });
@@ -30,20 +30,15 @@ const JobSkills = () => {
   function onSubmit (values) {
     const newValues = turnGroupObject(values.jobSkills);
     updateSection({name: "jobSkills", values: newValues});
-    setEdit(false)
   }
 
   return (
     <section className="resumeSection">
       <h2 className="resumeH2">{title}</h2>
-      {!edit && 
-        <button title="編輯" className="editBtn" type="button" onClick={()=>setEdit(true)} />
-      }
       <Form
         formFunctions={formFunctions}
-        edit={edit}
-        setEdit={setEdit}
         onSubmit={onSubmit}
+        edit={edit}
       >
         {Object.entries(renderItem).map(([name], index)=>{
             const subInsertData = {[id]:{name:""}};
@@ -64,7 +59,6 @@ const JobSkills = () => {
                   edit={edit}
                   subInsertData={subInsertData}
                   requiredShowResume={false}
-                  initContent="若您欲新增工作技能，請點選右上方的「編輯圖示」"
                 >
                     {(itemData, dataName) => (
                       <JobSkillsCard

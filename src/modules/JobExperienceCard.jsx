@@ -35,7 +35,7 @@ const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
     return (
       <div className="relative">
         <div className="relative min-h-[60px]">
-          {edit ? (
+          {edit && (
             <FormButtons
               btns={btns}
               onAdd={() => {insert(0, {...insertData})}}
@@ -43,8 +43,6 @@ const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
                 add: "新增",
               }}
             />
-          ) : (
-            <p className="text-lg text-center text-gray-500 leading-[60px]">若您欲新增工作經驗，請點選右上方的「編輯圖示」</p>
           )}
         </div>
       </div>
