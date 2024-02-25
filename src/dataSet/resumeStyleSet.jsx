@@ -87,7 +87,7 @@ export const resumeStyleSet = {
     },
     "jobSkills.items.name": {
       errClass: "",
-      inputClass: "!w-[70%]",
+      inputClass: "!w-[60%]",
       labelClass: "w-fit",
       hClass: "",
     }
