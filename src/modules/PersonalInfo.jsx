@@ -11,16 +11,16 @@ import MarkdownIdentifier from "../common/components/MarkdownIdentifier";
 
 const PersonalInfo = () => {
 
+  const formTitle = "personalInfo";
   const { personalInfo, updateSection, edit } = useContext(FormContext);
   const [ renderItem, setRenderItem ] = useState(personalInfo);
   const { formFunctions, formFunctions: { formState: {errors}, reset }, formDataSet, formClass, title } = useCusForm({
     defaultValues: personalInfo,
-    formTitle: "personalInfo",
+    formTitle,
   });
   const id = uuidv4();
 
   useEffect(()=>{
-    setRenderItem(personalInfo);
     const newPersonalInfo = turnArray(personalInfo);
     reset(newPersonalInfo); //初始化表單預設值
 
@@ -32,7 +32,7 @@ const PersonalInfo = () => {
     const newValues = { ...values, currentCity: newCurrentCity, futureCities: newFutureCities };
     const objectValues = turnObject(newValues);
 
-    updateSection({name: "personalInfo", values: objectValues})
+    updateSection({name: formTitle, values: objectValues})
   }
 
   return (
@@ -42,6 +42,7 @@ const PersonalInfo = () => {
         formFunctions={formFunctions}
         onSubmit={onSubmit}
         edit={edit}
+        formTitle={formTitle}
       >
         {Object.entries(renderItem).map(([name, values], index)=>{
         if(typeof values === "object" && name === "graduateSchool"){
@@ -56,7 +57,7 @@ const PersonalInfo = () => {
             />
           )
         }
-        const RenderForm = controller[formDataSet[name].component]; // 選擇表單元件
+        const RenderForm = controller[formDataSet[name]?.component]; // 選擇表單元件
 
         return (
             <Fragment key={index}>

@@ -91,7 +91,7 @@ const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
                               )
                             }
             
-                            const RenderForm = controller[formDataSet[dataName].component]; // 選擇表單元件
+                            const RenderForm = controller[formDataSet[dataName]?.component]; // 選擇表單元件
                             const formClass = resumeStyleSet.jobExperience[dataName];
             
                             return (
@@ -167,7 +167,7 @@ function WorkingLengthField ({dataSet, name, dataName, formDataSet, edit, error}
 
           const disabled = (key === "endTime" && endTimeDisabled);
           const endTimeValidation = { required: (disabled ? false : "必填") }; 
-          const validation = (key === "endTime" ? endTimeValidation : formDataSet[newDataName].validation );
+          const validation = (key === "endTime" ? endTimeValidation : formDataSet[newDataName]?.validation ) || "";
           return (
             <Controller
               key={index}

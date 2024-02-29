@@ -13,12 +13,13 @@ import PortfolioCard from "./PortfolioCard";
 
 
 const Portfolio = () => {
-
+  
+  const formTitle = "portfolio";
   const { portfolio, updateSection, edit } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(portfolio);
   const { formFunctions, formFunctions: { reset }, formDataSet, formClass, title } = useCusForm({
     defaultValues: portfolio,
-    formTitle: "portfolio",
+    formTitle,
   });
 
 
@@ -34,7 +35,7 @@ const Portfolio = () => {
 
   function onSubmit (values) {
     const newValues = turnGroupObject(values.portfolio);
-    updateSection({name: "portfolio", values: newValues});
+    updateSection({name: formTitle, values: newValues});
   }
 
   return (
@@ -44,6 +45,7 @@ const Portfolio = () => {
         formFunctions={formFunctions}
         onSubmit={onSubmit}
         edit={edit}
+        formTitle={formTitle}
       >
         {Object.entries(renderItem).map(([name], index)=>{
             const subInsertData = {[id]:{url:"", description:"", functions:""}};

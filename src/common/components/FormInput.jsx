@@ -7,6 +7,8 @@ const FormInput = ({formDataSet, formClass, dataName, name, error, edit, disable
 
   let newDataName = dataName ? dataName : name;
 
+  if(!formDataSet[newDataName]) return;
+
   const { type, accept, hMsg, placeholder, pMsg, required } = formDataSet[newDataName];
 
   const { inputClass,
