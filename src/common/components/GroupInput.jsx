@@ -59,7 +59,7 @@ const GroupInput = ({ formDataSet, name, insertData, edit }) => {
                         name={newName}
                         edit={edit}
                         error={errors?.[name]?.[index]?.[key]?.[subKey]}
-                        validation={formDataSet[dataName].validation}
+                        validation={formDataSet[dataName]?.validation || ""}
                       />
                       { edit && (
                         <FormButtons

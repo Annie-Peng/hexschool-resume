@@ -56,7 +56,7 @@ const PersonalInfo = () => {
             />
           )
         }
-        const RenderForm = controller[formDataSet[name].component]; // 選擇表單元件
+        const RenderForm = controller[formDataSet[name]?.component]; // 選擇表單元件
 
         return (
             <Fragment key={index}>
