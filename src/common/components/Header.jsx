@@ -1,3 +1,4 @@
+import ExportJSON from "./ExportJSON";
 import Preview from "./Preview";
 import ResumePDF from "./ResumePDF";
 
@@ -9,6 +10,7 @@ const Header = () => {
         <div className="flex justify-end gap-2 mx-auto md:w-2/3 lg:w-1/2">
           <Preview />
           <ResumePDF />
+          <ExportJSON />
         </div>
       </div>
     </>
