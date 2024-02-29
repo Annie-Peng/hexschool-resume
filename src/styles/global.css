@@ -7,16 +7,20 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-gray-100;
+}
+
 .container {
   @apply flex flex-col items-center mx-auto;
 }
 
 .resumeSection {
-  @apply w-full mt-4 relative;
+  @apply w-full mt-4 relative bg-white p-4 rounded-xl;
 }
 
 .resumeH2 {
-  @apply text-black text-center font-bold text-3xl py-4;
+  @apply text-black text-center font-bold text-3xl py-4 border-b border-gray-200 mb-4;
 }
 
 .resumeH3 {

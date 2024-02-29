@@ -38,7 +38,7 @@ useEffect(()=>{
   return (
     <section className="resumeSection">
       <h2 className="resumeH2">{title}</h2>
-      <div className="ml-auto w-[90%]">
+      <div className="ml-auto w-[90%] py-2">
         <ol>
           <li>
             本人同意多角人才基於就業服務之目的依法蒐集、處理、利用個人資料於任用相關作業之進行。
