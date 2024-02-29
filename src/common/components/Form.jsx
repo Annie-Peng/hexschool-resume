@@ -29,7 +29,7 @@ const Form = ({ children, formFunctions, edit, onSubmit, formTitle }) => {
                     <p>並同時更新JSON及履歷？</p>
                     <div className="mt-4 flex gap-4 justify-center">
                       <button type="button" className="btn borderPrimaryBtn !w-[120px]" onClick={()=>handleClearDataSet(close)}>確認</button>
-                      <button type="button" className="btn fullPrimaryBtn !w-[120px]" onClick={()=>close()}>取消</button>
+                      <button type="button" className="btn saveBtn !w-[120px]" onClick={()=>close()}>取消</button>
                     </div>
                 </div>
                 )}
