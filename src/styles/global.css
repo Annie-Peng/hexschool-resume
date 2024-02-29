@@ -16,7 +16,7 @@
 }
 
 .resumeH2 {
-  @apply text-black text-center font-bold text-3xl py-4;
+  @apply text-black text-center font-bold text-3xl py-4 border-b border-gray-200 mb-4;
 }
 
 .resumeH3 {
