@@ -10,11 +10,12 @@ import MarkdownIdentifier from "../common/components/MarkdownIdentifier";
 
 const JobExperience = () => {
 
+  const formTitle = "jobExperience";
   const { jobExperience, updateSection, edit } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(jobExperience);
   const { formFunctions, formFunctions: { reset }, formDataSet, title } = useCusForm({
     defaultValues: jobExperience,
-    formTitle: "jobExperience",
+    formTitle,
   });
   const id = uuidv4();
 
@@ -27,7 +28,7 @@ const JobExperience = () => {
 
   function onSubmit (values) {
     const newValues = turnObject(values);
-    updateSection({name: "jobExperience", values: newValues.jobExperience});
+    updateSection({name: formTitle, values: newValues.jobExperience});
   }
 
   return (
@@ -37,6 +38,7 @@ const JobExperience = () => {
         formFunctions={formFunctions}
         onSubmit={onSubmit}
         edit={edit}
+        formTitle={formTitle}
       >
         {Object.entries(renderItem).map(([name], index)=>{
             const insertData = {[id]:{

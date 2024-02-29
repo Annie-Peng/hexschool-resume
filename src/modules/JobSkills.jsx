@@ -11,12 +11,13 @@ import Modal from "../common/components/Modal";
 import example from "../../public/images/jobskills-example.png";
 
 const JobSkills = () => {
-
+  
+  const formTitle = "jobSkills";
   const { jobSkills, updateSection, edit } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(jobSkills);
   const { formFunctions, formFunctions: { reset }, formDataSet, formClass, title } = useCusForm({
     defaultValues: jobSkills,
-    formTitle: "jobSkills",
+    formTitle,
   });
   const id = uuidv4();
 
@@ -29,7 +30,7 @@ const JobSkills = () => {
 
   function onSubmit (values) {
     const newValues = turnGroupObject(values.jobSkills);
-    updateSection({name: "jobSkills", values: newValues});
+    updateSection({name: formTitle, values: newValues});
   }
 
   return (
@@ -39,6 +40,7 @@ const JobSkills = () => {
         formFunctions={formFunctions}
         onSubmit={onSubmit}
         edit={edit}
+        formTitle={formTitle}
       >
         {Object.entries(renderItem).map(([name], index)=>{
             const subInsertData = {[id]:{name:""}};
@@ -47,8 +49,10 @@ const JobSkills = () => {
             return (
               <Fragment key={index}>
                 {edit && 
-                  <Modal btnText="看看範例">
-                    <img src={example} alt="example" className="rounded-md"/>
+                  <Modal btnText="看看範例" modalClass="w-[80%]">
+                    {()=>(
+                      <img src={example} alt="example" className="rounded-md" />
+                    )}
                   </Modal>
                   }
                 <SubGroupInput

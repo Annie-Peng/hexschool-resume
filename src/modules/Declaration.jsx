@@ -8,32 +8,32 @@ import { turnDateFormat } from "../common/helpers/turnDateFormat";
 
 const Declaration = () => {
 
+  const formTitle = "declaration";
   const { declaration, updateSection } = useContext(FormContext);
   const [renderItem, setRenderItem] = useState(declaration);
   const { formFunctions, formFunctions: { formState: {errors}, watch, reset }, formDataSet, formClass, title } = useCusForm({
     defaultValues: declaration,
-    formTitle: "declaration"
+    formTitle
   });
 
-const watchSignature = watch("signature");
-const watchApproved = watch("approved");
+  const watchSignature = watch("signature");
+  const watchApproved = watch("approved");
 
-useEffect(()=>{
-  const formattedUpdatedDate = turnDateFormat(new Date());
-  const values = {
-    approved: watchApproved,
-    signature: watchSignature,
-    signatureBuiltTime: declaration.signatureBuiltTime === "" ? formattedUpdatedDate : declaration.signatureBuiltTime,
-    signatureUpdatedTime: formattedUpdatedDate,
-  };
-  updateSection({name: "declaration", values });
-},[watchSignature, watchApproved])
+  useEffect(()=>{
+    const formattedUpdatedDate = turnDateFormat(new Date());
+    const values = {
+      approved: watchApproved,
+      signature: watchSignature,
+      signatureBuiltTime: declaration.signatureBuiltTime === "" ? formattedUpdatedDate : declaration.signatureBuiltTime,
+      signatureUpdatedTime: formattedUpdatedDate,
+    };
+    updateSection({name: formTitle, values });
+  },[watchSignature, watchApproved])
 
-useEffect(()=>{
-  setRenderItem(declaration);
-  reset(declaration); //初始化表單預設值
+  useEffect(()=>{
+    reset(declaration); //初始化表單預設值
 
-},[declaration])
+  },[declaration])
 
   return (
     <section className="resumeSection">
@@ -50,6 +50,7 @@ useEffect(()=>{
         <Form
           formFunctions={formFunctions}
           edit={false}
+          formTitle={formTitle}
         >
           <div className="flex flex-wrap items-center justify-between">
             {Object.entries(renderItem).map(([name, values], index)=>{
