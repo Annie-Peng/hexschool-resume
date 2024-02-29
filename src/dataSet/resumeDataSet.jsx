@@ -1,4 +1,4 @@
-import { commonRequiredMsg } from "./validationMsg";
+import { commonPositiveNumMsg, commonRequiredMsg } from "./validationMsg";
 import { cityOptions } from './cities';
 
 export const resumeDataSet = {
@@ -71,7 +71,11 @@ export const resumeDataSet = {
         component: "input",
         type: "number",
         validation: {
-          required: commonRequiredMsg
+          required: commonRequiredMsg,
+          min: { 
+            value: 1,
+            message: commonPositiveNumMsg
+          }
         },
         placeholder: "請輸入數字",
       },
@@ -80,7 +84,11 @@ export const resumeDataSet = {
         component: "input",
         type: "number",
         validation: {
-          required: commonRequiredMsg
+          required: commonRequiredMsg,
+          min: { 
+            value: 1,
+            message: commonPositiveNumMsg
+          }
         },
         placeholder: "請輸入數字",
       },

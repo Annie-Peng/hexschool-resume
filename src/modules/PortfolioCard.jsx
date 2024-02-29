@@ -14,7 +14,7 @@ const PortfolioCard = ({formDataSet, formClass, data, dataName, edit}) => {
         {Object.keys(data).map((subKey, index) => {
           const error = getNestedError(errors, `${dataName}.${subKey}`);
           return (
-            <FormInput key={index} formDataSet={formDataSet} formClass={`${formClass}.portfolio.items.${subKey}`} dataName={`portfolio.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit} validation={formDataSet[`portfolio.items.${subKey}`].validation}/>
+            <FormInput key={index} formDataSet={formDataSet} formClass={`${formClass}.portfolio.items.${subKey}`} dataName={`portfolio.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit} validation={formDataSet[`portfolio.items.${subKey}`]?.validation || ""}/>
           )
         })}
       </div>
