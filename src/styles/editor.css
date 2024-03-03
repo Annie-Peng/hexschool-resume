@@ -75,3 +75,11 @@
   display: block;
   position: relative;
 }
+
+/* link */
+.markdownList a,
+.ck .ck-link_selected,
+.ck a,
+.ck.ck-link-actions .ck-button.ck-link-actions__preview .ck-button__label {
+  @apply text-primary-500 border-b-2 border-primary-100 hover:bg-primary-50;
+}
