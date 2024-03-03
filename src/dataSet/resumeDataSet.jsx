@@ -308,7 +308,7 @@ export const resumeDataSet = {
         id: "id1",
         key: "items",
         secondKey: "description",
-        component: "input",
+        component: "editor",
         type: "text",
         required: false,
         placeholder: "請填寫作品相關敘述",
@@ -320,7 +320,7 @@ export const resumeDataSet = {
         key: "items",
         type: "text",
         secondKey: "functions",
-        component: "input",
+        component: "editor",
         required: false,
         placeholder: "請填寫功能相關敘述",
         hMsg: "作品功能"
