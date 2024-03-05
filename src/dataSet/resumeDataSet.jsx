@@ -301,7 +301,7 @@ export const resumeDataSet = {
           required: commonRequiredMsg
         },
         placeholder: "",
-        hMsg: "網址"
+        hMsg: "作品網址"
       },
       "portfolio.items.description": {
         group: "portfolio",
