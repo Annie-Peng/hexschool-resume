@@ -8,7 +8,7 @@ const Editor = forwardRef(({ onChange, value, placeholder, error, errClass }, re
             <CKEditor
                 editor={ClassicEditor}
                 config={{
-                    toolbar: ['bold', 'bulletedList'],
+                    toolbar: ['bold', 'bulletedList', 'link'],
                     placeholder,
                 }}
                 data={value}
