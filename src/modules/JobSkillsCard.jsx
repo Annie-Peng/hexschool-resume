@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form"
-import FormInput from "../common/components/FormInput"
 import { getNestedError } from "../common/helpers/getNestedError";
+import { controller } from "../dataSet/controller";
 
 const JobSkillsCard = ({formDataSet, formClass, data, dataName, edit}) => {
 
@@ -12,14 +12,15 @@ const JobSkillsCard = ({formDataSet, formClass, data, dataName, edit}) => {
       <div className="w-full">
         {Object.keys(data).map((subKey, index) => {
           const error = getNestedError(errors, `${dataName}.${subKey}`);
+          const RenderForm = controller[formDataSet[`jobSkills.items.${subKey}`]?.component]; // 選擇表單元件
 
           return (
-            <FormInput key={index} formDataSet={formDataSet} formClass={formClass[`jobSkills.items.${subKey}`]} dataName={`jobSkills.items.${subKey}`} name={`${dataName}.${subKey}`} error={error} edit={edit} validation={formDataSet[`jobSkills.items.${subKey}`]?.validation || ""}/>
+              <RenderForm key={index} formDataSet={formDataSet} name={`${dataName}.${subKey}`} error={error} formClass={formClass[`jobSkills.items.${subKey}`]} edit={edit} dataName={`jobSkills.items.${subKey}`} validation={formDataSet[`jobSkills.items.${subKey}`]?.validation || ""} />
           )
         })}
       </div>
     ) : (
-      <div className="flex flex-col gap-2">
+      <div className="flex gap-2 pl-[14%] before:content-['#']">
       {Object.keys(data).map((subKey, index) => (
           <p key={index}>
             {getValues(`${dataName}.${subKey}`) ? (
