@@ -76,7 +76,7 @@ const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData
                       const error = getNestedError(errors, `${titleName}.name`);
                       
                     return (
-                      <div className="relative my-2 ml-auto w-[90%]" key={kIndex}>
+                      <div className="relative my-2 ml-auto" key={kIndex}>
                         {edit ? (
                           <>
                             <FormInput key={index} formDataSet={formDataSet} formClass={formClass[dataName]} dataName={dataName} name={`${titleName}.name`} error={error} edit={edit} validation={formDataSet[dataName]?.validation || ""}/>
@@ -99,7 +99,7 @@ const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData
                             />
                           </>
                           ) : (
-                            <h3 className="relative py-4 after:absolute after:content-[''] after:w-full after:-z-10 after:h-[2px] after:block after:bg-secondary-500 after:right-0 after:top-1/2 after:-translate-y-1/2">
+                            <h3 className="relative py-4 pl-[10%]">
                               <span className="bg-white pr-2 text-primary-500 font-bold">
                                 {getValues(`${titleName}.name`) ? (
                                   getValues(`${titleName}.name`)
@@ -145,13 +145,13 @@ function Card ({subName, edit, children, subInsertData}) {
   }
 
     return (
-        <ul className="flex flex-wrap gap-4 mt-4">
+        <ul className="flex flex-wrap">
         {fields.map((item, index) => {
           const itemKeys = Object.keys(item).filter(key => key !== 'id');
           return (
             <Fragment key={item.id}>
               {itemKeys.map((key) => (
-                <li key={key} className={`relative w-full flex ${!edit && "before:content-['#'] before:mx-2"}`}>
+                <li key={key} className="relative w-full flex">
                   {children(item[key], `${subName}.${index}.${key}`)}
                   {edit &&
                     <FormButtons

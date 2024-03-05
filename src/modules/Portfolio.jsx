@@ -9,8 +9,7 @@ import { turnArray } from "../common/helpers/turnArray";
 import SubGroupInput from "../common/components/SubGroupInput";
 import { useState } from "react";
 import PortfolioCard from "./PortfolioCard";
-
-
+import MarkdownIdentifier from "../common/components/MarkdownIdentifier";
 
 const Portfolio = () => {
   
@@ -103,10 +102,21 @@ export const PortfolioResume = ({ data }) => {
                         <span className="bg-thinBorderHexschool bg-contain w-[28px] h-[24px] text-center text-primary-500 font-bold flex-shrink-0">
                           {iIndex+1}
                         </span>
-                        <div className="flex flex-col gap-2">
-                          <p>網址 | {item.url ? item.url : "尚未填寫"}</p>
-                          <p>作品敘述 | {item.description ? item.description : "尚未填寫"}</p>
-                          <p>功能內容 | {item.functions ? item.functions : "尚未填寫"}</p>
+                        <div className="flex flex-col gap-1">
+                          <p>作品網址 | {item.url ? item.url : "尚未填寫"}</p>
+                          <p className="flex gap-1">作品敘述 |
+                            {item.description ? (
+                              <MarkdownIdentifier texts={item.description} />  
+                            ) : 
+                            <p>尚未填寫</p>
+                          }
+                          </p>
+                          <p className="flex gap-1">功能內容 |
+                            {item.functions ? (
+                              <MarkdownIdentifier texts={item.functions} />  
+                            ) :
+                            <p>尚未填寫</p>
+                          }</p>
                         </div>
                       </li>
                     )

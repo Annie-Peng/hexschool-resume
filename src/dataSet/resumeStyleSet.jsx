@@ -81,14 +81,14 @@ export const resumeStyleSet = {
   jobSkills: {
     "jobSkills.name": {
       errClass: "",
-      inputClass: "!w-[40%]",
-      labelClass: "w-fit",
+      inputClass: "",
+      labelClass: "",
       hClass: "",
     },
     "jobSkills.items.name": {
       errClass: "",
-      inputClass: "!w-[60%]",
-      labelClass: "w-fit",
+      inputClass: "",
+      labelClass: "",
       hClass: "",
     }
   },
@@ -108,21 +108,21 @@ export const resumeStyleSet = {
       inputClass: "",
       hClass: "",
       labelClass:"hidden",
-      outerClass: "px-0",
+      outerClass: "!p-0",
     },
     "jobExperience.workingLength.endTime": {
       errClass: "whitespace-nowrap",
       inputClass: "",
       hClass: "",
       labelClass: "hidden",
-      outerClass: "px-0",
+      outerClass: "!p-0",
     },
     "jobExperience.workingLength.isLeft": {
       errClass: "",
       inputClass: "after:top-1/2 after:-translate-y-1/2 after:ml-[20px] after:absolute after:content-['仍在職'] after:whitespace-nowrap",
       hClass: "hidden",
       labelClass: "hidden",
-      outerClass: "w-[80px] h-[40px] relative",
+      outerClass: "w-[80px] relative !p-0",
     },
     "jobExperience.description":{
       errClass: "",
@@ -139,25 +139,29 @@ export const resumeStyleSet = {
   },
   portfolio: {
     "portfolio.name": {
-          errClass: "",
-          inputClass: "!w-[40%]",
-          labelClass: "w-fit",
-          hClass: "",
-          outerClass: "p-0"
-        },
+      errClass: "",
+      inputClass: "",
+      labelClass: "",
+      hClass: "",
+      outerClass: "p-0"
+    },
     "portfolio.items.url": {
       errClass: "",
       inputClass: "",
+      labelClass: "",
       hClass: "",
+      outerClass: ""
     },
     "portfolio.items.description": {
       errClass: "",
       inputClass: "",
+      labelClass: "self-start",
       hClass: "",
     },
     "portfolio.items.functions": {
       errClass: "",
       inputClass: "",
+      labelClass: "self-start",
       hClass: "",
     }
   },

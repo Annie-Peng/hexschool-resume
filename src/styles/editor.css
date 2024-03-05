@@ -21,7 +21,7 @@
 
 /* toolbar border圓角、高度 */
 .ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar {
-  @apply rounded-t-md h-[32px] !important;
+  @apply rounded-t-md h-[36px] !important;
 }
 
 /*  內文 border圓角 */
@@ -67,11 +67,20 @@
 }
 
 .markdownList ul li {
-  @apply flex gap-5;
+  @apply flex;
 }
 
 .markdownList ul li:before {
   content: "#";
   display: block;
   position: relative;
+  margin-right: 20px;
+}
+
+/* link */
+.markdownList a,
+.ck .ck-link_selected,
+.ck a,
+.ck.ck-link-actions .ck-button.ck-link-actions__preview .ck-button__label {
+  @apply text-primary-500 border-b-2 border-primary-100 hover:bg-primary-50;
 }
