@@ -67,13 +67,14 @@
 }
 
 .markdownList ul li {
-  @apply flex gap-5;
+  @apply flex;
 }
 
 .markdownList ul li:before {
   content: "#";
   display: block;
   position: relative;
+  margin-right: 20px;
 }
 
 /* link */
