@@ -145,7 +145,7 @@ function Card ({subName, edit, children, subInsertData}) {
   }
 
     return (
-        <ul className="flex flex-wrap">
+        <ul className={`flex flex-wrap ${!edit && 'gap-2'}`}>
         {fields.map((item, index) => {
           const itemKeys = Object.keys(item).filter(key => key !== 'id');
           return (
