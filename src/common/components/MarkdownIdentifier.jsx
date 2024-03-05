@@ -6,7 +6,7 @@ const MarkdownIdentifier = ({texts}) => {
   return (
     <Markdown
       rehypePlugins={[rehypeRaw]}
-      className="markdownList flex flex-col gap-2 whitespace-pre-wrap"
+      className="markdownList"
     >
       {texts}
     </Markdown>
