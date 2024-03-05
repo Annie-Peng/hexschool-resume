@@ -21,7 +21,7 @@
 
 /* toolbar border圓角、高度 */
 .ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar {
-  @apply rounded-t-md h-[32px] !important;
+  @apply rounded-t-md h-[36px] !important;
 }
 
 /*  內文 border圓角 */
