@@ -65,7 +65,7 @@ textarea {
 
 .fullPrimaryBtn,
 .borderPrimaryBtn {
-  @apply p-0 w-[20px] md:p-2 md:w-[30px] lg:min-w-[40px] text-center;
+  @apply w-[20px] md:w-[30px] lg:w-[44px] lg:h-[44px] flex items-center justify-center;
 }
 
 .fullPrimaryBtn {
