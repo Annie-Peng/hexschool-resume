@@ -150,7 +150,7 @@ export const resumeStyleSet = {
       inputClass: "",
       labelClass: "",
       hClass: "",
-      outerClass: "pt-0"
+      outerClass: ""
     },
     "portfolio.items.description": {
       errClass: "",
