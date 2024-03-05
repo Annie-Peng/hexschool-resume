@@ -81,14 +81,14 @@ export const resumeStyleSet = {
   jobSkills: {
     "jobSkills.name": {
       errClass: "",
-      inputClass: "!w-[40%]",
-      labelClass: "w-fit",
+      inputClass: "",
+      labelClass: "",
       hClass: "",
     },
     "jobSkills.items.name": {
       errClass: "",
-      inputClass: "!w-[60%]",
-      labelClass: "w-fit",
+      inputClass: "",
+      labelClass: "",
       hClass: "",
     }
   },
@@ -139,25 +139,29 @@ export const resumeStyleSet = {
   },
   portfolio: {
     "portfolio.name": {
-          errClass: "",
-          inputClass: "!w-[40%]",
-          labelClass: "w-fit",
-          hClass: "",
-          outerClass: "p-0"
-        },
+      errClass: "",
+      inputClass: "",
+      labelClass: "",
+      hClass: "",
+      outerClass: "p-0"
+    },
     "portfolio.items.url": {
       errClass: "",
       inputClass: "",
+      labelClass: "",
       hClass: "",
+      outerClass: "pt-0"
     },
     "portfolio.items.description": {
       errClass: "",
       inputClass: "",
+      labelClass: "self-start",
       hClass: "",
     },
     "portfolio.items.functions": {
       errClass: "",
       inputClass: "",
+      labelClass: "self-start",
       hClass: "",
     }
   },
