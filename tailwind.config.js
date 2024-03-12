@@ -39,7 +39,6 @@ export default {
         },
       },
       backgroundImage: {
-        edit: "url(/icons/edit.png)",
         close: "url(/icons/close.png)",
         thinBorderHexschool: "url(/images/thin-border-hexschool.png)",
         filledHexschool: "url(/images/filled-hexschool.png)",

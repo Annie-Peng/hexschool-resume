@@ -80,10 +80,6 @@ textarea {
   @apply after:content-['*'] after:ml-0.5 after:text-red-500;
 }
 
-.editBtn {
-  @apply absolute right-0 top-[34px] -translate-y-1/2 block bg-edit bg-contain w-[30px] h-[30px] opacity-50 hover:opacity-100 hover:duration-300;
-}
-
 .tag {
   @apply saveBtn !w-fit px-2 min-w-[100px] rounded-[50px] text-center;
 }
