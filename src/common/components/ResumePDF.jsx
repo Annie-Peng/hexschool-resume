@@ -7,8 +7,8 @@ import { useContext } from "react";
 import { FormContext } from "../features/FormContext";
 import ReactDOM from 'react-dom/client'
 import html2pdf from 'html2pdf.js';
-import logo from "../../../public/images/logo.png";
-import banner from "../../../public/images/Banner.png";
+import logo from "/images/logo.png";
+import banner from "/images/Banner.png";
 
 const ResumePDF = () => {
   const data = useContext(FormContext);

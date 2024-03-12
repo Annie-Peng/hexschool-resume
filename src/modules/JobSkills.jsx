@@ -8,7 +8,7 @@ import { turnGroupObject } from "../common/helpers/turnGroupObject";
 import SubGroupInput from "../common/components/SubGroupInput";
 import JobSkillsCard from "./JobSkillsCard";
 import Modal from "../common/components/Modal";
-import example from "../../public/images/jobskills-example.png";
+import example from "/images/jobskills-example.png";
 
 const JobSkills = () => {
   
