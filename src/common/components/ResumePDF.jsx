@@ -17,8 +17,6 @@ const ResumePDF = () => {
 
   const saveImage = async () => {
     const element = document.createElement('div');
-    document.body.appendChild(element);
-
     await ReactDOM.createRoot(element).render(renderForm);
 
     // 套件 html2pdf.js, https://github.com/eKoopmans/html2pdf.js?tab=readme-ov-file
@@ -51,7 +49,6 @@ const ResumePDF = () => {
         pdf.setPage(i);
         pdf.addImage(logo, "jpeg", xPosition, yPosition, logoWidth, logoHeight);
       }
-      document.body.removeChild(element);
     }).save();
         
   };
