@@ -11,7 +11,7 @@ import { getNestedError } from "../common/helpers/getNestedError";
 const JobExperienceCard = ({ formDataSet, name, insertData, edit }) => {
 
   const { control, formState: {errors}, reset } = useFormContext()
-  const { fields, insert, remove, move } = useFieldArray({
+  const { fields, insert, remove, move } = useFieldArray({ // 動態表單 group CRUD, https://www.react-hook-form.com/api/usefieldarray/
     name,
     control
   })
