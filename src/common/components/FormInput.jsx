@@ -25,7 +25,7 @@ const FormInput = ({formDataSet, formClass, dataName, name, error, edit, disable
       </label>
       { edit ? (
         <>
-        <input className={`${error && "focus:outline-red-500"} ${inputClass}`} id={name} type={type} accept={accept} placeholder={placeholder} disabled={disabled} {...register(name, validation)} />
+        <input className={`${error && "focus:outline-red-500"} ${inputClass}`} id={name} type={type} accept={accept} placeholder={placeholder} disabled={disabled} step="any" {...register(name, validation)} />
         {pMsg && <p className={pClass}>{pMsg}</p>}
         {error && <p className={`resumeErr ${errClass}`}>{error.message}</p>}
         </>
