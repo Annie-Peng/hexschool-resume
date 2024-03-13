@@ -138,7 +138,7 @@ export const PersonalInfoResume = ({ data }) => {
       <div className="flex gap-8 mb-[30px]">
         <div className="w-[250px] h-[300px] flex-shrink-0">
           { newData.profile ? (
-            <img src={newData.profile} alt="profile" className="w-full h-full object-cover rounded-md"/>
+            <div className="bg-cover bg-center h-full rounded-md" style={{backgroundImage: `url(${newData.profile})`}} />
           ) : (
             <div className="border h-full rounded-md flex justify-center items-center text-gray-500 bg-gray-300">
               尚未更新照片
