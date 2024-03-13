@@ -21,13 +21,15 @@ const ResumePDF = () => {
 
     await ReactDOM.createRoot(element).render(renderForm);
 
+    // 套件 html2pdf.js, https://github.com/eKoopmans/html2pdf.js?tab=readme-ov-file
+    // 轉化元素 -> canvas -> pdf
     const opt = {
-      margin:       [0, 0, 10, 0],
-      filename:     'resume.pdf',
-      pagebreak:    {mode: ['css', 'legacy', 'avoid-all']},
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      margin:       [0, 0, 10, 0], // pdf 每頁面 margin
+      filename:     'resume.pdf', // pdf 檔名
+      pagebreak:    {mode: ['css', 'legacy', 'avoid-all']}, // pdf 分頁機制
+      image:        { type: 'jpeg', quality: 0.98 }, // 圖片格式、畫質
+      html2canvas:  { scale: 2, useCORS: true }, // canvas 解析度、跨域圖片
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } // pdf A4直式
     };
 
     html2pdf().set(opt).from(element).toPdf().get('pdf').then(function (pdf) {

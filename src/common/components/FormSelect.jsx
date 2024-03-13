@@ -69,11 +69,13 @@ const FormSelect = ({
             }}
             render={({ field: { value, ...field } }) => {
               return (
+                // 套件 React Select, https://react-select.com/home#getting-started
+                // 下拉式選單
                 <Select
                   isMulti={others.isMulti}
                   value={value}
                   options={newOptions}
-                  isSearchable={false}
+                  isSearchable={false} // 可以手動輸入字串搜尋功能
                   placeholder={`${disabledOption}
                     ${
                       others.valuesMaxLength
@@ -82,6 +84,8 @@ const FormSelect = ({
                     }
                     `}
                   classNames={{
+                    // 動態欄位樣式變換
+                    // 參考 https://react-select.com/styles
                     control: (state) => {
                       const focusClass = state.isFocused
                         ? "!border-primary-500"
