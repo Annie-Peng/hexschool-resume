@@ -72,7 +72,7 @@ export default ResumePDF;
 function RenderForm(data) {
 
   return (
-    <div data-html2canvas-ignore="true">
+    <div>
       <header>
         <img src={banner} alt="banner" />
       </header>
