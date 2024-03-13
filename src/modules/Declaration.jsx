@@ -89,7 +89,7 @@ export const DeclarationResume = ({ data }) => {
           </li>
         </ol>
         <div className="flex items-center gap-2">
-          <span className={`w-[24px] h-[24px] bg-cover ${data.approved ? "bg-check" : "bg-unchecked"}`}/>
+          <span className={`w-[24px] h-[24px] bg-cover ${data.approved ? "bg-check" : "bg-uncheck"}`}/>
           <span>同意上述聲明及確認個人資料屬實。</span>
         </div>
         <div className="flex justify-between mt-4">
