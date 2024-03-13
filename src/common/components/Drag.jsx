@@ -1,6 +1,8 @@
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from 'uuid';
 
+// 套件 react-beautiful-dnd, https://www.npmjs.com/package/react-beautiful-dnd
+// 上下拖曳項目
 const Drag = ({children, move}) => {
 
   const id = uuidv4();

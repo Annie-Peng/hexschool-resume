@@ -16,6 +16,8 @@ const Form = ({ children, formFunctions, edit, onSubmit, formTitle }) => {
   }
 
   return (
+    // FormProvider 傳遞 react-hook-form 所有functions
+    // 參考 https://www.react-hook-form.com/api/useformcontext/
     <FormProvider {...formFunctions}>
       <form onSubmit={handleSubmit(onSubmit)}>
         {children}

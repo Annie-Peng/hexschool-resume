@@ -36,8 +36,11 @@ const FormSign = ({formDataSet, dataName, name, formClass}) => {
 
   return (
     <>
+    {/* 套件 Reactjs-popup, https://www.npmjs.com/package/reactjs-popup */}
+    {/* 彈跳視窗 */}
       <Popup
           modal
+          // 觸發Popup的元素
           trigger={
             <div className={`flex items-center gap-2 ${outerClass}`}>
               <label className={`w-[20%] flex-shrink-0 text-right ${labelClass}`} htmlFor={name}>
@@ -56,11 +59,16 @@ const FormSign = ({formDataSet, dataName, name, formClass}) => {
               )}
             </div>
           }
+          // 當overlay點擊時，是否關閉Popup
           closeOnDocumentClick={true}
+          // Popup的背景樣式
           overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
       >
+        {/* 要跳出的資料在這邊輸入 */}
           {(close) => (
             <>
+            {/* 套件 react-signature-canvas, https://www.npmjs.com/package/react-signature-canvas */}
+            {/* 簽名檔 */}
               <SignaturePad
                   ref={sigCanvas}
                   canvasProps={{

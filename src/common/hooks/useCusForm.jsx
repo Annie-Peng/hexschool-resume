@@ -8,6 +8,8 @@ const useCusForm = ({ defaultValues, formTitle }) => {
   const formClass = resumeStyleSet[formTitle];
   const [edit, setEdit] = useState(true);
 
+  // 套件 React Hook Form, https://react-hook-form.com
+  // 表單
   const formFunctions = useForm({ defaultValues });
 
   return { formFunctions, formDataSet, formClass, title, edit, setEdit };
