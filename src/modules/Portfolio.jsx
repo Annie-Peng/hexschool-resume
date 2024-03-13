@@ -99,7 +99,7 @@ export const PortfolioResume = ({ data }) => {
                     return (
                       <li key={`item ${iIndex}`} className="flex gap-6 relative">
                         <div className="absolute -z-10 top-0 left-[13px] h-full w-[2px] bg-primary-500" />
-                        <span className="bg-thinBorderHexschool bg-contain w-[26px] h-[23px] text-center text-primary-500 font-bold flex-shrink-0">
+                        <span className="bg-thinBorderHexschool bg-no-repeat bg-contain w-[27px] h-[24px] text-center text-primary-500 font-bold flex-shrink-0">
                           {iIndex+1}
                         </span>
                         <div className="flex flex-col gap-1">
