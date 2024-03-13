@@ -78,7 +78,7 @@ export const JobExperienceResume = ({ data }) => {
           return (
             <li key={`title ${tIndex}`} className="flex gap-6 relative">
               <div className="absolute -z-10 top-0 left-[13px] h-full w-[2px] bg-primary-500" />
-              <span className={`bg-filledHexschool bg-cover w-[26px] h-[23px] text-center text-primary-500 font-bold flex-shrink-0`} />
+              <span className={`bg-filledHexschool bg-no-repeat bg-cover w-[27px] h-[23px] text-center text-primary-500 font-bold flex-shrink-0`} />
               <div className="w-full">
                 <div className="flex justify-between items-center">
                   <h3 className="font-bold text-xl">

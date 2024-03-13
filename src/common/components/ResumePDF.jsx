@@ -27,8 +27,8 @@ const ResumePDF = () => {
       margin:       [0, 0, 10, 0], // pdf 每頁面 margin
       filename:     'resume.pdf', // pdf 檔名
       pagebreak:    {mode: ['css', 'legacy', 'avoid-all']}, // pdf 分頁機制
-      image:        { type: 'jpeg', quality: 0.98 }, // 圖片格式、畫質
-      html2canvas:  { scale: 2, useCORS: true }, // canvas 解析度、跨域圖片
+      image:        { type: 'jpeg', quality: 1 }, // 圖片格式、畫質
+      html2canvas:  { scale: 3, useCORS: true }, // canvas 解析度、跨域圖片
       jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } // pdf A4直式
     };
 
@@ -49,7 +49,7 @@ const ResumePDF = () => {
     
       for (let i = 1; i <= totalPages; i++) {
         pdf.setPage(i);
-        pdf.addImage(logo, "PNG", xPosition, yPosition, logoWidth, logoHeight);
+        pdf.addImage(logo, "jpeg", xPosition, yPosition, logoWidth, logoHeight);
       }
       document.body.removeChild(element);
     }).save();
