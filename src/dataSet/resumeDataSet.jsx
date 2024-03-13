@@ -60,9 +60,13 @@ export const resumeDataSet = {
       workingLength: {
         hMsg: "累積年資",
         component: "input",
-        type: "text",
+        type: "number",
         validation: {
           required: commonRequiredMsg,
+          min: { 
+            value: 1,
+            message: commonPositiveNumMsg
+          }
         },
         placeholder: "針對此職位的職缺累積年資",
       },

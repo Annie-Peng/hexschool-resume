@@ -9,7 +9,7 @@ const GroupInput = ({ formDataSet, name, insertData, edit }) => {
 
   const { control, formState: {errors} } = useFormContext()
 
-  const { fields, insert, remove, move } = useFieldArray({
+  const { fields, insert, remove, move } = useFieldArray({ // 動態表單 group CRUD, https://www.react-hook-form.com/api/usefieldarray/
     name,
     control
   })

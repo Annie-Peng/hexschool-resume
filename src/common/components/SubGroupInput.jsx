@@ -10,7 +10,7 @@ import { useEffect } from "react";
 const SubGroupInput = ({ formDataSet, formClass, name, insertData, subInsertData, edit, children, requiredShowResume }) => {
 
   const { control, getValues, reset, formState: { errors } } = useFormContext();
-  const { fields, insert, remove, move } = useFieldArray({
+  const { fields, insert, remove, move } = useFieldArray({ // 動態表單 group CRUD, https://www.react-hook-form.com/api/usefieldarray/
     name,
     control
   })
@@ -133,7 +133,7 @@ export default SubGroupInput;
 function Card ({subName, edit, children, subInsertData}) {
 
   const { control } = useFormContext();
-  const { fields, insert, remove } = useFieldArray({
+  const { fields, insert, remove } = useFieldArray({ // 動態表單 group CRUD, https://www.react-hook-form.com/api/usefieldarray/
     name: subName,
     control
   })
