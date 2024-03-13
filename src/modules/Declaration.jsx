@@ -88,7 +88,10 @@ export const DeclarationResume = ({ data }) => {
             本人確認所提供之個人資料及相關經歷均屬實，如有不實情形，願意承擔相應責任。 
           </li>
         </ol>
-        <p className={`before:content-[''] before:inline-block before:w-[23px] before:h-[20px] before:bg-cover ${data.approved ? "before:bg-filledHexschool" : "before:bg-thinBorderHexschool"} flex items-center gap-2`}>同意上述聲明及確認個人資料屬實。</p>
+        <div className="flex items-center gap-2">
+          <span className={`w-[24px] h-[24px] bg-cover ${data.approved ? "bg-check" : "bg-unchecked"}`}/>
+          <span>同意上述聲明及確認個人資料屬實。</span>
+        </div>
         <div className="flex justify-between mt-4">
           <div className="flex gap-2 items-center w-full">
             <span>簽名</span>

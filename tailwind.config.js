@@ -40,6 +40,8 @@ export default {
       },
       backgroundImage: {
         close: "url(/icons/close.png)",
+        check: "url(/icons/check.svg)",
+        unchecked: "url(/icons/unchecked.svg)",
         thinBorderHexschool: "url(/images/thin-border-hexschool.png)",
         filledHexschool: "url(/images/filled-hexschool.png)",
       },
