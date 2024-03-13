@@ -5,6 +5,10 @@ import useCusForm from "../common/hooks/useCusForm";
 import Form from '../common/components/Form';
 import { turnDateFormat } from "../common/helpers/turnDateFormat";
 
+const declarationList = [
+  "本人同意多角人才基於就業服務之目的依法蒐集、處理、利用個人資料於任用相關作業之進行。",
+  "本人確認所提供之個人資料及相關經歷均屬實，如有不實情形，願意承擔相應責任。"
+]
 
 const Declaration = () => {
 
@@ -40,12 +44,11 @@ const Declaration = () => {
       <h2 className="resumeH2">{title}</h2>
       <div className="ml-auto w-[90%] py-2">
         <ol>
-          <li>
-            本人同意多角人才基於就業服務之目的依法蒐集、處理、利用個人資料於任用相關作業之進行。
-          </li>
-          <li>
-            本人確認所提供之個人資料及相關經歷均屬實，如有不實情形，願意承擔相應責任。 
-          </li>
+          {declarationList.map((item, index)=>(
+            <li key={index}>
+              {item}
+            </li>
+          ))}
         </ol>
         <Form
           formFunctions={formFunctions}
@@ -80,13 +83,12 @@ export const DeclarationResume = ({ data }) => {
       <hr className="h-[1px] border-secondary-300" />
       <section className="flex flex-col gap-4 py-[30px]">
         <h2 className="font-bold text-2xl">聲明事項</h2>
-        <ol>
-          <li>
-            本人同意多角人才基於就業服務之目的依法蒐集、處理、利用個人資料於任用相關作業之進行。
-          </li>
-          <li>
-            本人確認所提供之個人資料及相關經歷均屬實，如有不實情形，願意承擔相應責任。 
-          </li>
+        <ol className="list-decimal">
+          {declarationList.map((item, index)=>(
+            <li key={index} >
+              {item}
+            </li>
+          ))}
         </ol>
         <div className="flex items-center gap-2">
           <span className={`w-[24px] h-[24px] bg-cover ${data.approved ? "bg-check" : "bg-unchecked"}`}/>
