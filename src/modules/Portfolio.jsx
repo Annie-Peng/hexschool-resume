@@ -104,19 +104,25 @@ export const PortfolioResume = ({ data }) => {
                         </span>
                         <div className="flex flex-col gap-1">
                           <p>作品網址 | {item.url ? item.url : "尚未填寫"}</p>
-                          <p className="flex gap-1">作品敘述 |
+                          <div className="flex gap-1">
+                            <span className="flex-shrink-0">作品敘述 |</span>
                             {item.description ? (
+                              <p>
                               <MarkdownIdentifier texts={item.description} />  
+                              </p>
                             ) : 
                             <p>尚未填寫</p>
                           }
-                          </p>
-                          <p className="flex gap-1">功能內容 |
+                          </div>
+                          <div className="flex gap-1">
+                          <span className="flex-shrink-0">功能內容 |</span>
                             {item.functions ? (
-                              <MarkdownIdentifier texts={item.functions} />  
+                              <p>
+                                <MarkdownIdentifier texts={item.functions} />  
+                              </p>
                             ) :
                             <p>尚未填寫</p>
-                          }</p>
+                          }</div>
                         </div>
                       </li>
                     )
